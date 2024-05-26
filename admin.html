@@ -918,6 +918,21 @@
     }
   }
 };
+            defs["cafe_save_body"] = {
+  "type" : "object",
+  "properties" : {
+    "cafeInfo" : {
+      "$ref" : "#/components/schemas/CafeSaveRequestDto"
+    },
+    "image" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    }
+  }
+};
             defs["DessertFindPagingResponseDto"] = {
   "type" : "object",
   "properties" : {
@@ -1112,6 +1127,18 @@
     }
   }
 };
+            defs["image_cafeId_body"] = {
+  "type" : "object",
+  "properties" : {
+    "image" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    }
+  }
+};
             defs["InquiryFindPagingResponseDto"] = {
   "type" : "object",
   "properties" : {
@@ -1269,6 +1296,9 @@
                     <li data-group="CafeController" data-name="findAllCafeNames" class="">
                       <a href="#api-CafeController-findAllCafeNames">findAllCafeNames</a>
                     </li>
+                    <li data-group="CafeController" data-name="findAllNonePaging1" class="">
+                      <a href="#api-CafeController-findAllNonePaging1">findAllNonePaging1</a>
+                    </li>
                     <li data-group="CafeController" data-name="findByBeverageName" class="">
                       <a href="#api-CafeController-findByBeverageName">findByBeverageName</a>
                     </li>
@@ -1281,12 +1311,18 @@
                     <li data-group="CafeController" data-name="update1" class="">
                       <a href="#api-CafeController-update1">update1</a>
                     </li>
+                    <li data-group="CafeController" data-name="updateImage" class="">
+                      <a href="#api-CafeController-updateImage">updateImage</a>
+                    </li>
                   <li class="nav-header" data-group="DessertController"><a href="#api-DessertController">API Methods - DessertController</a></li>
                     <li data-group="DessertController" data-name="delete" class="">
                       <a href="#api-DessertController-delete">delete</a>
                     </li>
                     <li data-group="DessertController" data-name="findAll1" class="">
                       <a href="#api-DessertController-findAll1">findAll1</a>
+                    </li>
+                    <li data-group="DessertController" data-name="findAllNonePaging" class="">
+                      <a href="#api-DessertController-findAllNonePaging">findAllNonePaging</a>
                     </li>
                     <li data-group="DessertController" data-name="findByCafeName" class="">
                       <a href="#api-DessertController-findByCafeName">findByCafeName</a>
@@ -1404,7 +1440,7 @@
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/cafe/delete/{id}"</code></pre>
+"https://julindang.shop/admin/admin/cafe/delete/{id}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-delete1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1710,7 +1746,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/cafe?page="</code></pre>
+"https://julindang.shop/admin/admin/cafe?page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-findAll2-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2017,7 +2053,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/cafe/cafe-names"</code></pre>
+"https://julindang.shop/admin/admin/cafe/cafe-names"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-findAllCafeNames-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2254,6 +2290,274 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-CafeController-findAllNonePaging1">
+                      <article id="api-CafeController-findAllNonePaging1-0" data-group="User" data-name="findAllNonePaging1" data-version="0">
+                        <div class="pull-left">
+                          <h1>findAllNonePaging1</h1>
+                          <p>카페 정보 불러오기</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">페이징 없이 불러오기</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/cafe/none-paging</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-CafeController-findAllNonePaging1-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-CafeController-findAllNonePaging1-0-java">Java</a></li>
+                          <li class=""><a href="#examples-CafeController-findAllNonePaging1-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-CafeController-findAllNonePaging1-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-CafeController-findAllNonePaging1-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-CafeController-findAllNonePaging1-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-CafeController-findAllNonePaging1-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-CafeController-findAllNonePaging1-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-CafeController-findAllNonePaging1-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-CafeController-findAllNonePaging1-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-CafeController-findAllNonePaging1-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-CafeController-findAllNonePaging1-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/admin/admin/cafe/none-paging"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.CafeControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class CafeControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        CafeControllerApi apiInstance = new CafeControllerApi();
+        try {
+            CafeFindPagingResponseDto result = apiInstance.findAllNonePaging1();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CafeControllerApi#findAllNonePaging1");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.CafeControllerApi;
+
+public class CafeControllerApiExample {
+
+    public static void main(String[] args) {
+        CafeControllerApi apiInstance = new CafeControllerApi();
+        try {
+            CafeFindPagingResponseDto result = apiInstance.findAllNonePaging1();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CafeControllerApi#findAllNonePaging1");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
+
+// 카페 정보 불러오기
+[apiInstance findAllNonePaging1WithCompletionHandler: 
+              ^(CafeFindPagingResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
+var defaultClient = JulindangService.ApiClient.instance;
+
+
+var api = new JulindangService.CafeControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.findAllNonePaging1(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class findAllNonePaging1Example
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new CafeControllerApi();
+
+            try
+            {
+                // 카페 정보 불러오기
+                CafeFindPagingResponseDto result = apiInstance.findAllNonePaging1();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling CafeControllerApi.findAllNonePaging1: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiCafeControllerApi();
+
+try {
+    $result = $api_instance->findAllNonePaging1();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CafeControllerApi->findAllNonePaging1: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::CafeControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::CafeControllerApi->new();
+
+eval { 
+    my $result = $api_instance->findAllNonePaging1();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling CafeControllerApi->findAllNonePaging1: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.CafeControllerApi()
+
+try: 
+    # 카페 정보 불러오기
+    api_response = api_instance.find_all_none_paging1()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CafeControllerApi->findAllNonePaging1: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-findAllNonePaging1-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-findAllNonePaging1-200-schema">
+                                  <div id='responses-findAllNonePaging1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/CafeFindPagingResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-findAllNonePaging1-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findAllNonePaging1-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-findAllNonePaging1-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-CafeController-findByBeverageName">
                       <article id="api-CafeController-findByBeverageName-0" data-group="User" data-name="findByBeverageName" data-version="0">
                         <div class="pull-left">
@@ -2289,7 +2593,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/cafe/by-beverage-name?beverageName=&page="</code></pre>
+"https://julindang.shop/admin/admin/cafe/by-beverage-name?beverageName=&page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-findByBeverageName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2618,7 +2922,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/cafe/by-cafe-name?cafeName=&page="</code></pre>
+"https://julindang.shop/admin/admin/cafe/by-cafe-name?cafeName=&page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-findByCafeName1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2948,7 +3252,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://julindang.shop/api/admin/cafe/save"</code></pre>
+"https://julindang.shop/admin/admin/cafe/save"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-save2-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2966,7 +3270,7 @@ public class CafeControllerApiExample {
 
 
         CafeControllerApi apiInstance = new CafeControllerApi();
-        CafeSaveRequestDto body = ; // CafeSaveRequestDto | 
+        Cafe_save_body body = ; // Cafe_save_body | 
         try {
             CafeSaveRequestDto result = apiInstance.save2(body);
             System.out.println(result);
@@ -2985,7 +3289,7 @@ public class CafeControllerApiExample {
 
     public static void main(String[] args) {
         CafeControllerApi apiInstance = new CafeControllerApi();
-        CafeSaveRequestDto body = ; // CafeSaveRequestDto | 
+        Cafe_save_body body = ; // Cafe_save_body | 
         try {
             CafeSaveRequestDto result = apiInstance.save2(body);
             System.out.println(result);
@@ -3002,7 +3306,7 @@ public class CafeControllerApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-CafeController-save2-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-CafeSaveRequestDto *body = ; // 
+Cafe_save_body *body = ; //  (optional)
 
 CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
@@ -3025,8 +3329,9 @@ var defaultClient = JulindangService.ApiClient.instance;
 
 
 var api = new JulindangService.CafeControllerApi()
-var body = ; // {{CafeSaveRequestDto}} 
-
+var opts = { 
+  'body':  // {{Cafe_save_body}} 
+};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -3034,7 +3339,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.save2(body, callback);
+api.save2(opts, callback);
 </code></pre>
                             </div>
 
@@ -3057,7 +3362,7 @@ namespace Example
 
 
             var apiInstance = new CafeControllerApi();
-            var body = new CafeSaveRequestDto(); // CafeSaveRequestDto | 
+            var body = new Cafe_save_body(); // Cafe_save_body |  (optional) 
 
             try
             {
@@ -3081,7 +3386,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiCafeControllerApi();
-$body = ; // CafeSaveRequestDto | 
+$body = ; // Cafe_save_body | 
 
 try {
     $result = $api_instance->save2($body);
@@ -3099,7 +3404,7 @@ use WWW::SwaggerClient::CafeControllerApi;
 
 
 my $api_instance = WWW::SwaggerClient::CafeControllerApi->new();
-my $body = WWW::SwaggerClient::Object::CafeSaveRequestDto->new(); # CafeSaveRequestDto | 
+my $body = WWW::SwaggerClient::Object::Cafe_save_body->new(); # Cafe_save_body | 
 
 eval { 
     my $result = $api_instance->save2(body => $body);
@@ -3120,11 +3425,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.CafeControllerApi()
-body =  # CafeSaveRequestDto | 
+body =  # Cafe_save_body |  (optional)
 
 try: 
     # 카페 저장
-    api_response = api_instance.save2(body)
+    api_response = api_instance.save2(body=body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CafeControllerApi->save2: %s\n" % e)</code></pre>
@@ -3141,7 +3446,7 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <tr><td style="width:150px;">body </td>
                                 <td>
                                 
                                 
@@ -3151,11 +3456,10 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/CafeSaveRequestDto"
+        "$ref" : "#/components/schemas/cafe_save_body"
       }
     }
-  },
-  "required" : true
+  }
 };
                                   var schema = schemaWrapper.content["application/json"].schema;
                                   if (schema.$ref != null) {
@@ -3269,7 +3573,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://julindang.shop/api/admin/cafe/update"</code></pre>
+"https://julindang.shop/admin/admin/cafe/update"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-update1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3554,6 +3858,368 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-CafeController-updateImage">
+                      <article id="api-CafeController-updateImage-0" data-group="User" data-name="updateImage" data-version="0">
+                        <div class="pull-left">
+                          <h1>updateImage</h1>
+                          <p>카페 이미지 업데이트</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">카페 이미지 업데이트</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/admin/cafe/update/image/{cafeId}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-CafeController-updateImage-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-CafeController-updateImage-0-java">Java</a></li>
+                          <li class=""><a href="#examples-CafeController-updateImage-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-CafeController-updateImage-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-CafeController-updateImage-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-CafeController-updateImage-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-CafeController-updateImage-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-CafeController-updateImage-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-CafeController-updateImage-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-CafeController-updateImage-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-CafeController-updateImage-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-CafeController-updateImage-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X PUT\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+-H "Content-Type: application/json"\
+"https://julindang.shop/admin/admin/cafe/update/image/{cafeId}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-CafeController-updateImage-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.CafeControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class CafeControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        CafeControllerApi apiInstance = new CafeControllerApi();
+        Long cafeId = 789; // Long | 이미지 올릴 카페 id
+        Image_cafeId_body body = ; // Image_cafeId_body | 
+        try {
+            CafeFindDetailResponseDto result = apiInstance.updateImage(cafeId, body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CafeControllerApi#updateImage");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-CafeController-updateImage-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.CafeControllerApi;
+
+public class CafeControllerApiExample {
+
+    public static void main(String[] args) {
+        CafeControllerApi apiInstance = new CafeControllerApi();
+        Long cafeId = 789; // Long | 이미지 올릴 카페 id
+        Image_cafeId_body body = ; // Image_cafeId_body | 
+        try {
+            CafeFindDetailResponseDto result = apiInstance.updateImage(cafeId, body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CafeControllerApi#updateImage");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-CafeController-updateImage-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-CafeController-updateImage-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+Long *cafeId = 789; // 이미지 올릴 카페 id
+Image_cafeId_body *body = ; //  (optional)
+
+CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
+
+// 카페 이미지 업데이트
+[apiInstance updateImageWith:cafeId
+    body:body
+              completionHandler: ^(CafeFindDetailResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-CafeController-updateImage-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
+var defaultClient = JulindangService.ApiClient.instance;
+
+
+var api = new JulindangService.CafeControllerApi()
+var cafeId = 789; // {{Long}} 이미지 올릴 카페 id
+var opts = { 
+  'body':  // {{Image_cafeId_body}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.updateImage(cafeId, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-CafeController-updateImage-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-CafeController-updateImage-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class updateImageExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new CafeControllerApi();
+            var cafeId = 789;  // Long | 이미지 올릴 카페 id
+            var body = new Image_cafeId_body(); // Image_cafeId_body |  (optional) 
+
+            try
+            {
+                // 카페 이미지 업데이트
+                CafeFindDetailResponseDto result = apiInstance.updateImage(cafeId, body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling CafeControllerApi.updateImage: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-CafeController-updateImage-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiCafeControllerApi();
+$cafeId = 789; // Long | 이미지 올릴 카페 id
+$body = ; // Image_cafeId_body | 
+
+try {
+    $result = $api_instance->updateImage($cafeId, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CafeControllerApi->updateImage: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-CafeController-updateImage-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::CafeControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::CafeControllerApi->new();
+my $cafeId = 789; # Long | 이미지 올릴 카페 id
+my $body = WWW::SwaggerClient::Object::Image_cafeId_body->new(); # Image_cafeId_body | 
+
+eval { 
+    my $result = $api_instance->updateImage(cafeId => $cafeId, body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling CafeControllerApi->updateImage: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-CafeController-updateImage-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.CafeControllerApi()
+cafeId = 789 # Long | 이미지 올릴 카페 id
+body =  # Image_cafeId_body |  (optional)
+
+try: 
+    # 카페 이미지 업데이트
+    api_response = api_instance.update_image(cafeId, body=body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CafeControllerApi->updateImage: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">cafeId*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_updateImage_cafeId">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Long
+                                                  </span>
+                                                      <span class="format">
+                                                          (int64)
+                                                      </span>
+                                  
+                                                      <div class="inner description">
+                                                          이미지 올릴 카페 id
+                                                      </div>
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/image_cafeId_body"
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_updateImage_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_updateImage_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-updateImage-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-updateImage-200-schema">
+                                  <div id='responses-updateImage-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/CafeFindDetailResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-updateImage-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-updateImage-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-updateImage-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                   </section>
                 <section id="api-DessertController">
                   <h1>DessertController</h1>
@@ -3592,7 +4258,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/dessert/delete/{id}"</code></pre>
+"https://julindang.shop/admin/admin/dessert/delete/{id}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-delete-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3898,7 +4564,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/dessert?page="</code></pre>
+"https://julindang.shop/admin/admin/dessert?page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-findAll1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4167,6 +4833,274 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-DessertController-findAllNonePaging">
+                      <article id="api-DessertController-findAllNonePaging-0" data-group="User" data-name="findAllNonePaging" data-version="0">
+                        <div class="pull-left">
+                          <h1>findAllNonePaging</h1>
+                          <p>모든 디저트 정보 불러오기</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">모든 디저트 정보 로드 페이징 없이</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/dessert/none-paging</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-DessertController-findAllNonePaging-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-DessertController-findAllNonePaging-0-java">Java</a></li>
+                          <li class=""><a href="#examples-DessertController-findAllNonePaging-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-DessertController-findAllNonePaging-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-DessertController-findAllNonePaging-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-DessertController-findAllNonePaging-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-DessertController-findAllNonePaging-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-DessertController-findAllNonePaging-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-DessertController-findAllNonePaging-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-DessertController-findAllNonePaging-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-DessertController-findAllNonePaging-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-DessertController-findAllNonePaging-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/admin/admin/dessert/none-paging"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DessertControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DessertControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        DessertControllerApi apiInstance = new DessertControllerApi();
+        try {
+            DessertFindPagingResponseDto result = apiInstance.findAllNonePaging();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DessertControllerApi#findAllNonePaging");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DessertControllerApi;
+
+public class DessertControllerApiExample {
+
+    public static void main(String[] args) {
+        DessertControllerApi apiInstance = new DessertControllerApi();
+        try {
+            DessertFindPagingResponseDto result = apiInstance.findAllNonePaging();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DessertControllerApi#findAllNonePaging");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
+
+// 모든 디저트 정보 불러오기
+[apiInstance findAllNonePagingWithCompletionHandler: 
+              ^(DessertFindPagingResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
+var defaultClient = JulindangService.ApiClient.instance;
+
+
+var api = new JulindangService.DessertControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.findAllNonePaging(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class findAllNonePagingExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new DessertControllerApi();
+
+            try
+            {
+                // 모든 디저트 정보 불러오기
+                DessertFindPagingResponseDto result = apiInstance.findAllNonePaging();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DessertControllerApi.findAllNonePaging: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiDessertControllerApi();
+
+try {
+    $result = $api_instance->findAllNonePaging();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DessertControllerApi->findAllNonePaging: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DessertControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::DessertControllerApi->new();
+
+eval { 
+    my $result = $api_instance->findAllNonePaging();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DessertControllerApi->findAllNonePaging: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.DessertControllerApi()
+
+try: 
+    # 모든 디저트 정보 불러오기
+    api_response = api_instance.find_all_none_paging()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DessertControllerApi->findAllNonePaging: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-findAllNonePaging-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-findAllNonePaging-200-schema">
+                                  <div id='responses-findAllNonePaging-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/DessertFindPagingResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-findAllNonePaging-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findAllNonePaging-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-findAllNonePaging-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-DessertController-findByCafeName">
                       <article id="api-DessertController-findByCafeName-0" data-group="User" data-name="findByCafeName" data-version="0">
                         <div class="pull-left">
@@ -4202,7 +5136,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/dessert/by-cafe-name?cafeName=&page="</code></pre>
+"https://julindang.shop/admin/admin/dessert/by-cafe-name?cafeName=&page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-findByCafeName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4531,7 +5465,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/dessert/by-dessert-name?dessertName=&page="</code></pre>
+"https://julindang.shop/admin/admin/dessert/by-dessert-name?dessertName=&page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-findByDessertName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4861,7 +5795,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://julindang.shop/api/admin/dessert/save"</code></pre>
+"https://julindang.shop/admin/admin/dessert/save"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-save1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5182,7 +6116,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://julindang.shop/api/admin/dessert/update"</code></pre>
+"https://julindang.shop/admin/admin/dessert/update"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-update-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5505,7 +6439,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/faq/delete/{id}"</code></pre>
+"https://julindang.shop/admin/admin/faq/delete/{id}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-FAQAPI-deleteFAQ-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5806,7 +6740,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://julindang.shop/api/admin/faq/save"</code></pre>
+"https://julindang.shop/admin/admin/faq/save"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-FAQAPI-saveFAQ-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6124,7 +7058,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://julindang.shop/api/admin/faq/update"</code></pre>
+"https://julindang.shop/admin/admin/faq/update"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-FAQAPI-updateFAQ-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6444,7 +7378,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/inquiry?page="</code></pre>
+"https://julindang.shop/admin/admin/inquiry?page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-InquiryController-findAll-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6752,7 +7686,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://julindang.shop/api/admin/inquiry/save"</code></pre>
+"https://julindang.shop/admin/admin/inquiry/save"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-InquiryController-save-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -7075,7 +8009,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/downgrade?memberId="</code></pre>
+"https://julindang.shop/admin/admin/member/downgrade?memberId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-downgradeRole-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -7379,7 +8313,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/search/admin?searchType=&query=&pageNum="</code></pre>
+"https://julindang.shop/admin/admin/member/search/admin?searchType=&query=&pageNum="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-findAdmins-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -7753,7 +8687,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/search/member?searchType=&query=&pageNum="</code></pre>
+"https://julindang.shop/admin/admin/member/search/member?searchType=&query=&pageNum="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-findMembers-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -8127,7 +9061,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/age-rate"</code></pre>
+"https://julindang.shop/admin/admin/member/age-rate"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getAgeRateInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -8392,7 +9326,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/bmi"</code></pre>
+"https://julindang.shop/admin/admin/member/bmi"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getBMIRate-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -8657,7 +9591,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/diabetes"</code></pre>
+"https://julindang.shop/admin/admin/member/diabetes"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getDiabetesRiskRate-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -8922,7 +9856,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/gender-rate"</code></pre>
+"https://julindang.shop/admin/admin/member/gender-rate"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getGenderRateInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -9187,7 +10121,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/login/check"</code></pre>
+"https://julindang.shop/admin/admin/member/login/check"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getLoginStatics-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -9452,7 +10386,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/auth/check?email="</code></pre>
+"https://julindang.shop/admin/admin/member/auth/check?email="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getRoles-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -9757,7 +10691,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://julindang.shop/api/admin/member/upgrade?memberId="</code></pre>
+"https://julindang.shop/admin/admin/member/upgrade?memberId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-upgradeRole-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;

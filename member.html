@@ -689,14 +689,6 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-            defs["Authority"] = {
-  "type" : "object",
-  "properties" : {
-    "authorityName" : {
-      "type" : "string"
-    }
-  }
-};
             defs["Balance"] = {
   "type" : "object",
   "properties" : {
@@ -707,6 +699,23 @@
     "point" : {
       "type" : "number",
       "format" : "float"
+    }
+  }
+};
+            defs["BmiResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "bmi" : {
+      "type" : "integer",
+      "format" : "int64"
+    }
+  }
+};
+            defs["DeleteReasonRequestDto"] = {
+  "type" : "object",
+  "properties" : {
+    "content" : {
+      "type" : "string"
     }
   }
 };
@@ -730,13 +739,15 @@
   }
 };
             defs["LoginRequestDto"] = {
+  "required" : [ "email", "loginType" ],
   "type" : "object",
   "properties" : {
     "email" : {
       "type" : "string"
     },
     "loginType" : {
-      "type" : "string"
+      "type" : "integer",
+      "format" : "int64"
     }
   }
 };
@@ -770,28 +781,10 @@
   }
 };
             defs["MemberEditRequestDto"] = {
+  "required" : [ "nickname" ],
   "type" : "object",
   "properties" : {
     "nickname" : {
-      "type" : "string"
-    },
-    "phoneNumber" : {
-      "type" : "integer",
-      "format" : "int64"
-    }
-  }
-};
-            defs["MemberEditResponseDto"] = {
-  "type" : "object",
-  "properties" : {
-    "memberId" : {
-      "type" : "integer",
-      "format" : "int64"
-    },
-    "nickname" : {
-      "type" : "string"
-    },
-    "phoneNumber" : {
       "type" : "string"
     }
   }
@@ -820,29 +813,38 @@
       "type" : "integer",
       "format" : "int64"
     },
-    "riskItemList" : {
+    "riskItemDtoList" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/components/schemas/RiskItem"
+        "$ref" : "#/components/schemas/RiskItemResponseDto"
       }
     }
   }
 };
             defs["MemberProfileEditRequestDto"] = {
+  "required" : [ "age", "bmi", "gender", "height", "weight" ],
   "type" : "object",
   "properties" : {
     "gender" : {
       "type" : "boolean"
     },
     "age" : {
+      "minimum" : 0,
       "type" : "integer",
       "format" : "int64"
     },
     "height" : {
+      "minimum" : 0,
       "type" : "integer",
       "format" : "int64"
     },
     "weight" : {
+      "minimum" : 0,
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "bmi" : {
+      "minimum" : 0,
       "type" : "integer",
       "format" : "int64"
     }
@@ -879,21 +881,50 @@
     }
   }
 };
+            defs["RiskItemResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "itemId" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "itemName" : {
+      "type" : "string"
+    },
+    "riskId" : {
+      "type" : "integer",
+      "format" : "int64"
+    }
+  }
+};
+            defs["RiskScoreResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "riskScore" : {
+      "type" : "integer",
+      "format" : "int64"
+    }
+  }
+};
             defs["SignUpRequestDto"] = {
+  "required" : [ "age", "bmi", "email", "fcmToken", "gender", "height", "nickname", "os", "phoneNumber", "weight" ],
   "type" : "object",
   "properties" : {
     "gender" : {
       "type" : "boolean"
     },
     "age" : {
+      "minimum" : 0,
       "type" : "integer",
       "format" : "int64"
     },
     "height" : {
+      "minimum" : 0,
       "type" : "integer",
       "format" : "int64"
     },
     "weight" : {
+      "minimum" : 0,
       "type" : "integer",
       "format" : "int64"
     },
@@ -914,11 +945,22 @@
       "type" : "integer",
       "format" : "int64"
     },
+    "fcmToken" : {
+      "type" : "string"
+    },
+    "os" : {
+      "type" : "string"
+    },
     "riskItemList" : {
       "type" : "array",
       "items" : {
         "$ref" : "#/components/schemas/RiskItem"
       }
+    },
+    "bmi" : {
+      "minimum" : 0,
+      "type" : "integer",
+      "format" : "int64"
     }
   }
 };
@@ -961,17 +1003,11 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="AuthController"><a href="#api-AuthController">API Methods - AuthController</a></li>
-                    <li data-group="AuthController" data-name="downgrade" class="">
-                      <a href="#api-AuthController-downgrade">downgrade</a>
+                    <li data-group="AuthController" data-name="getAdminRole" class="">
+                      <a href="#api-AuthController-getAdminRole">getAdminRole</a>
                     </li>
-                    <li data-group="AuthController" data-name="getAuthorities" class="">
-                      <a href="#api-AuthController-getAuthorities">getAuthorities</a>
-                    </li>
-                    <li data-group="AuthController" data-name="getAuthorities1" class="">
-                      <a href="#api-AuthController-getAuthorities1">getAuthorities1</a>
-                    </li>
-                    <li data-group="AuthController" data-name="upgrade" class="">
-                      <a href="#api-AuthController-upgrade">upgrade</a>
+                    <li data-group="AuthController" data-name="getUserRole" class="">
+                      <a href="#api-AuthController-getUserRole">getUserRole</a>
                     </li>
                   <li class="nav-header" data-group="EtcController"><a href="#api-EtcController">API Methods - EtcController</a></li>
                     <li data-group="EtcController" data-name="getFemaleDiabetes" class="">
@@ -993,17 +1029,23 @@
                     <li data-group="MemberController" data-name="editRisk" class="">
                       <a href="#api-MemberController-editRisk">editRisk</a>
                     </li>
+                    <li data-group="MemberController" data-name="getBmi" class="">
+                      <a href="#api-MemberController-getBmi">getBmi</a>
+                    </li>
                     <li data-group="MemberController" data-name="getInfo" class="">
                       <a href="#api-MemberController-getInfo">getInfo</a>
+                    </li>
+                    <li data-group="MemberController" data-name="getRiskScore" class="">
+                      <a href="#api-MemberController-getRiskScore">getRiskScore</a>
+                    </li>
+                    <li data-group="MemberController" data-name="login" class="">
+                      <a href="#api-MemberController-login">login</a>
                     </li>
                     <li data-group="MemberController" data-name="signOut" class="">
                       <a href="#api-MemberController-signOut">signOut</a>
                     </li>
                     <li data-group="MemberController" data-name="signUp" class="">
                       <a href="#api-MemberController-signUp">signUp</a>
-                    </li>
-                    <li data-group="MemberController" data-name="signUp1" class="">
-                      <a href="#api-MemberController-signUp1">signUp1</a>
                     </li>
                   <li class="nav-header" data-group="SmsController"><a href="#api-SmsController">API Methods - SmsController</a></li>
                     <li data-group="SmsController" data-name="getMessageList" class="">
@@ -1036,10 +1078,10 @@
         <div id="sections">
                 <section id="api-AuthController">
                   <h1>AuthController</h1>
-                    <div id="api-AuthController-downgrade">
-                      <article id="api-AuthController-downgrade-0" data-group="User" data-name="downgrade" data-version="0">
+                    <div id="api-AuthController-getAdminRole">
+                      <article id="api-AuthController-getAdminRole-0" data-group="User" data-name="getAdminRole" data-version="0">
                         <div class="pull-left">
-                          <h1>downgrade</h1>
+                          <h1>getAdminRole</h1>
                           <p></p>
                         </div>
                         <div class="pull-right"></div>
@@ -1048,337 +1090,32 @@
                         <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/auth/downgrade</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/auth/check/admin</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-AuthController-downgrade-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-AuthController-downgrade-0-java">Java</a></li>
-                          <li class=""><a href="#examples-AuthController-downgrade-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-AuthController-downgrade-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-AuthController-downgrade-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-AuthController-downgrade-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-AuthController-downgrade-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-AuthController-downgrade-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-AuthController-downgrade-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-AuthController-downgrade-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-AuthController-downgrade-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-AuthController-getAdminRole-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AuthController-getAdminRole-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AuthController-getAdminRole-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-getAdminRole-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AuthController-getAdminRole-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AuthController-getAdminRole-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-getAdminRole-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AuthController-getAdminRole-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AuthController-getAdminRole-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AuthController-getAdminRole-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AuthController-getAdminRole-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-AuthController-downgrade-0-curl">
+                          <div class="tab-pane active" id="examples-AuthController-getAdminRole-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/auth/downgrade?email="</code></pre>
+"http://localhost:8081/auth/check/admin"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-AuthController-downgrade-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.AuthControllerApi;
-
-import java.io.File;
-import java.util.*;
-
-public class AuthControllerApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-        AuthControllerApi apiInstance = new AuthControllerApi();
-        String email = email_example; // String | 
-        try {
-            array[Authority] result = apiInstance.downgrade(email);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AuthControllerApi#downgrade");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-AuthController-downgrade-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
-
-public class AuthControllerApiExample {
-
-    public static void main(String[] args) {
-        AuthControllerApi apiInstance = new AuthControllerApi();
-        String email = email_example; // String | 
-        try {
-            array[Authority] result = apiInstance.downgrade(email);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AuthControllerApi#downgrade");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-AuthController-downgrade-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-AuthController-downgrade-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-String *email = email_example; // 
-
-AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
-
-[apiInstance downgradeWith:email
-              completionHandler: ^(array[Authority] output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-AuthController-downgrade-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
-var defaultClient = JulindangMemberService.ApiClient.instance;
-
-
-var api = new JulindangMemberService.AuthControllerApi()
-var email = email_example; // {{String}} 
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.downgrade(email, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-AuthController-downgrade-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-AuthController-downgrade-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class downgradeExample
-    {
-        public void main()
-        {
-
-
-            var apiInstance = new AuthControllerApi();
-            var email = email_example;  // String | 
-
-            try
-            {
-                array[Authority] result = apiInstance.downgrade(email);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling AuthControllerApi.downgrade: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-AuthController-downgrade-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$api_instance = new Swagger\Client\ApiAuthControllerApi();
-$email = email_example; // String | 
-
-try {
-    $result = $api_instance->downgrade($email);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AuthControllerApi->downgrade: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-AuthController-downgrade-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::AuthControllerApi;
-
-
-my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
-my $email = email_example; # String | 
-
-eval { 
-    my $result = $api_instance->downgrade(email => $email);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling AuthControllerApi->downgrade: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-AuthController-downgrade-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-
-# create an instance of the API class
-api_instance = swagger_client.AuthControllerApi()
-email = email_example # String | 
-
-try: 
-    api_response = api_instance.downgrade(email)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthControllerApi->downgrade: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-                            <div class="methodsubtabletitle">Query parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">email*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_downgrade_email">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    String
-                                                </span>
-                                
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                            </table>
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-downgrade-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-downgrade-200-schema">
-                                  <div id='responses-downgrade-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "OK",
-  "content" : {
-    "*/*" : {
-      "schema" : {
-        "uniqueItems" : true,
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/Authority"
-        },
-        "x-content-type" : "*/*"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["*/*"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-downgrade-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-downgrade-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-downgrade-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-AuthController-getAuthorities">
-                      <article id="api-AuthController-getAuthorities-0" data-group="User" data-name="getAuthorities" data-version="0">
-                        <div class="pull-left">
-                          <h1>getAuthorities</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/auth/check</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-AuthController-getAuthorities-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities-0-java">Java</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-AuthController-getAuthorities-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-AuthController-getAuthorities-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-AuthController-getAuthorities-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-AuthController-getAuthorities-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-AuthController-getAuthorities-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
- -H "Authorization: Bearer [[accessToken]]"\
--H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/auth/check"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-AuthController-getAuthorities-0-java">
+                          <div class="tab-pane" id="examples-AuthController-getAdminRole-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1395,17 +1132,17 @@ public class AuthControllerApiExample {
 
         AuthControllerApi apiInstance = new AuthControllerApi();
         try {
-            'String' result = apiInstance.getAuthorities();
+            'String' result = apiInstance.getAdminRole();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AuthControllerApi#getAuthorities");
+            System.err.println("Exception when calling AuthControllerApi#getAdminRole");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-AuthController-getAuthorities-0-android">
+                          <div class="tab-pane" id="examples-AuthController-getAdminRole-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
 
 public class AuthControllerApiExample {
@@ -1413,25 +1150,25 @@ public class AuthControllerApiExample {
     public static void main(String[] args) {
         AuthControllerApi apiInstance = new AuthControllerApi();
         try {
-            'String' result = apiInstance.getAuthorities();
+            'String' result = apiInstance.getAdminRole();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AuthControllerApi#getAuthorities");
+            System.err.println("Exception when calling AuthControllerApi#getAdminRole");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-AuthController-getAuthorities-0-groovy">
+  <div class="tab-pane" id="examples-AuthController-getAdminRole-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities-0-objc">
+                            <div class="tab-pane" id="examples-AuthController-getAdminRole-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 
 AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
 
-[apiInstance getAuthoritiesWithCompletionHandler: 
+[apiInstance getAdminRoleWithCompletionHandler: 
               ^('String' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -1443,7 +1180,7 @@ AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities-0-javascript">
+                            <div class="tab-pane" id="examples-AuthController-getAdminRole-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
 var defaultClient = JulindangMemberService.ApiClient.instance;
 
@@ -1456,14 +1193,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getAuthorities(callback);
+api.getAdminRole(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-AuthController-getAuthorities-0-angular">
+                            <!--<div class="tab-pane" id="examples-AuthController-getAdminRole-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities-0-csharp">
+                            <div class="tab-pane" id="examples-AuthController-getAdminRole-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1472,7 +1209,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class getAuthoritiesExample
+    public class getAdminRoleExample
     {
         public void main()
         {
@@ -1482,12 +1219,12 @@ namespace Example
 
             try
             {
-                'String' result = apiInstance.getAuthorities();
+                'String' result = apiInstance.getAdminRole();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AuthControllerApi.getAuthorities: " + e.Message );
+                Debug.Print("Exception when calling AuthControllerApi.getAdminRole: " + e.Message );
             }
         }
     }
@@ -1495,7 +1232,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities-0-php">
+                            <div class="tab-pane" id="examples-AuthController-getAdminRole-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1503,15 +1240,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\ApiAuthControllerApi();
 
 try {
-    $result = $api_instance->getAuthorities();
+    $result = $api_instance->getAdminRole();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AuthControllerApi->getAuthorities: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AuthControllerApi->getAdminRole: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities-0-perl">
+                            <div class="tab-pane" id="examples-AuthController-getAdminRole-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::AuthControllerApi;
@@ -1520,15 +1257,15 @@ use WWW::SwaggerClient::AuthControllerApi;
 my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
 
 eval { 
-    my $result = $api_instance->getAuthorities();
+    my $result = $api_instance->getAdminRole();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling AuthControllerApi->getAuthorities: $@\n";
+    warn "Exception when calling AuthControllerApi->getAdminRole: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities-0-python">
+                            <div class="tab-pane" id="examples-AuthController-getAdminRole-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1540,10 +1277,10 @@ from pprint import pprint
 api_instance = swagger_client.AuthControllerApi()
 
 try: 
-    api_response = api_instance.get_authorities()
+    api_response = api_instance.get_admin_role()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling AuthControllerApi->getAuthorities: %s\n" % e)</code></pre>
+    print("Exception when calling AuthControllerApi->getAdminRole: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1559,14 +1296,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getAuthorities-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-getAdminRole-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getAuthorities-200-schema">
-                                  <div id='responses-getAuthorities-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-getAdminRole-200-schema">
+                                  <div id='responses-getAdminRole-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1593,24 +1330,24 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getAuthorities-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getAuthorities-200-schema-200');
+                                        $('#responses-getAdminRole-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getAdminRole-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getAuthorities-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-getAdminRole-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
                         </article>
                       </div>
                       <hr>
-                    <div id="api-AuthController-getAuthorities1">
-                      <article id="api-AuthController-getAuthorities1-0" data-group="User" data-name="getAuthorities1" data-version="0">
+                    <div id="api-AuthController-getUserRole">
+                      <article id="api-AuthController-getUserRole-0" data-group="User" data-name="getUserRole" data-version="0">
                         <div class="pull-left">
-                          <h1>getAuthorities1</h1>
+                          <h1>getUserRole</h1>
                           <p></p>
                         </div>
                         <div class="pull-right"></div>
@@ -1619,32 +1356,32 @@ except ApiException as e:
                         <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/auth/check-one</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/auth/check/user</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-AuthController-getAuthorities1-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities1-0-java">Java</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities1-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-AuthController-getAuthorities1-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-AuthController-getAuthorities1-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities1-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-AuthController-getAuthorities1-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-AuthController-getAuthorities1-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities1-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities1-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-AuthController-getAuthorities1-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-AuthController-getUserRole-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AuthController-getUserRole-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AuthController-getUserRole-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-getUserRole-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AuthController-getUserRole-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AuthController-getUserRole-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-getUserRole-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AuthController-getUserRole-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AuthController-getUserRole-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AuthController-getUserRole-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AuthController-getUserRole-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-AuthController-getAuthorities1-0-curl">
+                          <div class="tab-pane active" id="examples-AuthController-getUserRole-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/auth/check-one?email="</code></pre>
+"http://localhost:8081/auth/check/user"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-java">
+                          <div class="tab-pane" id="examples-AuthController-getUserRole-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1660,48 +1397,45 @@ public class AuthControllerApiExample {
 
 
         AuthControllerApi apiInstance = new AuthControllerApi();
-        String email = email_example; // String | 
         try {
-            array[Authority] result = apiInstance.getAuthorities1(email);
+            'String' result = apiInstance.getUserRole();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AuthControllerApi#getAuthorities1");
+            System.err.println("Exception when calling AuthControllerApi#getUserRole");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-android">
+                          <div class="tab-pane" id="examples-AuthController-getUserRole-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
 
 public class AuthControllerApiExample {
 
     public static void main(String[] args) {
         AuthControllerApi apiInstance = new AuthControllerApi();
-        String email = email_example; // String | 
         try {
-            array[Authority] result = apiInstance.getAuthorities1(email);
+            'String' result = apiInstance.getUserRole();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AuthControllerApi#getAuthorities1");
+            System.err.println("Exception when calling AuthControllerApi#getUserRole");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-groovy">
+  <div class="tab-pane" id="examples-AuthController-getUserRole-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-objc">
+                            <div class="tab-pane" id="examples-AuthController-getUserRole-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-String *email = email_example; // 
 
 AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
 
-[apiInstance getAuthorities1With:email
-              completionHandler: ^(array[Authority] output, NSError* error) {
+[apiInstance getUserRoleWithCompletionHandler: 
+              ^('String' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -1712,14 +1446,12 @@ AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-javascript">
+                            <div class="tab-pane" id="examples-AuthController-getUserRole-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
 var defaultClient = JulindangMemberService.ApiClient.instance;
 
 
 var api = new JulindangMemberService.AuthControllerApi()
-var email = email_example; // {{String}} 
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1727,14 +1459,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getAuthorities1(email, callback);
+api.getUserRole(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-AuthController-getAuthorities1-0-angular">
+                            <!--<div class="tab-pane" id="examples-AuthController-getUserRole-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-csharp">
+                            <div class="tab-pane" id="examples-AuthController-getUserRole-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1743,23 +1475,22 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class getAuthorities1Example
+    public class getUserRoleExample
     {
         public void main()
         {
 
 
             var apiInstance = new AuthControllerApi();
-            var email = email_example;  // String | 
 
             try
             {
-                array[Authority] result = apiInstance.getAuthorities1(email);
+                'String' result = apiInstance.getUserRole();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AuthControllerApi.getAuthorities1: " + e.Message );
+                Debug.Print("Exception when calling AuthControllerApi.getUserRole: " + e.Message );
             }
         }
     }
@@ -1767,42 +1498,40 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-php">
+                            <div class="tab-pane" id="examples-AuthController-getUserRole-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiAuthControllerApi();
-$email = email_example; // String | 
 
 try {
-    $result = $api_instance->getAuthorities1($email);
+    $result = $api_instance->getUserRole();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AuthControllerApi->getAuthorities1: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AuthControllerApi->getUserRole: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-perl">
+                            <div class="tab-pane" id="examples-AuthController-getUserRole-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::AuthControllerApi;
 
 
 my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
-my $email = email_example; # String | 
 
 eval { 
-    my $result = $api_instance->getAuthorities1(email => $email);
+    my $result = $api_instance->getUserRole();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling AuthControllerApi->getAuthorities1: $@\n";
+    warn "Exception when calling AuthControllerApi->getUserRole: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-AuthController-getAuthorities1-0-python">
+                            <div class="tab-pane" id="examples-AuthController-getUserRole-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1812,13 +1541,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.AuthControllerApi()
-email = email_example # String | 
 
 try: 
-    api_response = api_instance.get_authorities1(email)
+    api_response = api_instance.get_user_role()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling AuthControllerApi->getAuthorities1: %s\n" % e)</code></pre>
+    print("Exception when calling AuthControllerApi->getUserRole: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1828,46 +1556,20 @@ except ApiException as e:
 
 
 
-                            <div class="methodsubtabletitle">Query parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">email*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_getAuthorities1_email">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    String
-                                                </span>
-                                
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                            </table>
 
                           <h2>Responses</h2>
                             <h3> Status: 200 - OK </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getAuthorities1-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-getUserRole-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getAuthorities1-200-schema">
-                                  <div id='responses-getAuthorities1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-getUserRole-200-schema">
+                                  <div id='responses-getUserRole-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1875,11 +1577,7 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "uniqueItems" : true,
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/Authority"
-        },
+        "type" : "string",
         "x-content-type" : "*/*"
       }
     }
@@ -1898,319 +1596,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getAuthorities1-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getAuthorities1-200-schema-200');
+                                        $('#responses-getUserRole-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getUserRole-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getAuthorities1-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-AuthController-upgrade">
-                      <article id="api-AuthController-upgrade-0" data-group="User" data-name="upgrade" data-version="0">
-                        <div class="pull-left">
-                          <h1>upgrade</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/auth/upgrade</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-AuthController-upgrade-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-AuthController-upgrade-0-java">Java</a></li>
-                          <li class=""><a href="#examples-AuthController-upgrade-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-AuthController-upgrade-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-AuthController-upgrade-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-AuthController-upgrade-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-AuthController-upgrade-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-AuthController-upgrade-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-AuthController-upgrade-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-AuthController-upgrade-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-AuthController-upgrade-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-AuthController-upgrade-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
- -H "Authorization: Bearer [[accessToken]]"\
--H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/auth/upgrade?email="</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-AuthController-upgrade-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.AuthControllerApi;
-
-import java.io.File;
-import java.util.*;
-
-public class AuthControllerApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-        AuthControllerApi apiInstance = new AuthControllerApi();
-        String email = email_example; // String | 
-        try {
-            array[Authority] result = apiInstance.upgrade(email);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AuthControllerApi#upgrade");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-AuthController-upgrade-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
-
-public class AuthControllerApiExample {
-
-    public static void main(String[] args) {
-        AuthControllerApi apiInstance = new AuthControllerApi();
-        String email = email_example; // String | 
-        try {
-            array[Authority] result = apiInstance.upgrade(email);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AuthControllerApi#upgrade");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-AuthController-upgrade-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-AuthController-upgrade-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-String *email = email_example; // 
-
-AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
-
-[apiInstance upgradeWith:email
-              completionHandler: ^(array[Authority] output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-AuthController-upgrade-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
-var defaultClient = JulindangMemberService.ApiClient.instance;
-
-
-var api = new JulindangMemberService.AuthControllerApi()
-var email = email_example; // {{String}} 
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.upgrade(email, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-AuthController-upgrade-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-AuthController-upgrade-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class upgradeExample
-    {
-        public void main()
-        {
-
-
-            var apiInstance = new AuthControllerApi();
-            var email = email_example;  // String | 
-
-            try
-            {
-                array[Authority] result = apiInstance.upgrade(email);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling AuthControllerApi.upgrade: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-AuthController-upgrade-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$api_instance = new Swagger\Client\ApiAuthControllerApi();
-$email = email_example; // String | 
-
-try {
-    $result = $api_instance->upgrade($email);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AuthControllerApi->upgrade: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-AuthController-upgrade-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::AuthControllerApi;
-
-
-my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
-my $email = email_example; # String | 
-
-eval { 
-    my $result = $api_instance->upgrade(email => $email);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling AuthControllerApi->upgrade: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-AuthController-upgrade-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-
-# create an instance of the API class
-api_instance = swagger_client.AuthControllerApi()
-email = email_example # String | 
-
-try: 
-    api_response = api_instance.upgrade(email)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthControllerApi->upgrade: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-                            <div class="methodsubtabletitle">Query parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">email*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_upgrade_email">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    String
-                                                </span>
-                                
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                            </table>
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-upgrade-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-upgrade-200-schema">
-                                  <div id='responses-upgrade-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "OK",
-  "content" : {
-    "*/*" : {
-      "schema" : {
-        "uniqueItems" : true,
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/Authority"
-        },
-        "x-content-type" : "*/*"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["*/*"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-upgrade-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-upgrade-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-upgrade-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-getUserRole-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -2255,7 +1648,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/etc/diabetes/female"</code></pre>
+"http://localhost:8081/etc/diabetes/female"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2524,7 +1917,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/etc/diabetes/male"</code></pre>
+"http://localhost:8081/etc/diabetes/male"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2796,7 +2189,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/member/nickname?nickname="</code></pre>
+"http://localhost:8081/member/nickname?nickname="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-checkDuplicated-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3098,7 +2491,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://jaehan1346dev.duckdns.com:60608/member/edit"</code></pre>
+"http://localhost:8081/member/edit"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-edit-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3118,7 +2511,7 @@ public class MemberControllerApiExample {
         MemberControllerApi apiInstance = new MemberControllerApi();
         MemberEditRequestDto body = ; // MemberEditRequestDto | 
         try {
-            MemberEditResponseDto result = apiInstance.edit(body);
+            'String' result = apiInstance.edit(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MemberControllerApi#edit");
@@ -3137,7 +2530,7 @@ public class MemberControllerApiExample {
         MemberControllerApi apiInstance = new MemberControllerApi();
         MemberEditRequestDto body = ; // MemberEditRequestDto | 
         try {
-            MemberEditResponseDto result = apiInstance.edit(body);
+            'String' result = apiInstance.edit(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MemberControllerApi#edit");
@@ -3157,7 +2550,7 @@ MemberEditRequestDto *body = ; //
 MemberControllerApi *apiInstance = [[MemberControllerApi alloc] init];
 
 [apiInstance editWith:body
-              completionHandler: ^(MemberEditResponseDto output, NSError* error) {
+              completionHandler: ^('String' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -3210,7 +2603,7 @@ namespace Example
 
             try
             {
-                MemberEditResponseDto result = apiInstance.edit(body);
+                'String' result = apiInstance.edit(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3348,7 +2741,8 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/MemberEditResponseDto"
+        "type" : "string",
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -3416,7 +2810,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://jaehan1346dev.duckdns.com:60608/member/profile/edit"</code></pre>
+"http://localhost:8081/member/profile/edit"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-editProfile-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3735,7 +3129,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://jaehan1346dev.duckdns.com:60608/member/risk/edit"</code></pre>
+"http://localhost:8081/member/risk/edit"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-editRisk-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4018,6 +3412,271 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-MemberController-getBmi">
+                      <article id="api-MemberController-getBmi-0" data-group="User" data-name="getBmi" data-version="0">
+                        <div class="pull-left">
+                          <h1>getBmi</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/member/bmi</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-MemberController-getBmi-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-MemberController-getBmi-0-java">Java</a></li>
+                          <li class=""><a href="#examples-MemberController-getBmi-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-MemberController-getBmi-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-MemberController-getBmi-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-MemberController-getBmi-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-MemberController-getBmi-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-MemberController-getBmi-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-MemberController-getBmi-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-MemberController-getBmi-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-MemberController-getBmi-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-MemberController-getBmi-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"http://localhost:8081/member/bmi"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-MemberController-getBmi-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.MemberControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class MemberControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        MemberControllerApi apiInstance = new MemberControllerApi();
+        try {
+            BmiResponseDto result = apiInstance.getBmi();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MemberControllerApi#getBmi");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-MemberController-getBmi-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.MemberControllerApi;
+
+public class MemberControllerApiExample {
+
+    public static void main(String[] args) {
+        MemberControllerApi apiInstance = new MemberControllerApi();
+        try {
+            BmiResponseDto result = apiInstance.getBmi();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MemberControllerApi#getBmi");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-MemberController-getBmi-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-MemberController-getBmi-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+MemberControllerApi *apiInstance = [[MemberControllerApi alloc] init];
+
+[apiInstance getBmiWithCompletionHandler: 
+              ^(BmiResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-getBmi-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
+var defaultClient = JulindangMemberService.ApiClient.instance;
+
+
+var api = new JulindangMemberService.MemberControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getBmi(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-MemberController-getBmi-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-MemberController-getBmi-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getBmiExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new MemberControllerApi();
+
+            try
+            {
+                BmiResponseDto result = apiInstance.getBmi();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling MemberControllerApi.getBmi: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-getBmi-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiMemberControllerApi();
+
+try {
+    $result = $api_instance->getBmi();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MemberControllerApi->getBmi: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-getBmi-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::MemberControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::MemberControllerApi->new();
+
+eval { 
+    my $result = $api_instance->getBmi();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling MemberControllerApi->getBmi: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-getBmi-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.MemberControllerApi()
+
+try: 
+    api_response = api_instance.get_bmi()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling MemberControllerApi->getBmi: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getBmi-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getBmi-200-schema">
+                                  <div id='responses-getBmi-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/BmiResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getBmi-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getBmi-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getBmi-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-MemberController-getInfo">
                       <article id="api-MemberController-getInfo-0" data-group="User" data-name="getInfo" data-version="0">
                         <div class="pull-left">
@@ -4053,7 +3712,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/member/info"</code></pre>
+"http://localhost:8081/member/info"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-getInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4283,6 +3942,589 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-MemberController-getRiskScore">
+                      <article id="api-MemberController-getRiskScore-0" data-group="User" data-name="getRiskScore" data-version="0">
+                        <div class="pull-left">
+                          <h1>getRiskScore</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/member/risk-score</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-MemberController-getRiskScore-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-MemberController-getRiskScore-0-java">Java</a></li>
+                          <li class=""><a href="#examples-MemberController-getRiskScore-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-MemberController-getRiskScore-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-MemberController-getRiskScore-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-MemberController-getRiskScore-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-MemberController-getRiskScore-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-MemberController-getRiskScore-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-MemberController-getRiskScore-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-MemberController-getRiskScore-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-MemberController-getRiskScore-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-MemberController-getRiskScore-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"http://localhost:8081/member/risk-score"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-MemberController-getRiskScore-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.MemberControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class MemberControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        MemberControllerApi apiInstance = new MemberControllerApi();
+        try {
+            RiskScoreResponseDto result = apiInstance.getRiskScore();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MemberControllerApi#getRiskScore");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-MemberController-getRiskScore-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.MemberControllerApi;
+
+public class MemberControllerApiExample {
+
+    public static void main(String[] args) {
+        MemberControllerApi apiInstance = new MemberControllerApi();
+        try {
+            RiskScoreResponseDto result = apiInstance.getRiskScore();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MemberControllerApi#getRiskScore");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-MemberController-getRiskScore-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-MemberController-getRiskScore-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+MemberControllerApi *apiInstance = [[MemberControllerApi alloc] init];
+
+[apiInstance getRiskScoreWithCompletionHandler: 
+              ^(RiskScoreResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-getRiskScore-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
+var defaultClient = JulindangMemberService.ApiClient.instance;
+
+
+var api = new JulindangMemberService.MemberControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getRiskScore(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-MemberController-getRiskScore-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-MemberController-getRiskScore-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getRiskScoreExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new MemberControllerApi();
+
+            try
+            {
+                RiskScoreResponseDto result = apiInstance.getRiskScore();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling MemberControllerApi.getRiskScore: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-getRiskScore-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiMemberControllerApi();
+
+try {
+    $result = $api_instance->getRiskScore();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MemberControllerApi->getRiskScore: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-getRiskScore-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::MemberControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::MemberControllerApi->new();
+
+eval { 
+    my $result = $api_instance->getRiskScore();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling MemberControllerApi->getRiskScore: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-getRiskScore-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.MemberControllerApi()
+
+try: 
+    api_response = api_instance.get_risk_score()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling MemberControllerApi->getRiskScore: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getRiskScore-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getRiskScore-200-schema">
+                                  <div id='responses-getRiskScore-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/RiskScoreResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getRiskScore-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getRiskScore-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getRiskScore-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-MemberController-login">
+                      <article id="api-MemberController-login-0" data-group="User" data-name="login" data-version="0">
+                        <div class="pull-left">
+                          <h1>login</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/member/login</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-MemberController-login-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-MemberController-login-0-java">Java</a></li>
+                          <li class=""><a href="#examples-MemberController-login-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-MemberController-login-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-MemberController-login-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-MemberController-login-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-MemberController-login-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-MemberController-login-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-MemberController-login-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-MemberController-login-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-MemberController-login-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-MemberController-login-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+-H "Content-Type: application/json"\
+"http://localhost:8081/member/login"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-MemberController-login-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.MemberControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class MemberControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        MemberControllerApi apiInstance = new MemberControllerApi();
+        LoginRequestDto body = ; // LoginRequestDto | 
+        try {
+            LoginResponseDto result = apiInstance.login(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MemberControllerApi#login");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-MemberController-login-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.MemberControllerApi;
+
+public class MemberControllerApiExample {
+
+    public static void main(String[] args) {
+        MemberControllerApi apiInstance = new MemberControllerApi();
+        LoginRequestDto body = ; // LoginRequestDto | 
+        try {
+            LoginResponseDto result = apiInstance.login(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MemberControllerApi#login");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-MemberController-login-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-MemberController-login-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+LoginRequestDto *body = ; // 
+
+MemberControllerApi *apiInstance = [[MemberControllerApi alloc] init];
+
+[apiInstance loginWith:body
+              completionHandler: ^(LoginResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-login-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
+var defaultClient = JulindangMemberService.ApiClient.instance;
+
+
+var api = new JulindangMemberService.MemberControllerApi()
+var body = ; // {{LoginRequestDto}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.login(body, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-MemberController-login-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-MemberController-login-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class loginExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new MemberControllerApi();
+            var body = new LoginRequestDto(); // LoginRequestDto | 
+
+            try
+            {
+                LoginResponseDto result = apiInstance.login(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling MemberControllerApi.login: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-login-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiMemberControllerApi();
+$body = ; // LoginRequestDto | 
+
+try {
+    $result = $api_instance->login($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MemberControllerApi->login: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-login-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::MemberControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::MemberControllerApi->new();
+my $body = WWW::SwaggerClient::Object::LoginRequestDto->new(); # LoginRequestDto | 
+
+eval { 
+    my $result = $api_instance->login(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling MemberControllerApi->login: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-MemberController-login-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.MemberControllerApi()
+body =  # LoginRequestDto | 
+
+try: 
+    api_response = api_instance.login(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling MemberControllerApi->login: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/LoginRequestDto"
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_login_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_login_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - access token dto </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-login-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-login-200-schema">
+                                  <div id='responses-login-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "access token dto",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/LoginResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-login-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-login-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-login-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-MemberController-signOut">
                       <article id="api-MemberController-signOut-0" data-group="User" data-name="signOut" data-version="0">
                         <div class="pull-left">
@@ -4295,7 +4537,7 @@ except ApiException as e:
                         <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/member/sign-out</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/member/sign-out</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -4315,10 +4557,11 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-MemberController-signOut-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/member/sign-out"</code></pre>
+-H "Content-Type: application/json"\
+"http://localhost:8081/member/sign-out"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-signOut-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4336,8 +4579,9 @@ public class MemberControllerApiExample {
 
 
         MemberControllerApi apiInstance = new MemberControllerApi();
+        DeleteReasonRequestDto body = ; // DeleteReasonRequestDto | 
         try {
-            'String' result = apiInstance.signOut();
+            'String' result = apiInstance.signOut(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MemberControllerApi#signOut");
@@ -4354,8 +4598,9 @@ public class MemberControllerApiExample {
 
     public static void main(String[] args) {
         MemberControllerApi apiInstance = new MemberControllerApi();
+        DeleteReasonRequestDto body = ; // DeleteReasonRequestDto | 
         try {
-            'String' result = apiInstance.signOut();
+            'String' result = apiInstance.signOut(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MemberControllerApi#signOut");
@@ -4370,11 +4615,12 @@ public class MemberControllerApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-MemberController-signOut-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+DeleteReasonRequestDto *body = ; // 
 
 MemberControllerApi *apiInstance = [[MemberControllerApi alloc] init];
 
-[apiInstance signOutWithCompletionHandler: 
-              ^('String' output, NSError* error) {
+[apiInstance signOutWith:body
+              completionHandler: ^('String' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -4391,6 +4637,8 @@ var defaultClient = JulindangMemberService.ApiClient.instance;
 
 
 var api = new JulindangMemberService.MemberControllerApi()
+var body = ; // {{DeleteReasonRequestDto}} 
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -4398,7 +4646,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.signOut(callback);
+api.signOut(body, callback);
 </code></pre>
                             </div>
 
@@ -4421,10 +4669,11 @@ namespace Example
 
 
             var apiInstance = new MemberControllerApi();
+            var body = new DeleteReasonRequestDto(); // DeleteReasonRequestDto | 
 
             try
             {
-                'String' result = apiInstance.signOut();
+                'String' result = apiInstance.signOut(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4443,9 +4692,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiMemberControllerApi();
+$body = ; // DeleteReasonRequestDto | 
 
 try {
-    $result = $api_instance->signOut();
+    $result = $api_instance->signOut($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MemberControllerApi->signOut: ', $e->getMessage(), PHP_EOL;
@@ -4460,9 +4710,10 @@ use WWW::SwaggerClient::MemberControllerApi;
 
 
 my $api_instance = WWW::SwaggerClient::MemberControllerApi->new();
+my $body = WWW::SwaggerClient::Object::DeleteReasonRequestDto->new(); # DeleteReasonRequestDto | 
 
 eval { 
-    my $result = $api_instance->signOut();
+    my $result = $api_instance->signOut(body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -4480,9 +4731,10 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.MemberControllerApi()
+body =  # DeleteReasonRequestDto | 
 
 try: 
-    api_response = api_instance.sign_out()
+    api_response = api_instance.sign_out(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling MemberControllerApi->signOut: %s\n" % e)</code></pre>
@@ -4493,6 +4745,49 @@ except ApiException as e:
 
 
 
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/DeleteReasonRequestDto"
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_signOut_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_signOut_body"></div>
+                                </td>
+                                </tr>
+                            </table>
 
 
 
@@ -4585,7 +4880,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://jaehan1346dev.duckdns.com:60608/member/sign-up"</code></pre>
+"http://localhost:8081/member/sign-up"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-signUp-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4867,324 +5162,6 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-MemberController-signUp1">
-                      <article id="api-MemberController-signUp1-0" data-group="User" data-name="signUp1" data-version="0">
-                        <div class="pull-left">
-                          <h1>signUp1</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/member/login</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-MemberController-signUp1-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-MemberController-signUp1-0-java">Java</a></li>
-                          <li class=""><a href="#examples-MemberController-signUp1-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-MemberController-signUp1-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-MemberController-signUp1-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-MemberController-signUp1-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-MemberController-signUp1-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-MemberController-signUp1-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-MemberController-signUp1-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-MemberController-signUp1-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-MemberController-signUp1-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-MemberController-signUp1-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
- -H "Authorization: Bearer [[accessToken]]"\
--H "Accept: */*"\
--H "Content-Type: application/json"\
-"http://jaehan1346dev.duckdns.com:60608/member/login"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-MemberController-signUp1-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.MemberControllerApi;
-
-import java.io.File;
-import java.util.*;
-
-public class MemberControllerApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-        MemberControllerApi apiInstance = new MemberControllerApi();
-        LoginRequestDto body = ; // LoginRequestDto | 
-        try {
-            LoginResponseDto result = apiInstance.signUp1(body);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling MemberControllerApi#signUp1");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-MemberController-signUp1-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.MemberControllerApi;
-
-public class MemberControllerApiExample {
-
-    public static void main(String[] args) {
-        MemberControllerApi apiInstance = new MemberControllerApi();
-        LoginRequestDto body = ; // LoginRequestDto | 
-        try {
-            LoginResponseDto result = apiInstance.signUp1(body);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling MemberControllerApi#signUp1");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-MemberController-signUp1-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-MemberController-signUp1-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-LoginRequestDto *body = ; // 
-
-MemberControllerApi *apiInstance = [[MemberControllerApi alloc] init];
-
-[apiInstance signUp1With:body
-              completionHandler: ^(LoginResponseDto output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-MemberController-signUp1-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
-var defaultClient = JulindangMemberService.ApiClient.instance;
-
-
-var api = new JulindangMemberService.MemberControllerApi()
-var body = ; // {{LoginRequestDto}} 
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.signUp1(body, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-MemberController-signUp1-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-MemberController-signUp1-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class signUp1Example
-    {
-        public void main()
-        {
-
-
-            var apiInstance = new MemberControllerApi();
-            var body = new LoginRequestDto(); // LoginRequestDto | 
-
-            try
-            {
-                LoginResponseDto result = apiInstance.signUp1(body);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling MemberControllerApi.signUp1: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-MemberController-signUp1-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$api_instance = new Swagger\Client\ApiMemberControllerApi();
-$body = ; // LoginRequestDto | 
-
-try {
-    $result = $api_instance->signUp1($body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling MemberControllerApi->signUp1: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-MemberController-signUp1-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::MemberControllerApi;
-
-
-my $api_instance = WWW::SwaggerClient::MemberControllerApi->new();
-my $body = WWW::SwaggerClient::Object::LoginRequestDto->new(); # LoginRequestDto | 
-
-eval { 
-    my $result = $api_instance->signUp1(body => $body);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling MemberControllerApi->signUp1: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-MemberController-signUp1-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-
-# create an instance of the API class
-api_instance = swagger_client.MemberControllerApi()
-body =  # LoginRequestDto | 
-
-try: 
-    api_response = api_instance.sign_up1(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling MemberControllerApi->signUp1: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-                            <div class="methodsubtabletitle">Body parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
-                                <td>
-                                
-                                
-                                <script>
-                                $(document).ready(function() {
-                                  var schemaWrapper = {
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/LoginRequestDto"
-      }
-    }
-  },
-  "required" : true
-};
-                                  var schema = schemaWrapper.content["application/json"].schema;
-                                  if (schema.$ref != null) {
-                                    schema = defsParser.$refs.get(schema.$ref);
-                                  } else {
-                                    schemaWrapper.components = {};
-                                    schemaWrapper.components.schemas = Object.assign({}, defs);
-                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                      console.log(err);
-                                    });
-                                  }
-                                
-                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_signUp1_body');
-                                  result.empty();
-                                  result.append(view.render());
-                                });
-                                </script>
-                                <div id="d2e199_signUp1_body"></div>
-                                </td>
-                                </tr>
-                            </table>
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - access token dto </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-signUp1-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-signUp1-200-schema">
-                                  <div id='responses-signUp1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "access token dto",
-  "content" : {
-    "*/*" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/LoginResponseDto"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["*/*"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-signUp1-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-signUp1-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-signUp1-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
                   </section>
                 <section id="api-SmsController">
                   <h1>SmsController</h1>
@@ -5223,7 +5200,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"http://jaehan1346dev.duckdns.com:60608/sms/balance"</code></pre>
+"http://localhost:8081/sms/balance"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-SmsController-getMessageList-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5462,7 +5439,7 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked"></p>
+                        <p class="marked">1012341234</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/sms/phone</span></code></pre>
@@ -5489,7 +5466,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://jaehan1346dev.duckdns.com:60608/sms/phone"</code></pre>
+"http://localhost:8081/sms/phone"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-SmsController-pushCode-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5808,7 +5785,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"http://jaehan1346dev.duckdns.com:60608/sms/verify"</code></pre>
+"http://localhost:8081/sms/verify"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-SmsController-verifyCode-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;

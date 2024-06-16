@@ -1113,7 +1113,7 @@
     }
   }
 };
-            defs["FaqDto"] = {
+            defs["FaqFindResponseDto"] = {
   "type" : "object",
   "properties" : {
     "id" : {
@@ -1131,7 +1131,7 @@
     }
   }
 };
-            defs["FaqSaveDto"] = {
+            defs["FaqSaveRequestDto"] = {
   "type" : "object",
   "properties" : {
     "title" : {
@@ -1142,7 +1142,7 @@
     }
   }
 };
-            defs["FaqUpdateDto"] = {
+            defs["FaqUpdateRequestDto"] = {
   "type" : "object",
   "properties" : {
     "id" : {
@@ -1153,6 +1153,10 @@
     },
     "context" : {
       "type" : "string"
+    },
+    "createdAt" : {
+      "type" : "string",
+      "format" : "date-time"
     }
   }
 };
@@ -1395,8 +1399,8 @@
                     <li data-group="CafeController" data-name="delete1" class="">
                       <a href="#api-CafeController-delete1">delete1</a>
                     </li>
-                    <li data-group="CafeController" data-name="findAll2" class="">
-                      <a href="#api-CafeController-findAll2">findAll2</a>
+                    <li data-group="CafeController" data-name="findAll1" class="">
+                      <a href="#api-CafeController-findAll1">findAll1</a>
                     </li>
                     <li data-group="CafeController" data-name="findAllCafeNames" class="">
                       <a href="#api-CafeController-findAllCafeNames">findAllCafeNames</a>
@@ -1410,8 +1414,8 @@
                     <li data-group="CafeController" data-name="findByCafeName1" class="">
                       <a href="#api-CafeController-findByCafeName1">findByCafeName1</a>
                     </li>
-                    <li data-group="CafeController" data-name="save2" class="">
-                      <a href="#api-CafeController-save2">save2</a>
+                    <li data-group="CafeController" data-name="save1" class="">
+                      <a href="#api-CafeController-save1">save1</a>
                     </li>
                     <li data-group="CafeController" data-name="update1" class="">
                       <a href="#api-CafeController-update1">update1</a>
@@ -1420,8 +1424,8 @@
                     <li data-group="DessertController" data-name="delete" class="">
                       <a href="#api-DessertController-delete">delete</a>
                     </li>
-                    <li data-group="DessertController" data-name="findAll1" class="">
-                      <a href="#api-DessertController-findAll1">findAll1</a>
+                    <li data-group="DessertController" data-name="findAll" class="">
+                      <a href="#api-DessertController-findAll">findAll</a>
                     </li>
                     <li data-group="DessertController" data-name="findAllNonePaging" class="">
                       <a href="#api-DessertController-findAllNonePaging">findAllNonePaging</a>
@@ -1432,15 +1436,21 @@
                     <li data-group="DessertController" data-name="findByDessertName" class="">
                       <a href="#api-DessertController-findByDessertName">findByDessertName</a>
                     </li>
-                    <li data-group="DessertController" data-name="save1" class="">
-                      <a href="#api-DessertController-save1">save1</a>
+                    <li data-group="DessertController" data-name="save" class="">
+                      <a href="#api-DessertController-save">save</a>
                     </li>
                     <li data-group="DessertController" data-name="update" class="">
                       <a href="#api-DessertController-update">update</a>
                     </li>
                   <li class="nav-header" data-group="FAQAPI"><a href="#api-FAQAPI">API Methods - FAQAPI</a></li>
+                    <li data-group="FAQAPI" data-name="createTable" class="">
+                      <a href="#api-FAQAPI-createTable">createTable</a>
+                    </li>
                     <li data-group="FAQAPI" data-name="deleteFAQ" class="">
                       <a href="#api-FAQAPI-deleteFAQ">deleteFAQ</a>
+                    </li>
+                    <li data-group="FAQAPI" data-name="findAll3" class="">
+                      <a href="#api-FAQAPI-findAll3">findAll3</a>
                     </li>
                     <li data-group="FAQAPI" data-name="saveFAQ" class="">
                       <a href="#api-FAQAPI-saveFAQ">saveFAQ</a>
@@ -1449,11 +1459,11 @@
                       <a href="#api-FAQAPI-updateFAQ">updateFAQ</a>
                     </li>
                   <li class="nav-header" data-group="InquiryController"><a href="#api-InquiryController">API Methods - InquiryController</a></li>
-                    <li data-group="InquiryController" data-name="findAll" class="">
-                      <a href="#api-InquiryController-findAll">findAll</a>
+                    <li data-group="InquiryController" data-name="findAll2" class="">
+                      <a href="#api-InquiryController-findAll2">findAll2</a>
                     </li>
-                    <li data-group="InquiryController" data-name="save" class="">
-                      <a href="#api-InquiryController-save">save</a>
+                    <li data-group="InquiryController" data-name="save2" class="">
+                      <a href="#api-InquiryController-save2">save2</a>
                     </li>
                   <li class="nav-header" data-group="MemberAPI"><a href="#api-MemberAPI">API Methods - MemberAPI</a></li>
                     <li data-group="MemberAPI" data-name="downgradeRole" class="">
@@ -1542,7 +1552,7 @@
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/account/create-pw?password="</code></pre>
+"https://julindang.shop/admin/admin/account/create-pw?password="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-API-createPassword-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1844,7 +1854,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/admin/account/login"</code></pre>
+"https://julindang.shop/admin/admin/account/login"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-API-login-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2162,7 +2172,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/admin/account/change-pw"</code></pre>
+"https://julindang.shop/admin/admin/account/change-pw"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-API-passwordChange-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2481,7 +2491,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/admin/account/sign-up"</code></pre>
+"https://julindang.shop/admin/admin/account/sign-up"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-API-signUp-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2770,7 +2780,7 @@ except ApiException as e:
                       <article id="api-CafeController-delete1-0" data-group="User" data-name="delete1" data-version="0">
                         <div class="pull-left">
                           <h1>delete1</h1>
-                          <p>카페 삭제</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -2778,7 +2788,7 @@ except ApiException as e:
                         <p class="marked">카페 정보 삭제 (deleted만 토글 db에는 저장되어 있음)</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/admin/cafe/delete/{id}</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/cafe/delete/{id}</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -2859,7 +2869,6 @@ Long *id = 789; //
 
 CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
-// 카페 삭제
 [apiInstance delete1With:id
               completionHandler: ^(CafeFindDetailResponseDto output, NSError* error) {
                             if (output) {
@@ -2914,7 +2923,6 @@ namespace Example
 
             try
             {
-                // 카페 삭제
                 CafeFindDetailResponseDto result = apiInstance.delete1(id);
                 Debug.WriteLine(result);
             }
@@ -2976,7 +2984,6 @@ api_instance = swagger_client.CafeControllerApi()
 id = 789 # Long | 
 
 try: 
-    # 카페 삭제
     api_response = api_instance.delete1(id)
     pprint(api_response)
 except ApiException as e:
@@ -3072,11 +3079,11 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-CafeController-findAll2">
-                      <article id="api-CafeController-findAll2-0" data-group="User" data-name="findAll2" data-version="0">
+                    <div id="api-CafeController-findAll1">
+                      <article id="api-CafeController-findAll1-0" data-group="User" data-name="findAll1" data-version="0">
                         <div class="pull-left">
-                          <h1>findAll2</h1>
-                          <p>모든 카페 정보 불러오기</p>
+                          <h1>findAll1</h1>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -3084,32 +3091,32 @@ except ApiException as e:
                         <p class="marked">모든 카페 정보 로드</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/cafe</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/info</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-CafeController-findAll2-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-CafeController-findAll2-0-java">Java</a></li>
-                          <li class=""><a href="#examples-CafeController-findAll2-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-CafeController-findAll2-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-CafeController-findAll2-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-CafeController-findAll2-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-CafeController-findAll2-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-CafeController-findAll2-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-CafeController-findAll2-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-CafeController-findAll2-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-CafeController-findAll2-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-CafeController-findAll1-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-CafeController-findAll1-0-java">Java</a></li>
+                          <li class=""><a href="#examples-CafeController-findAll1-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-CafeController-findAll1-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-CafeController-findAll1-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-CafeController-findAll1-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-CafeController-findAll1-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-CafeController-findAll1-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-CafeController-findAll1-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-CafeController-findAll1-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-CafeController-findAll1-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-CafeController-findAll2-0-curl">
+                          <div class="tab-pane active" id="examples-CafeController-findAll1-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/cafe?page="</code></pre>
+"https://julindang.shop/admin/cafe/info?page="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-CafeController-findAll2-0-java">
+                          <div class="tab-pane" id="examples-CafeController-findAll1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -3127,17 +3134,17 @@ public class CafeControllerApiExample {
         CafeControllerApi apiInstance = new CafeControllerApi();
         Integer page = 56; // Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함.
         try {
-            CafeFindPagingResponseDto result = apiInstance.findAll2(page);
+            CafeFindPagingResponseDto result = apiInstance.findAll1(page);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CafeControllerApi#findAll2");
+            System.err.println("Exception when calling CafeControllerApi#findAll1");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-CafeController-findAll2-0-android">
+                          <div class="tab-pane" id="examples-CafeController-findAll1-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.CafeControllerApi;
 
 public class CafeControllerApiExample {
@@ -3146,27 +3153,26 @@ public class CafeControllerApiExample {
         CafeControllerApi apiInstance = new CafeControllerApi();
         Integer page = 56; // Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함.
         try {
-            CafeFindPagingResponseDto result = apiInstance.findAll2(page);
+            CafeFindPagingResponseDto result = apiInstance.findAll1(page);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CafeControllerApi#findAll2");
+            System.err.println("Exception when calling CafeControllerApi#findAll1");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-CafeController-findAll2-0-groovy">
+  <div class="tab-pane" id="examples-CafeController-findAll1-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-CafeController-findAll2-0-objc">
+                            <div class="tab-pane" id="examples-CafeController-findAll1-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 Integer *page = 56; // 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함. (optional) (default to 1)
 
 CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
-// 모든 카페 정보 불러오기
-[apiInstance findAll2With:page
+[apiInstance findAll1With:page
               completionHandler: ^(CafeFindPagingResponseDto output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -3178,7 +3184,7 @@ CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-CafeController-findAll2-0-javascript">
+                            <div class="tab-pane" id="examples-CafeController-findAll1-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
 var defaultClient = JulindangService.ApiClient.instance;
 
@@ -3194,14 +3200,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.findAll2(opts, callback);
+api.findAll1(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-CafeController-findAll2-0-angular">
+                            <!--<div class="tab-pane" id="examples-CafeController-findAll1-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-CafeController-findAll2-0-csharp">
+                            <div class="tab-pane" id="examples-CafeController-findAll1-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -3210,7 +3216,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class findAll2Example
+    public class findAll1Example
     {
         public void main()
         {
@@ -3221,13 +3227,12 @@ namespace Example
 
             try
             {
-                // 모든 카페 정보 불러오기
-                CafeFindPagingResponseDto result = apiInstance.findAll2(page);
+                CafeFindPagingResponseDto result = apiInstance.findAll1(page);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling CafeControllerApi.findAll2: " + e.Message );
+                Debug.Print("Exception when calling CafeControllerApi.findAll1: " + e.Message );
             }
         }
     }
@@ -3235,7 +3240,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-CafeController-findAll2-0-php">
+                            <div class="tab-pane" id="examples-CafeController-findAll1-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -3244,15 +3249,15 @@ $api_instance = new Swagger\Client\ApiCafeControllerApi();
 $page = 56; // Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함.
 
 try {
-    $result = $api_instance->findAll2($page);
+    $result = $api_instance->findAll1($page);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling CafeControllerApi->findAll2: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling CafeControllerApi->findAll1: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-CafeController-findAll2-0-perl">
+                            <div class="tab-pane" id="examples-CafeController-findAll1-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::CafeControllerApi;
@@ -3262,15 +3267,15 @@ my $api_instance = WWW::SwaggerClient::CafeControllerApi->new();
 my $page = 56; # Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함.
 
 eval { 
-    my $result = $api_instance->findAll2(page => $page);
+    my $result = $api_instance->findAll1(page => $page);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling CafeControllerApi->findAll2: $@\n";
+    warn "Exception when calling CafeControllerApi->findAll1: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-CafeController-findAll2-0-python">
+                            <div class="tab-pane" id="examples-CafeController-findAll1-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -3283,11 +3288,10 @@ api_instance = swagger_client.CafeControllerApi()
 page = 56 # Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함. (optional) (default to 1)
 
 try: 
-    # 모든 카페 정보 불러오기
-    api_response = api_instance.find_all2(page=page)
+    api_response = api_instance.find_all1(page=page)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling CafeControllerApi->findAll2: %s\n" % e)</code></pre>
+    print("Exception when calling CafeControllerApi->findAll1: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -3307,7 +3311,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_findAll2_page">
+                                    <div id="d2e199_findAll1_page">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -3332,14 +3336,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-findAll2-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-findAll1-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-findAll2-200-schema">
-                                  <div id='responses-findAll2-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-findAll1-200-schema">
+                                  <div id='responses-findAll1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3365,14 +3369,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-findAll2-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-findAll2-200-schema-200');
+                                        $('#responses-findAll1-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findAll1-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-findAll2-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-findAll1-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -3383,7 +3387,7 @@ except ApiException as e:
                       <article id="api-CafeController-findAllCafeNames-0" data-group="User" data-name="findAllCafeNames" data-version="0">
                         <div class="pull-left">
                           <h1>findAllCafeNames</h1>
-                          <p>카페 이름들만 로드</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -3391,7 +3395,7 @@ except ApiException as e:
                         <p class="marked">저장된 카페 목록중 개별적인 카페 이름만 리턴</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/cafe/cafe-names</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/cafeNames</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -3414,7 +3418,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/cafe/cafe-names"</code></pre>
+"https://julindang.shop/admin/cafe/cafeNames"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-findAllCafeNames-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3469,7 +3473,6 @@ public class CafeControllerApiExample {
 
 CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
-// 카페 이름들만 로드
 [apiInstance findAllCafeNamesWithCompletionHandler: 
               ^(array[CafeNameResponseDto] output, NSError* error) {
                             if (output) {
@@ -3521,7 +3524,6 @@ namespace Example
 
             try
             {
-                // 카페 이름들만 로드
                 array[CafeNameResponseDto] result = apiInstance.findAllCafeNames();
                 Debug.WriteLine(result);
             }
@@ -3580,7 +3582,6 @@ from pprint import pprint
 api_instance = swagger_client.CafeControllerApi()
 
 try: 
-    # 카페 이름들만 로드
     api_response = api_instance.find_all_cafe_names()
     pprint(api_response)
 except ApiException as e:
@@ -3663,7 +3664,7 @@ except ApiException as e:
                         <p class="marked">페이징 없이 불러오기</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/cafe/none-paging</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/info/without-paging</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -3686,7 +3687,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/cafe/none-paging"</code></pre>
+"https://julindang.shop/admin/cafe/info/without-paging"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-findAllNonePaging1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3705,7 +3706,7 @@ public class CafeControllerApiExample {
 
         CafeControllerApi apiInstance = new CafeControllerApi();
         try {
-            CafeFindPagingResponseDto result = apiInstance.findAllNonePaging1();
+            array[CafeFindDetailResponseDto] result = apiInstance.findAllNonePaging1();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CafeControllerApi#findAllNonePaging1");
@@ -3723,7 +3724,7 @@ public class CafeControllerApiExample {
     public static void main(String[] args) {
         CafeControllerApi apiInstance = new CafeControllerApi();
         try {
-            CafeFindPagingResponseDto result = apiInstance.findAllNonePaging1();
+            array[CafeFindDetailResponseDto] result = apiInstance.findAllNonePaging1();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CafeControllerApi#findAllNonePaging1");
@@ -3743,7 +3744,7 @@ CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
 // 카페 정보 불러오기
 [apiInstance findAllNonePaging1WithCompletionHandler: 
-              ^(CafeFindPagingResponseDto output, NSError* error) {
+              ^(array[CafeFindDetailResponseDto] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -3794,7 +3795,7 @@ namespace Example
             try
             {
                 // 카페 정보 불러오기
-                CafeFindPagingResponseDto result = apiInstance.findAllNonePaging1();
+                array[CafeFindDetailResponseDto] result = apiInstance.findAllNonePaging1();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3887,7 +3888,11 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/CafeFindPagingResponseDto"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/CafeFindDetailResponseDto"
+        },
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -3923,7 +3928,7 @@ except ApiException as e:
                       <article id="api-CafeController-findByBeverageName-0" data-group="User" data-name="findByBeverageName" data-version="0">
                         <div class="pull-left">
                           <h1>findByBeverageName</h1>
-                          <p>음료 이름에 따른 음료 정보 불러오기</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -3931,7 +3936,7 @@ except ApiException as e:
                         <p class="marked">음료 이름에 따른 음료 정보 정보 로드</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/cafe/by-beverage-name</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/search/beverageName</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -3954,7 +3959,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/cafe/by-beverage-name?beverageName=&page="</code></pre>
+"https://julindang.shop/admin/cafe/search/beverageName?beverageName=&page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-findByBeverageName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4015,7 +4020,6 @@ Integer *page = 56; //  (optional) (default to 1)
 
 CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
-// 음료 이름에 따른 음료 정보 불러오기
 [apiInstance findByBeverageNameWith:beverageName
     page:page
               completionHandler: ^(CafeFindPagingResponseDto output, NSError* error) {
@@ -4074,7 +4078,6 @@ namespace Example
 
             try
             {
-                // 음료 이름에 따른 음료 정보 불러오기
                 CafeFindPagingResponseDto result = apiInstance.findByBeverageName(beverageName, page);
                 Debug.WriteLine(result);
             }
@@ -4139,7 +4142,6 @@ beverageName = beverageName_example # String |  (optional)
 page = 56 # Integer |  (optional) (default to 1)
 
 try: 
-    # 음료 이름에 따른 음료 정보 불러오기
     api_response = api_instance.find_by_beverage_name(beverageName=beverageName, page=page)
     pprint(api_response)
 except ApiException as e:
@@ -4252,7 +4254,7 @@ except ApiException as e:
                       <article id="api-CafeController-findByCafeName1-0" data-group="User" data-name="findByCafeName1" data-version="0">
                         <div class="pull-left">
                           <h1>findByCafeName1</h1>
-                          <p>카페 이름에 따른 음료 정보 불러오기</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -4260,7 +4262,7 @@ except ApiException as e:
                         <p class="marked">카페 이름에 따른 음료 정보 정보 로드</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/cafe/by-cafe-name</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/search/cafeName</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -4283,7 +4285,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/cafe/by-cafe-name?cafeName=&page="</code></pre>
+"https://julindang.shop/admin/cafe/search/cafeName?cafeName=&page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-CafeController-findByCafeName1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4344,7 +4346,6 @@ Integer *page = 56; //  (optional) (default to 1)
 
 CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
-// 카페 이름에 따른 음료 정보 불러오기
 [apiInstance findByCafeName1With:cafeName
     page:page
               completionHandler: ^(CafeFindPagingResponseDto output, NSError* error) {
@@ -4403,7 +4404,6 @@ namespace Example
 
             try
             {
-                // 카페 이름에 따른 음료 정보 불러오기
                 CafeFindPagingResponseDto result = apiInstance.findByCafeName1(cafeName, page);
                 Debug.WriteLine(result);
             }
@@ -4468,7 +4468,6 @@ cafeName = cafeName_example # String |  (optional)
 page = 56 # Integer |  (optional) (default to 1)
 
 try: 
-    # 카페 이름에 따른 음료 정보 불러오기
     api_response = api_instance.find_by_cafe_name1(cafeName=cafeName, page=page)
     pprint(api_response)
 except ApiException as e:
@@ -4577,11 +4576,11 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-CafeController-save2">
-                      <article id="api-CafeController-save2-0" data-group="User" data-name="save2" data-version="0">
+                    <div id="api-CafeController-save1">
+                      <article id="api-CafeController-save1-0" data-group="User" data-name="save1" data-version="0">
                         <div class="pull-left">
-                          <h1>save2</h1>
-                          <p>카페 저장</p>
+                          <h1>save1</h1>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -4589,33 +4588,33 @@ except ApiException as e:
                         <p class="marked">카페 정보 저장</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/admin/cafe/save</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/cafe/save</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-CafeController-save2-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-CafeController-save2-0-java">Java</a></li>
-                          <li class=""><a href="#examples-CafeController-save2-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-CafeController-save2-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-CafeController-save2-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-CafeController-save2-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-CafeController-save2-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-CafeController-save2-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-CafeController-save2-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-CafeController-save2-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-CafeController-save2-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-CafeController-save1-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-CafeController-save1-0-java">Java</a></li>
+                          <li class=""><a href="#examples-CafeController-save1-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-CafeController-save1-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-CafeController-save1-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-CafeController-save1-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-CafeController-save1-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-CafeController-save1-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-CafeController-save1-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-CafeController-save1-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-CafeController-save1-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-CafeController-save2-0-curl">
+                          <div class="tab-pane active" id="examples-CafeController-save1-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
 "https://julindang.shop/admin/cafe/save"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-CafeController-save2-0-java">
+                          <div class="tab-pane" id="examples-CafeController-save1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -4633,17 +4632,17 @@ public class CafeControllerApiExample {
         CafeControllerApi apiInstance = new CafeControllerApi();
         CafeSaveRequestDto body = ; // CafeSaveRequestDto | 
         try {
-            CafeSaveResponseDto result = apiInstance.save2(body);
+            CafeSaveResponseDto result = apiInstance.save1(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CafeControllerApi#save2");
+            System.err.println("Exception when calling CafeControllerApi#save1");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-CafeController-save2-0-android">
+                          <div class="tab-pane" id="examples-CafeController-save1-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.CafeControllerApi;
 
 public class CafeControllerApiExample {
@@ -4652,27 +4651,26 @@ public class CafeControllerApiExample {
         CafeControllerApi apiInstance = new CafeControllerApi();
         CafeSaveRequestDto body = ; // CafeSaveRequestDto | 
         try {
-            CafeSaveResponseDto result = apiInstance.save2(body);
+            CafeSaveResponseDto result = apiInstance.save1(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CafeControllerApi#save2");
+            System.err.println("Exception when calling CafeControllerApi#save1");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-CafeController-save2-0-groovy">
+  <div class="tab-pane" id="examples-CafeController-save1-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-CafeController-save2-0-objc">
+                            <div class="tab-pane" id="examples-CafeController-save1-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 CafeSaveRequestDto *body = ; // 
 
 CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
-// 카페 저장
-[apiInstance save2With:body
+[apiInstance save1With:body
               completionHandler: ^(CafeSaveResponseDto output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -4684,7 +4682,7 @@ CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-CafeController-save2-0-javascript">
+                            <div class="tab-pane" id="examples-CafeController-save1-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
 var defaultClient = JulindangService.ApiClient.instance;
 
@@ -4699,14 +4697,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.save2(body, callback);
+api.save1(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-CafeController-save2-0-angular">
+                            <!--<div class="tab-pane" id="examples-CafeController-save1-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-CafeController-save2-0-csharp">
+                            <div class="tab-pane" id="examples-CafeController-save1-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -4715,7 +4713,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class save2Example
+    public class save1Example
     {
         public void main()
         {
@@ -4726,13 +4724,12 @@ namespace Example
 
             try
             {
-                // 카페 저장
-                CafeSaveResponseDto result = apiInstance.save2(body);
+                CafeSaveResponseDto result = apiInstance.save1(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling CafeControllerApi.save2: " + e.Message );
+                Debug.Print("Exception when calling CafeControllerApi.save1: " + e.Message );
             }
         }
     }
@@ -4740,7 +4737,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-CafeController-save2-0-php">
+                            <div class="tab-pane" id="examples-CafeController-save1-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -4749,15 +4746,15 @@ $api_instance = new Swagger\Client\ApiCafeControllerApi();
 $body = ; // CafeSaveRequestDto | 
 
 try {
-    $result = $api_instance->save2($body);
+    $result = $api_instance->save1($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling CafeControllerApi->save2: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling CafeControllerApi->save1: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-CafeController-save2-0-perl">
+                            <div class="tab-pane" id="examples-CafeController-save1-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::CafeControllerApi;
@@ -4767,15 +4764,15 @@ my $api_instance = WWW::SwaggerClient::CafeControllerApi->new();
 my $body = WWW::SwaggerClient::Object::CafeSaveRequestDto->new(); # CafeSaveRequestDto | 
 
 eval { 
-    my $result = $api_instance->save2(body => $body);
+    my $result = $api_instance->save1(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling CafeControllerApi->save2: $@\n";
+    warn "Exception when calling CafeControllerApi->save1: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-CafeController-save2-0-python">
+                            <div class="tab-pane" id="examples-CafeController-save1-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -4788,11 +4785,10 @@ api_instance = swagger_client.CafeControllerApi()
 body =  # CafeSaveRequestDto | 
 
 try: 
-    # 카페 저장
-    api_response = api_instance.save2(body)
+    api_response = api_instance.save1(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling CafeControllerApi->save2: %s\n" % e)</code></pre>
+    print("Exception when calling CafeControllerApi->save1: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -4834,12 +4830,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_save2_body');
+                                  var result = $('#d2e199_save1_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_save2_body"></div>
+                                <div id="d2e199_save1_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -4851,14 +4847,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-save2-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-save1-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-save2-200-schema">
-                                  <div id='responses-save2-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-save1-200-schema">
+                                  <div id='responses-save1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -4884,14 +4880,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-save2-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-save2-200-schema-200');
+                                        $('#responses-save1-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-save1-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-save2-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-save1-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -4902,7 +4898,7 @@ except ApiException as e:
                       <article id="api-CafeController-update1-0" data-group="User" data-name="update1" data-version="0">
                         <div class="pull-left">
                           <h1>update1</h1>
-                          <p>카페 정보 업데이트</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -4910,7 +4906,7 @@ except ApiException as e:
                         <p class="marked">저장되어 있는 카페 정보 업데이트</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/admin/cafe/update</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/cafe/update</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -4992,7 +4988,6 @@ CafeUpdateRequestDto *body = ; //
 
 CafeControllerApi *apiInstance = [[CafeControllerApi alloc] init];
 
-// 카페 정보 업데이트
 [apiInstance update1With:body
               completionHandler: ^(CafeFindDetailResponseDto output, NSError* error) {
                             if (output) {
@@ -5047,7 +5042,6 @@ namespace Example
 
             try
             {
-                // 카페 정보 업데이트
                 CafeFindDetailResponseDto result = apiInstance.update1(body);
                 Debug.WriteLine(result);
             }
@@ -5109,7 +5103,6 @@ api_instance = swagger_client.CafeControllerApi()
 body =  # CafeUpdateRequestDto | 
 
 try: 
-    # 카페 정보 업데이트
     api_response = api_instance.update1(body)
     pprint(api_response)
 except ApiException as e:
@@ -5234,7 +5227,7 @@ except ApiException as e:
                         <p class="marked">디저트 삭제 (deleted만 변경 db에는 남아있음)</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/admin/dessert/delete/{id}</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/dessert/delete</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -5257,7 +5250,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/dessert/delete/{id}"</code></pre>
+"https://julindang.shop/admin/dessert/delete?id="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-delete-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5442,39 +5435,39 @@ except ApiException as e:
 
                           <h2>Parameters</h2>
 
-                            <div class="methodsubtabletitle">Path parameters</div>
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
                             <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">id*</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_delete_id">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Long
+                                                </span>
+                                                    <span class="format">
+                                                        (int64)
+                                                    </span>
+                                
+                                            </div>
+                                                <div class="inner required">
+                                                    Required
+                                                </div>
+                                        </div>
+                                    </div>
+                                </td>
                                 </tr>
-                                  <tr><td style="width:150px;">id*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_delete_id">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      Long
-                                                  </span>
-                                                      <span class="format">
-                                                          (int64)
-                                                      </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
                             </table>
-
-
-
-
 
                           <h2>Responses</h2>
                             <h3> Status: 200 - OK </h3>
@@ -5528,11 +5521,11 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-DessertController-findAll1">
-                      <article id="api-DessertController-findAll1-0" data-group="User" data-name="findAll1" data-version="0">
+                    <div id="api-DessertController-findAll">
+                      <article id="api-DessertController-findAll-0" data-group="User" data-name="findAll" data-version="0">
                         <div class="pull-left">
-                          <h1>findAll1</h1>
-                          <p>모든 디저트 정보 불러오기</p>
+                          <h1>findAll</h1>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -5540,32 +5533,32 @@ except ApiException as e:
                         <p class="marked">모든 디저트 정보 로드</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/dessert</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dessert/info</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-DessertController-findAll1-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-DessertController-findAll1-0-java">Java</a></li>
-                          <li class=""><a href="#examples-DessertController-findAll1-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-DessertController-findAll1-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-DessertController-findAll1-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-DessertController-findAll1-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-DessertController-findAll1-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-DessertController-findAll1-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-DessertController-findAll1-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-DessertController-findAll1-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-DessertController-findAll1-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-DessertController-findAll-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-DessertController-findAll-0-java">Java</a></li>
+                          <li class=""><a href="#examples-DessertController-findAll-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-DessertController-findAll-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-DessertController-findAll-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-DessertController-findAll-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-DessertController-findAll-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-DessertController-findAll-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-DessertController-findAll-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-DessertController-findAll-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-DessertController-findAll-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-DessertController-findAll1-0-curl">
+                          <div class="tab-pane active" id="examples-DessertController-findAll-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/dessert?page="</code></pre>
+"https://julindang.shop/admin/dessert/info?page="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-DessertController-findAll1-0-java">
+                          <div class="tab-pane" id="examples-DessertController-findAll-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -5583,17 +5576,17 @@ public class DessertControllerApiExample {
         DessertControllerApi apiInstance = new DessertControllerApi();
         Integer page = 56; // Integer | 
         try {
-            DessertFindPagingResponseDto result = apiInstance.findAll1(page);
+            DessertFindPagingResponseDto result = apiInstance.findAll(page);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DessertControllerApi#findAll1");
+            System.err.println("Exception when calling DessertControllerApi#findAll");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-DessertController-findAll1-0-android">
+                          <div class="tab-pane" id="examples-DessertController-findAll-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DessertControllerApi;
 
 public class DessertControllerApiExample {
@@ -5602,27 +5595,26 @@ public class DessertControllerApiExample {
         DessertControllerApi apiInstance = new DessertControllerApi();
         Integer page = 56; // Integer | 
         try {
-            DessertFindPagingResponseDto result = apiInstance.findAll1(page);
+            DessertFindPagingResponseDto result = apiInstance.findAll(page);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DessertControllerApi#findAll1");
+            System.err.println("Exception when calling DessertControllerApi#findAll");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-DessertController-findAll1-0-groovy">
+  <div class="tab-pane" id="examples-DessertController-findAll-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-DessertController-findAll1-0-objc">
+                            <div class="tab-pane" id="examples-DessertController-findAll-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 Integer *page = 56; //  (optional) (default to 1)
 
 DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
 
-// 모든 디저트 정보 불러오기
-[apiInstance findAll1With:page
+[apiInstance findAllWith:page
               completionHandler: ^(DessertFindPagingResponseDto output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -5634,7 +5626,7 @@ DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-DessertController-findAll1-0-javascript">
+                            <div class="tab-pane" id="examples-DessertController-findAll-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
 var defaultClient = JulindangService.ApiClient.instance;
 
@@ -5650,14 +5642,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.findAll1(opts, callback);
+api.findAll(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-DessertController-findAll1-0-angular">
+                            <!--<div class="tab-pane" id="examples-DessertController-findAll-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-DessertController-findAll1-0-csharp">
+                            <div class="tab-pane" id="examples-DessertController-findAll-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -5666,7 +5658,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class findAll1Example
+    public class findAllExample
     {
         public void main()
         {
@@ -5677,13 +5669,12 @@ namespace Example
 
             try
             {
-                // 모든 디저트 정보 불러오기
-                DessertFindPagingResponseDto result = apiInstance.findAll1(page);
+                DessertFindPagingResponseDto result = apiInstance.findAll(page);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DessertControllerApi.findAll1: " + e.Message );
+                Debug.Print("Exception when calling DessertControllerApi.findAll: " + e.Message );
             }
         }
     }
@@ -5691,7 +5682,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-DessertController-findAll1-0-php">
+                            <div class="tab-pane" id="examples-DessertController-findAll-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -5700,15 +5691,15 @@ $api_instance = new Swagger\Client\ApiDessertControllerApi();
 $page = 56; // Integer | 
 
 try {
-    $result = $api_instance->findAll1($page);
+    $result = $api_instance->findAll($page);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DessertControllerApi->findAll1: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DessertControllerApi->findAll: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-DessertController-findAll1-0-perl">
+                            <div class="tab-pane" id="examples-DessertController-findAll-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DessertControllerApi;
@@ -5718,15 +5709,15 @@ my $api_instance = WWW::SwaggerClient::DessertControllerApi->new();
 my $page = 56; # Integer | 
 
 eval { 
-    my $result = $api_instance->findAll1(page => $page);
+    my $result = $api_instance->findAll(page => $page);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DessertControllerApi->findAll1: $@\n";
+    warn "Exception when calling DessertControllerApi->findAll: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-DessertController-findAll1-0-python">
+                            <div class="tab-pane" id="examples-DessertController-findAll-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -5739,11 +5730,10 @@ api_instance = swagger_client.DessertControllerApi()
 page = 56 # Integer |  (optional) (default to 1)
 
 try: 
-    # 모든 디저트 정보 불러오기
-    api_response = api_instance.find_all1(page=page)
+    api_response = api_instance.find_all(page=page)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DessertControllerApi->findAll1: %s\n" % e)</code></pre>
+    print("Exception when calling DessertControllerApi->findAll: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -5763,7 +5753,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_findAll1_page">
+                                    <div id="d2e199_findAll_page">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -5785,14 +5775,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-findAll1-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-findAll-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-findAll1-200-schema">
-                                  <div id='responses-findAll1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-findAll-200-schema">
+                                  <div id='responses-findAll-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -5818,14 +5808,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-findAll1-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-findAll1-200-schema-200');
+                                        $('#responses-findAll-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findAll-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-findAll1-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-findAll-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -5836,7 +5826,7 @@ except ApiException as e:
                       <article id="api-DessertController-findAllNonePaging-0" data-group="User" data-name="findAllNonePaging" data-version="0">
                         <div class="pull-left">
                           <h1>findAllNonePaging</h1>
-                          <p>모든 디저트 정보 불러오기</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -5844,7 +5834,7 @@ except ApiException as e:
                         <p class="marked">모든 디저트 정보 로드 페이징 없이</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/dessert/none-paging</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dessert/info/without-paging</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -5867,7 +5857,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/dessert/none-paging"</code></pre>
+"https://julindang.shop/admin/dessert/info/without-paging"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-findAllNonePaging-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5886,7 +5876,7 @@ public class DessertControllerApiExample {
 
         DessertControllerApi apiInstance = new DessertControllerApi();
         try {
-            DessertFindPagingResponseDto result = apiInstance.findAllNonePaging();
+            array[DessertFindResponseDto] result = apiInstance.findAllNonePaging();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DessertControllerApi#findAllNonePaging");
@@ -5904,7 +5894,7 @@ public class DessertControllerApiExample {
     public static void main(String[] args) {
         DessertControllerApi apiInstance = new DessertControllerApi();
         try {
-            DessertFindPagingResponseDto result = apiInstance.findAllNonePaging();
+            array[DessertFindResponseDto] result = apiInstance.findAllNonePaging();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DessertControllerApi#findAllNonePaging");
@@ -5922,9 +5912,8 @@ public class DessertControllerApiExample {
 
 DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
 
-// 모든 디저트 정보 불러오기
 [apiInstance findAllNonePagingWithCompletionHandler: 
-              ^(DessertFindPagingResponseDto output, NSError* error) {
+              ^(array[DessertFindResponseDto] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -5974,8 +5963,7 @@ namespace Example
 
             try
             {
-                // 모든 디저트 정보 불러오기
-                DessertFindPagingResponseDto result = apiInstance.findAllNonePaging();
+                array[DessertFindResponseDto] result = apiInstance.findAllNonePaging();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -6033,7 +6021,6 @@ from pprint import pprint
 api_instance = swagger_client.DessertControllerApi()
 
 try: 
-    # 모든 디저트 정보 불러오기
     api_response = api_instance.find_all_none_paging()
     pprint(api_response)
 except ApiException as e:
@@ -6068,7 +6055,11 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/DessertFindPagingResponseDto"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/DessertFindResponseDto"
+        },
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -6104,7 +6095,7 @@ except ApiException as e:
                       <article id="api-DessertController-findByCafeName-0" data-group="User" data-name="findByCafeName" data-version="0">
                         <div class="pull-left">
                           <h1>findByCafeName</h1>
-                          <p>카페 이름에 따른 디저트 정보 불러오기</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -6112,7 +6103,7 @@ except ApiException as e:
                         <p class="marked">카페 이름에 따른 디저트 정보 로드</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/dessert/by-cafe-name</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dessert/search/cafeName</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -6135,7 +6126,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/dessert/by-cafe-name?cafeName=&page="</code></pre>
+"https://julindang.shop/admin/dessert/search/cafeName?cafeName=&page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-findByCafeName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6196,7 +6187,6 @@ Integer *page = 56; //  (optional) (default to 1)
 
 DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
 
-// 카페 이름에 따른 디저트 정보 불러오기
 [apiInstance findByCafeNameWith:cafeName
     page:page
               completionHandler: ^(DessertFindPagingResponseDto output, NSError* error) {
@@ -6255,7 +6245,6 @@ namespace Example
 
             try
             {
-                // 카페 이름에 따른 디저트 정보 불러오기
                 DessertFindPagingResponseDto result = apiInstance.findByCafeName(cafeName, page);
                 Debug.WriteLine(result);
             }
@@ -6320,7 +6309,6 @@ cafeName = cafeName_example # String |  (optional)
 page = 56 # Integer |  (optional) (default to 1)
 
 try: 
-    # 카페 이름에 따른 디저트 정보 불러오기
     api_response = api_instance.find_by_cafe_name(cafeName=cafeName, page=page)
     pprint(api_response)
 except ApiException as e:
@@ -6433,7 +6421,7 @@ except ApiException as e:
                       <article id="api-DessertController-findByDessertName-0" data-group="User" data-name="findByDessertName" data-version="0">
                         <div class="pull-left">
                           <h1>findByDessertName</h1>
-                          <p>디저트 이름에 따른 정보 불러오기</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -6441,7 +6429,7 @@ except ApiException as e:
                         <p class="marked">디저트 이름에 따른 정보 로드</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/dessert/by-dessert-name</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/dessert/search/dessertName</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -6464,7 +6452,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/dessert/by-dessert-name?dessertName=&page="</code></pre>
+"https://julindang.shop/admin/dessert/search/dessertName?dessertName=&page="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-DessertController-findByDessertName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6525,7 +6513,6 @@ Integer *page = 56; //  (optional) (default to 1)
 
 DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
 
-// 디저트 이름에 따른 정보 불러오기
 [apiInstance findByDessertNameWith:dessertName
     page:page
               completionHandler: ^(DessertFindPagingResponseDto output, NSError* error) {
@@ -6584,7 +6571,6 @@ namespace Example
 
             try
             {
-                // 디저트 이름에 따른 정보 불러오기
                 DessertFindPagingResponseDto result = apiInstance.findByDessertName(dessertName, page);
                 Debug.WriteLine(result);
             }
@@ -6649,7 +6635,6 @@ dessertName = dessertName_example # String |  (optional)
 page = 56 # Integer |  (optional) (default to 1)
 
 try: 
-    # 디저트 이름에 따른 정보 불러오기
     api_response = api_instance.find_by_dessert_name(dessertName=dessertName, page=page)
     pprint(api_response)
 except ApiException as e:
@@ -6758,11 +6743,11 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-DessertController-save1">
-                      <article id="api-DessertController-save1-0" data-group="User" data-name="save1" data-version="0">
+                    <div id="api-DessertController-save">
+                      <article id="api-DessertController-save-0" data-group="User" data-name="save" data-version="0">
                         <div class="pull-left">
-                          <h1>save1</h1>
-                          <p>디저트 저장</p>
+                          <h1>save</h1>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -6770,33 +6755,33 @@ except ApiException as e:
                         <p class="marked">디저트 정보 저장</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/admin/dessert/save</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/dessert/save</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-DessertController-save1-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-DessertController-save1-0-java">Java</a></li>
-                          <li class=""><a href="#examples-DessertController-save1-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-DessertController-save1-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-DessertController-save1-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-DessertController-save1-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-DessertController-save1-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-DessertController-save1-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-DessertController-save1-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-DessertController-save1-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-DessertController-save1-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-DessertController-save-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-DessertController-save-0-java">Java</a></li>
+                          <li class=""><a href="#examples-DessertController-save-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-DessertController-save-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-DessertController-save-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-DessertController-save-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-DessertController-save-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-DessertController-save-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-DessertController-save-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-DessertController-save-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-DessertController-save-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-DessertController-save1-0-curl">
+                          <div class="tab-pane active" id="examples-DessertController-save-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
 "https://julindang.shop/admin/dessert/save"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-DessertController-save1-0-java">
+                          <div class="tab-pane" id="examples-DessertController-save-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -6814,17 +6799,17 @@ public class DessertControllerApiExample {
         DessertControllerApi apiInstance = new DessertControllerApi();
         DessertSaveRequestDto body = ; // DessertSaveRequestDto | 
         try {
-            DessertSaveRequestDto result = apiInstance.save1(body);
+            DessertSaveResponseDto result = apiInstance.save(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DessertControllerApi#save1");
+            System.err.println("Exception when calling DessertControllerApi#save");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-DessertController-save1-0-android">
+                          <div class="tab-pane" id="examples-DessertController-save-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DessertControllerApi;
 
 public class DessertControllerApiExample {
@@ -6833,28 +6818,27 @@ public class DessertControllerApiExample {
         DessertControllerApi apiInstance = new DessertControllerApi();
         DessertSaveRequestDto body = ; // DessertSaveRequestDto | 
         try {
-            DessertSaveRequestDto result = apiInstance.save1(body);
+            DessertSaveResponseDto result = apiInstance.save(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DessertControllerApi#save1");
+            System.err.println("Exception when calling DessertControllerApi#save");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-DessertController-save1-0-groovy">
+  <div class="tab-pane" id="examples-DessertController-save-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-DessertController-save1-0-objc">
+                            <div class="tab-pane" id="examples-DessertController-save-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 DessertSaveRequestDto *body = ; // 
 
 DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
 
-// 디저트 저장
-[apiInstance save1With:body
-              completionHandler: ^(DessertSaveRequestDto output, NSError* error) {
+[apiInstance saveWith:body
+              completionHandler: ^(DessertSaveResponseDto output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -6865,7 +6849,7 @@ DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-DessertController-save1-0-javascript">
+                            <div class="tab-pane" id="examples-DessertController-save-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
 var defaultClient = JulindangService.ApiClient.instance;
 
@@ -6880,14 +6864,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.save1(body, callback);
+api.save(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-DessertController-save1-0-angular">
+                            <!--<div class="tab-pane" id="examples-DessertController-save-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-DessertController-save1-0-csharp">
+                            <div class="tab-pane" id="examples-DessertController-save-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -6896,7 +6880,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class save1Example
+    public class saveExample
     {
         public void main()
         {
@@ -6907,13 +6891,12 @@ namespace Example
 
             try
             {
-                // 디저트 저장
-                DessertSaveRequestDto result = apiInstance.save1(body);
+                DessertSaveResponseDto result = apiInstance.save(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DessertControllerApi.save1: " + e.Message );
+                Debug.Print("Exception when calling DessertControllerApi.save: " + e.Message );
             }
         }
     }
@@ -6921,7 +6904,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-DessertController-save1-0-php">
+                            <div class="tab-pane" id="examples-DessertController-save-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -6930,15 +6913,15 @@ $api_instance = new Swagger\Client\ApiDessertControllerApi();
 $body = ; // DessertSaveRequestDto | 
 
 try {
-    $result = $api_instance->save1($body);
+    $result = $api_instance->save($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DessertControllerApi->save1: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DessertControllerApi->save: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-DessertController-save1-0-perl">
+                            <div class="tab-pane" id="examples-DessertController-save-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DessertControllerApi;
@@ -6948,15 +6931,15 @@ my $api_instance = WWW::SwaggerClient::DessertControllerApi->new();
 my $body = WWW::SwaggerClient::Object::DessertSaveRequestDto->new(); # DessertSaveRequestDto | 
 
 eval { 
-    my $result = $api_instance->save1(body => $body);
+    my $result = $api_instance->save(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DessertControllerApi->save1: $@\n";
+    warn "Exception when calling DessertControllerApi->save: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-DessertController-save1-0-python">
+                            <div class="tab-pane" id="examples-DessertController-save-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -6969,11 +6952,10 @@ api_instance = swagger_client.DessertControllerApi()
 body =  # DessertSaveRequestDto | 
 
 try: 
-    # 디저트 저장
-    api_response = api_instance.save1(body)
+    api_response = api_instance.save(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DessertControllerApi->save1: %s\n" % e)</code></pre>
+    print("Exception when calling DessertControllerApi->save: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -7015,12 +6997,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_save1_body');
+                                  var result = $('#d2e199_save_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_save1_body"></div>
+                                <div id="d2e199_save_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -7032,14 +7014,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-save1-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-save-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-save1-200-schema">
-                                  <div id='responses-save1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-save-200-schema">
+                                  <div id='responses-save-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -7047,7 +7029,7 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/DessertSaveRequestDto"
+        "$ref" : "#/components/schemas/DessertSaveResponseDto"
       }
     }
   }
@@ -7065,14 +7047,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-save1-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-save1-200-schema-200');
+                                        $('#responses-save-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-save-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-save1-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-save-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -7083,7 +7065,7 @@ except ApiException as e:
                       <article id="api-DessertController-update-0" data-group="User" data-name="update" data-version="0">
                         <div class="pull-left">
                           <h1>update</h1>
-                          <p>디저트 정보 업데이트</p>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -7091,7 +7073,7 @@ except ApiException as e:
                         <p class="marked">디저트 정보 업데이트</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/admin/dessert/update</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/dessert/update</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -7135,7 +7117,7 @@ public class DessertControllerApiExample {
         DessertControllerApi apiInstance = new DessertControllerApi();
         DessertUpdateRequestDto body = ; // DessertUpdateRequestDto | 
         try {
-            DessertSaveResponseDto result = apiInstance.update(body);
+            DessertUpdateRequestDto result = apiInstance.update(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DessertControllerApi#update");
@@ -7154,7 +7136,7 @@ public class DessertControllerApiExample {
         DessertControllerApi apiInstance = new DessertControllerApi();
         DessertUpdateRequestDto body = ; // DessertUpdateRequestDto | 
         try {
-            DessertSaveResponseDto result = apiInstance.update(body);
+            DessertUpdateRequestDto result = apiInstance.update(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DessertControllerApi#update");
@@ -7173,9 +7155,8 @@ DessertUpdateRequestDto *body = ; //
 
 DessertControllerApi *apiInstance = [[DessertControllerApi alloc] init];
 
-// 디저트 정보 업데이트
 [apiInstance updateWith:body
-              completionHandler: ^(DessertSaveResponseDto output, NSError* error) {
+              completionHandler: ^(DessertUpdateRequestDto output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -7228,8 +7209,7 @@ namespace Example
 
             try
             {
-                // 디저트 정보 업데이트
-                DessertSaveResponseDto result = apiInstance.update(body);
+                DessertUpdateRequestDto result = apiInstance.update(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -7290,7 +7270,6 @@ api_instance = swagger_client.DessertControllerApi()
 body =  # DessertUpdateRequestDto | 
 
 try: 
-    # 디저트 정보 업데이트
     api_response = api_instance.update(body)
     pprint(api_response)
 except ApiException as e:
@@ -7368,7 +7347,7 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/DessertSaveResponseDto"
+        "$ref" : "#/components/schemas/DessertUpdateRequestDto"
       }
     }
   }
@@ -7403,6 +7382,272 @@ except ApiException as e:
                   </section>
                 <section id="api-FAQAPI">
                   <h1>FAQAPI</h1>
+                    <div id="api-FAQAPI-createTable">
+                      <article id="api-FAQAPI-createTable-0" data-group="User" data-name="createTable" data-version="0">
+                        <div class="pull-left">
+                          <h1>createTable</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/admin/faq/create-table</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-FAQAPI-createTable-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-FAQAPI-createTable-0-java">Java</a></li>
+                          <li class=""><a href="#examples-FAQAPI-createTable-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-FAQAPI-createTable-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-FAQAPI-createTable-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-FAQAPI-createTable-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-FAQAPI-createTable-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-FAQAPI-createTable-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-FAQAPI-createTable-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-FAQAPI-createTable-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-FAQAPI-createTable-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-FAQAPI-createTable-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/admin/admin/faq/create-table"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-FAQAPI-createTable-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.FAQAPIApi;
+
+import java.io.File;
+import java.util.*;
+
+public class FAQAPIApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        FAQAPIApi apiInstance = new FAQAPIApi();
+        try {
+            'String' result = apiInstance.createTable();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling FAQAPIApi#createTable");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-FAQAPI-createTable-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.FAQAPIApi;
+
+public class FAQAPIApiExample {
+
+    public static void main(String[] args) {
+        FAQAPIApi apiInstance = new FAQAPIApi();
+        try {
+            'String' result = apiInstance.createTable();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling FAQAPIApi#createTable");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-FAQAPI-createTable-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-FAQAPI-createTable-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+FAQAPIApi *apiInstance = [[FAQAPIApi alloc] init];
+
+[apiInstance createTableWithCompletionHandler: 
+              ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-FAQAPI-createTable-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
+var defaultClient = JulindangService.ApiClient.instance;
+
+
+var api = new JulindangService.FAQAPIApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.createTable(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-FAQAPI-createTable-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-FAQAPI-createTable-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class createTableExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new FAQAPIApi();
+
+            try
+            {
+                'String' result = apiInstance.createTable();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling FAQAPIApi.createTable: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-FAQAPI-createTable-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiFAQAPIApi();
+
+try {
+    $result = $api_instance->createTable();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FAQAPIApi->createTable: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-FAQAPI-createTable-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::FAQAPIApi;
+
+
+my $api_instance = WWW::SwaggerClient::FAQAPIApi->new();
+
+eval { 
+    my $result = $api_instance->createTable();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling FAQAPIApi->createTable: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-FAQAPI-createTable-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.FAQAPIApi()
+
+try: 
+    api_response = api_instance.create_table()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling FAQAPIApi->createTable: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-createTable-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-createTable-200-schema">
+                                  <div id='responses-createTable-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-createTable-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-createTable-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-createTable-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-FAQAPI-deleteFAQ">
                       <article id="api-FAQAPI-deleteFAQ-0" data-group="User" data-name="deleteFAQ" data-version="0">
                         <div class="pull-left">
@@ -7415,7 +7660,7 @@ except ApiException as e:
                         <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/admin/faq/delete/{id}</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/admin/faq/delete</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -7435,10 +7680,11 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-FAQAPI-deleteFAQ-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/faq/delete/{id}"</code></pre>
+-H "Content-Type: application/json"\
+"https://julindang.shop/admin/admin/faq/delete?id="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-FAQAPI-deleteFAQ-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -7457,8 +7703,9 @@ public class FAQAPIApiExample {
 
         FAQAPIApi apiInstance = new FAQAPIApi();
         String id = id_example; // String | 
+        Date body = ; // Date | 
         try {
-            FaqDto result = apiInstance.deleteFAQ(id);
+            'String' result = apiInstance.deleteFAQ(id, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FAQAPIApi#deleteFAQ");
@@ -7476,8 +7723,9 @@ public class FAQAPIApiExample {
     public static void main(String[] args) {
         FAQAPIApi apiInstance = new FAQAPIApi();
         String id = id_example; // String | 
+        Date body = ; // Date | 
         try {
-            FaqDto result = apiInstance.deleteFAQ(id);
+            'String' result = apiInstance.deleteFAQ(id, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FAQAPIApi#deleteFAQ");
@@ -7493,11 +7741,13 @@ public class FAQAPIApiExample {
                             <div class="tab-pane" id="examples-FAQAPI-deleteFAQ-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 String *id = id_example; // 
+Date *body = ; //  (optional)
 
 FAQAPIApi *apiInstance = [[FAQAPIApi alloc] init];
 
 [apiInstance deleteFAQWith:id
-              completionHandler: ^(FaqDto output, NSError* error) {
+    body:body
+              completionHandler: ^('String' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -7515,7 +7765,9 @@ var defaultClient = JulindangService.ApiClient.instance;
 
 var api = new JulindangService.FAQAPIApi()
 var id = id_example; // {{String}} 
-
+var opts = { 
+  'body':  // {{Date}} 
+};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -7523,7 +7775,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.deleteFAQ(id, callback);
+api.deleteFAQ(id, opts, callback);
 </code></pre>
                             </div>
 
@@ -7547,10 +7799,11 @@ namespace Example
 
             var apiInstance = new FAQAPIApi();
             var id = id_example;  // String | 
+            var body = new Date(); // Date |  (optional) 
 
             try
             {
-                FaqDto result = apiInstance.deleteFAQ(id);
+                'String' result = apiInstance.deleteFAQ(id, body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -7570,9 +7823,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiFAQAPIApi();
 $id = id_example; // String | 
+$body = ; // Date | 
 
 try {
-    $result = $api_instance->deleteFAQ($id);
+    $result = $api_instance->deleteFAQ($id, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FAQAPIApi->deleteFAQ: ', $e->getMessage(), PHP_EOL;
@@ -7588,9 +7842,10 @@ use WWW::SwaggerClient::FAQAPIApi;
 
 my $api_instance = WWW::SwaggerClient::FAQAPIApi->new();
 my $id = id_example; # String | 
+my $body = WWW::SwaggerClient::Object::Date->new(); # Date | 
 
 eval { 
-    my $result = $api_instance->deleteFAQ(id => $id);
+    my $result = $api_instance->deleteFAQ(id => $id, body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -7609,9 +7864,10 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.FAQAPIApi()
 id = id_example # String | 
+body =  # Date |  (optional)
 
 try: 
-    api_response = api_instance.delete_faq(id)
+    api_response = api_instance.delete_faq(id, body=body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling FAQAPIApi->deleteFAQ: %s\n" % e)</code></pre>
@@ -7620,36 +7876,79 @@ except ApiException as e:
 
                           <h2>Parameters</h2>
 
-                            <div class="methodsubtabletitle">Path parameters</div>
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
                             <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body </td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "date-time"
+      }
+    }
+  }
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_deleteFAQ_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_deleteFAQ_body"></div>
+                                </td>
                                 </tr>
-                                  <tr><td style="width:150px;">id*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_deleteFAQ_id">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
                             </table>
 
 
-
-
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">id*</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_deleteFAQ_id">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                            </div>
+                                                <div class="inner required">
+                                                    Required
+                                                </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
 
                           <h2>Responses</h2>
                             <h3> Status: 200 - OK </h3>
@@ -7671,7 +7970,8 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/FaqDto"
+        "type" : "string",
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -7697,6 +7997,275 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-deleteFAQ-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-FAQAPI-findAll3">
+                      <article id="api-FAQAPI-findAll3-0" data-group="User" data-name="findAll3" data-version="0">
+                        <div class="pull-left">
+                          <h1>findAll3</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/faq/info</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-FAQAPI-findAll3-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-FAQAPI-findAll3-0-java">Java</a></li>
+                          <li class=""><a href="#examples-FAQAPI-findAll3-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-FAQAPI-findAll3-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-FAQAPI-findAll3-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-FAQAPI-findAll3-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-FAQAPI-findAll3-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-FAQAPI-findAll3-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-FAQAPI-findAll3-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-FAQAPI-findAll3-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-FAQAPI-findAll3-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-FAQAPI-findAll3-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/admin/admin/faq/info"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-FAQAPI-findAll3-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.FAQAPIApi;
+
+import java.io.File;
+import java.util.*;
+
+public class FAQAPIApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        FAQAPIApi apiInstance = new FAQAPIApi();
+        try {
+            array[FaqFindResponseDto] result = apiInstance.findAll3();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling FAQAPIApi#findAll3");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-FAQAPI-findAll3-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.FAQAPIApi;
+
+public class FAQAPIApiExample {
+
+    public static void main(String[] args) {
+        FAQAPIApi apiInstance = new FAQAPIApi();
+        try {
+            array[FaqFindResponseDto] result = apiInstance.findAll3();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling FAQAPIApi#findAll3");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-FAQAPI-findAll3-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-FAQAPI-findAll3-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+FAQAPIApi *apiInstance = [[FAQAPIApi alloc] init];
+
+[apiInstance findAll3WithCompletionHandler: 
+              ^(array[FaqFindResponseDto] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-FAQAPI-findAll3-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
+var defaultClient = JulindangService.ApiClient.instance;
+
+
+var api = new JulindangService.FAQAPIApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.findAll3(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-FAQAPI-findAll3-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-FAQAPI-findAll3-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class findAll3Example
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new FAQAPIApi();
+
+            try
+            {
+                array[FaqFindResponseDto] result = apiInstance.findAll3();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling FAQAPIApi.findAll3: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-FAQAPI-findAll3-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiFAQAPIApi();
+
+try {
+    $result = $api_instance->findAll3();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FAQAPIApi->findAll3: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-FAQAPI-findAll3-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::FAQAPIApi;
+
+
+my $api_instance = WWW::SwaggerClient::FAQAPIApi->new();
+
+eval { 
+    my $result = $api_instance->findAll3();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling FAQAPIApi->findAll3: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-FAQAPI-findAll3-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.FAQAPIApi()
+
+try: 
+    api_response = api_instance.find_all3()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling FAQAPIApi->findAll3: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-findAll3-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-findAll3-200-schema">
+                                  <div id='responses-findAll3-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/FaqFindResponseDto"
+        },
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-findAll3-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findAll3-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-findAll3-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -7739,7 +8308,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/admin/faq/save"</code></pre>
+"https://julindang.shop/admin/admin/faq/save"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-FAQAPI-saveFAQ-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -7757,9 +8326,9 @@ public class FAQAPIApiExample {
 
 
         FAQAPIApi apiInstance = new FAQAPIApi();
-        FaqSaveDto body = ; // FaqSaveDto | 
+        FaqSaveRequestDto body = ; // FaqSaveRequestDto | 
         try {
-            FaqDto result = apiInstance.saveFAQ(body);
+            'String' result = apiInstance.saveFAQ(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FAQAPIApi#saveFAQ");
@@ -7776,9 +8345,9 @@ public class FAQAPIApiExample {
 
     public static void main(String[] args) {
         FAQAPIApi apiInstance = new FAQAPIApi();
-        FaqSaveDto body = ; // FaqSaveDto | 
+        FaqSaveRequestDto body = ; // FaqSaveRequestDto | 
         try {
-            FaqDto result = apiInstance.saveFAQ(body);
+            'String' result = apiInstance.saveFAQ(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FAQAPIApi#saveFAQ");
@@ -7793,12 +8362,12 @@ public class FAQAPIApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-FAQAPI-saveFAQ-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-FaqSaveDto *body = ; // 
+FaqSaveRequestDto *body = ; // 
 
 FAQAPIApi *apiInstance = [[FAQAPIApi alloc] init];
 
 [apiInstance saveFAQWith:body
-              completionHandler: ^(FaqDto output, NSError* error) {
+              completionHandler: ^('String' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -7815,7 +8384,7 @@ var defaultClient = JulindangService.ApiClient.instance;
 
 
 var api = new JulindangService.FAQAPIApi()
-var body = ; // {{FaqSaveDto}} 
+var body = ; // {{FaqSaveRequestDto}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -7847,11 +8416,11 @@ namespace Example
 
 
             var apiInstance = new FAQAPIApi();
-            var body = new FaqSaveDto(); // FaqSaveDto | 
+            var body = new FaqSaveRequestDto(); // FaqSaveRequestDto | 
 
             try
             {
-                FaqDto result = apiInstance.saveFAQ(body);
+                'String' result = apiInstance.saveFAQ(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -7870,7 +8439,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiFAQAPIApi();
-$body = ; // FaqSaveDto | 
+$body = ; // FaqSaveRequestDto | 
 
 try {
     $result = $api_instance->saveFAQ($body);
@@ -7888,7 +8457,7 @@ use WWW::SwaggerClient::FAQAPIApi;
 
 
 my $api_instance = WWW::SwaggerClient::FAQAPIApi->new();
-my $body = WWW::SwaggerClient::Object::FaqSaveDto->new(); # FaqSaveDto | 
+my $body = WWW::SwaggerClient::Object::FaqSaveRequestDto->new(); # FaqSaveRequestDto | 
 
 eval { 
     my $result = $api_instance->saveFAQ(body => $body);
@@ -7909,7 +8478,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.FAQAPIApi()
-body =  # FaqSaveDto | 
+body =  # FaqSaveRequestDto | 
 
 try: 
     api_response = api_instance.save_faq(body)
@@ -7939,7 +8508,7 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/FaqSaveDto"
+        "$ref" : "#/components/schemas/FaqSaveRequestDto"
       }
     }
   },
@@ -7989,7 +8558,8 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/FaqDto"
+        "type" : "string",
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -8057,7 +8627,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/admin/faq/update"</code></pre>
+"https://julindang.shop/admin/admin/faq/update"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-FAQAPI-updateFAQ-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -8075,9 +8645,9 @@ public class FAQAPIApiExample {
 
 
         FAQAPIApi apiInstance = new FAQAPIApi();
-        FaqUpdateDto body = ; // FaqUpdateDto | 
+        FaqUpdateRequestDto body = ; // FaqUpdateRequestDto | 
         try {
-            FaqDto result = apiInstance.updateFAQ(body);
+            'String' result = apiInstance.updateFAQ(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FAQAPIApi#updateFAQ");
@@ -8094,9 +8664,9 @@ public class FAQAPIApiExample {
 
     public static void main(String[] args) {
         FAQAPIApi apiInstance = new FAQAPIApi();
-        FaqUpdateDto body = ; // FaqUpdateDto | 
+        FaqUpdateRequestDto body = ; // FaqUpdateRequestDto | 
         try {
-            FaqDto result = apiInstance.updateFAQ(body);
+            'String' result = apiInstance.updateFAQ(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling FAQAPIApi#updateFAQ");
@@ -8111,12 +8681,12 @@ public class FAQAPIApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-FAQAPI-updateFAQ-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-FaqUpdateDto *body = ; // 
+FaqUpdateRequestDto *body = ; // 
 
 FAQAPIApi *apiInstance = [[FAQAPIApi alloc] init];
 
 [apiInstance updateFAQWith:body
-              completionHandler: ^(FaqDto output, NSError* error) {
+              completionHandler: ^('String' output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -8133,7 +8703,7 @@ var defaultClient = JulindangService.ApiClient.instance;
 
 
 var api = new JulindangService.FAQAPIApi()
-var body = ; // {{FaqUpdateDto}} 
+var body = ; // {{FaqUpdateRequestDto}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -8165,11 +8735,11 @@ namespace Example
 
 
             var apiInstance = new FAQAPIApi();
-            var body = new FaqUpdateDto(); // FaqUpdateDto | 
+            var body = new FaqUpdateRequestDto(); // FaqUpdateRequestDto | 
 
             try
             {
-                FaqDto result = apiInstance.updateFAQ(body);
+                'String' result = apiInstance.updateFAQ(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -8188,7 +8758,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiFAQAPIApi();
-$body = ; // FaqUpdateDto | 
+$body = ; // FaqUpdateRequestDto | 
 
 try {
     $result = $api_instance->updateFAQ($body);
@@ -8206,7 +8776,7 @@ use WWW::SwaggerClient::FAQAPIApi;
 
 
 my $api_instance = WWW::SwaggerClient::FAQAPIApi->new();
-my $body = WWW::SwaggerClient::Object::FaqUpdateDto->new(); # FaqUpdateDto | 
+my $body = WWW::SwaggerClient::Object::FaqUpdateRequestDto->new(); # FaqUpdateRequestDto | 
 
 eval { 
     my $result = $api_instance->updateFAQ(body => $body);
@@ -8227,7 +8797,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.FAQAPIApi()
-body =  # FaqUpdateDto | 
+body =  # FaqUpdateRequestDto | 
 
 try: 
     api_response = api_instance.update_faq(body)
@@ -8257,7 +8827,7 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/FaqUpdateDto"
+        "$ref" : "#/components/schemas/FaqUpdateRequestDto"
       }
     }
   },
@@ -8307,7 +8877,8 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/FaqDto"
+        "type" : "string",
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -8342,10 +8913,10 @@ except ApiException as e:
                   </section>
                 <section id="api-InquiryController">
                   <h1>InquiryController</h1>
-                    <div id="api-InquiryController-findAll">
-                      <article id="api-InquiryController-findAll-0" data-group="User" data-name="findAll" data-version="0">
+                    <div id="api-InquiryController-findAll2">
+                      <article id="api-InquiryController-findAll2-0" data-group="User" data-name="findAll2" data-version="0">
                         <div class="pull-left">
-                          <h1>findAll</h1>
+                          <h1>findAll2</h1>
                           <p>모든 1:1 문의 정보 불러오기</p>
                         </div>
                         <div class="pull-right"></div>
@@ -8354,32 +8925,32 @@ except ApiException as e:
                         <p class="marked">모든 1:1 문의 정보 로드</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/inquiry</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/inquiry/info</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-InquiryController-findAll-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-InquiryController-findAll-0-java">Java</a></li>
-                          <li class=""><a href="#examples-InquiryController-findAll-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-InquiryController-findAll-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-InquiryController-findAll-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-InquiryController-findAll-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-InquiryController-findAll-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-InquiryController-findAll-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-InquiryController-findAll-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-InquiryController-findAll-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-InquiryController-findAll-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-InquiryController-findAll2-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-InquiryController-findAll2-0-java">Java</a></li>
+                          <li class=""><a href="#examples-InquiryController-findAll2-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-InquiryController-findAll2-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-InquiryController-findAll2-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-InquiryController-findAll2-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-InquiryController-findAll2-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-InquiryController-findAll2-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-InquiryController-findAll2-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-InquiryController-findAll2-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-InquiryController-findAll2-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-InquiryController-findAll-0-curl">
+                          <div class="tab-pane active" id="examples-InquiryController-findAll2-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/inquiry?page="</code></pre>
+"https://julindang.shop/admin/admin/inquiry/info?page="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-InquiryController-findAll-0-java">
+                          <div class="tab-pane" id="examples-InquiryController-findAll2-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -8397,17 +8968,17 @@ public class InquiryControllerApiExample {
         InquiryControllerApi apiInstance = new InquiryControllerApi();
         Integer page = 56; // Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함.
         try {
-            InquiryFindPagingResponseDto result = apiInstance.findAll(page);
+            InquiryFindPagingResponseDto result = apiInstance.findAll2(page);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling InquiryControllerApi#findAll");
+            System.err.println("Exception when calling InquiryControllerApi#findAll2");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-InquiryController-findAll-0-android">
+                          <div class="tab-pane" id="examples-InquiryController-findAll2-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InquiryControllerApi;
 
 public class InquiryControllerApiExample {
@@ -8416,27 +8987,27 @@ public class InquiryControllerApiExample {
         InquiryControllerApi apiInstance = new InquiryControllerApi();
         Integer page = 56; // Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함.
         try {
-            InquiryFindPagingResponseDto result = apiInstance.findAll(page);
+            InquiryFindPagingResponseDto result = apiInstance.findAll2(page);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling InquiryControllerApi#findAll");
+            System.err.println("Exception when calling InquiryControllerApi#findAll2");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-InquiryController-findAll-0-groovy">
+  <div class="tab-pane" id="examples-InquiryController-findAll2-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-InquiryController-findAll-0-objc">
+                            <div class="tab-pane" id="examples-InquiryController-findAll2-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 Integer *page = 56; // 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함. (optional) (default to 1)
 
 InquiryControllerApi *apiInstance = [[InquiryControllerApi alloc] init];
 
 // 모든 1:1 문의 정보 불러오기
-[apiInstance findAllWith:page
+[apiInstance findAll2With:page
               completionHandler: ^(InquiryFindPagingResponseDto output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -8448,7 +9019,7 @@ InquiryControllerApi *apiInstance = [[InquiryControllerApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-InquiryController-findAll-0-javascript">
+                            <div class="tab-pane" id="examples-InquiryController-findAll2-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
 var defaultClient = JulindangService.ApiClient.instance;
 
@@ -8464,14 +9035,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.findAll(opts, callback);
+api.findAll2(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-InquiryController-findAll-0-angular">
+                            <!--<div class="tab-pane" id="examples-InquiryController-findAll2-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-InquiryController-findAll-0-csharp">
+                            <div class="tab-pane" id="examples-InquiryController-findAll2-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -8480,7 +9051,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class findAllExample
+    public class findAll2Example
     {
         public void main()
         {
@@ -8492,12 +9063,12 @@ namespace Example
             try
             {
                 // 모든 1:1 문의 정보 불러오기
-                InquiryFindPagingResponseDto result = apiInstance.findAll(page);
+                InquiryFindPagingResponseDto result = apiInstance.findAll2(page);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling InquiryControllerApi.findAll: " + e.Message );
+                Debug.Print("Exception when calling InquiryControllerApi.findAll2: " + e.Message );
             }
         }
     }
@@ -8505,7 +9076,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-InquiryController-findAll-0-php">
+                            <div class="tab-pane" id="examples-InquiryController-findAll2-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -8514,15 +9085,15 @@ $api_instance = new Swagger\Client\ApiInquiryControllerApi();
 $page = 56; // Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함.
 
 try {
-    $result = $api_instance->findAll($page);
+    $result = $api_instance->findAll2($page);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling InquiryControllerApi->findAll: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling InquiryControllerApi->findAll2: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-InquiryController-findAll-0-perl">
+                            <div class="tab-pane" id="examples-InquiryController-findAll2-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::InquiryControllerApi;
@@ -8532,15 +9103,15 @@ my $api_instance = WWW::SwaggerClient::InquiryControllerApi->new();
 my $page = 56; # Integer | 카페 정보를 페이지 형식으로 로드하기 위한 페이지. 시작은 1. 우선 10개씩 나오도록 설정함.
 
 eval { 
-    my $result = $api_instance->findAll(page => $page);
+    my $result = $api_instance->findAll2(page => $page);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling InquiryControllerApi->findAll: $@\n";
+    warn "Exception when calling InquiryControllerApi->findAll2: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-InquiryController-findAll-0-python">
+                            <div class="tab-pane" id="examples-InquiryController-findAll2-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -8554,10 +9125,10 @@ page = 56 # Integer | 카페 정보를 페이지 형식으로 로드하기 위�
 
 try: 
     # 모든 1:1 문의 정보 불러오기
-    api_response = api_instance.find_all(page=page)
+    api_response = api_instance.find_all2(page=page)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling InquiryControllerApi->findAll: %s\n" % e)</code></pre>
+    print("Exception when calling InquiryControllerApi->findAll2: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -8577,7 +9148,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_findAll_page">
+                                    <div id="d2e199_findAll2_page">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -8602,14 +9173,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-findAll-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-findAll2-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-findAll-200-schema">
-                                  <div id='responses-findAll-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-findAll2-200-schema">
+                                  <div id='responses-findAll2-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -8635,24 +9206,24 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-findAll-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-findAll-200-schema-200');
+                                        $('#responses-findAll2-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findAll2-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-findAll-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-findAll2-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
                         </article>
                       </div>
                       <hr>
-                    <div id="api-InquiryController-save">
-                      <article id="api-InquiryController-save-0" data-group="User" data-name="save" data-version="0">
+                    <div id="api-InquiryController-save2">
+                      <article id="api-InquiryController-save2-0" data-group="User" data-name="save2" data-version="0">
                         <div class="pull-left">
-                          <h1>save</h1>
+                          <h1>save2</h1>
                           <p>문의 답변 저장</p>
                         </div>
                         <div class="pull-right"></div>
@@ -8666,28 +9237,28 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-InquiryController-save-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-InquiryController-save-0-java">Java</a></li>
-                          <li class=""><a href="#examples-InquiryController-save-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-InquiryController-save-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-InquiryController-save-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-InquiryController-save-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-InquiryController-save-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-InquiryController-save-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-InquiryController-save-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-InquiryController-save-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-InquiryController-save-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-InquiryController-save2-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-InquiryController-save2-0-java">Java</a></li>
+                          <li class=""><a href="#examples-InquiryController-save2-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-InquiryController-save2-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-InquiryController-save2-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-InquiryController-save2-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-InquiryController-save2-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-InquiryController-save2-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-InquiryController-save2-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-InquiryController-save2-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-InquiryController-save2-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-InquiryController-save-0-curl">
+                          <div class="tab-pane active" id="examples-InquiryController-save2-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/admin/inquiry/save"</code></pre>
+"https://julindang.shop/admin/admin/inquiry/save"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-InquiryController-save-0-java">
+                          <div class="tab-pane" id="examples-InquiryController-save2-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -8705,17 +9276,17 @@ public class InquiryControllerApiExample {
         InquiryControllerApi apiInstance = new InquiryControllerApi();
         InquirySaveRequestDto body = ; // InquirySaveRequestDto | 
         try {
-            InquirySaveResponseDto result = apiInstance.save(body);
+            InquirySaveResponseDto result = apiInstance.save2(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling InquiryControllerApi#save");
+            System.err.println("Exception when calling InquiryControllerApi#save2");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-InquiryController-save-0-android">
+                          <div class="tab-pane" id="examples-InquiryController-save2-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InquiryControllerApi;
 
 public class InquiryControllerApiExample {
@@ -8724,27 +9295,27 @@ public class InquiryControllerApiExample {
         InquiryControllerApi apiInstance = new InquiryControllerApi();
         InquirySaveRequestDto body = ; // InquirySaveRequestDto | 
         try {
-            InquirySaveResponseDto result = apiInstance.save(body);
+            InquirySaveResponseDto result = apiInstance.save2(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling InquiryControllerApi#save");
+            System.err.println("Exception when calling InquiryControllerApi#save2");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-InquiryController-save-0-groovy">
+  <div class="tab-pane" id="examples-InquiryController-save2-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-InquiryController-save-0-objc">
+                            <div class="tab-pane" id="examples-InquiryController-save2-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 InquirySaveRequestDto *body = ; // 
 
 InquiryControllerApi *apiInstance = [[InquiryControllerApi alloc] init];
 
 // 문의 답변 저장
-[apiInstance saveWith:body
+[apiInstance save2With:body
               completionHandler: ^(InquirySaveResponseDto output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -8756,7 +9327,7 @@ InquiryControllerApi *apiInstance = [[InquiryControllerApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-InquiryController-save-0-javascript">
+                            <div class="tab-pane" id="examples-InquiryController-save2-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangService = require('julindang_service');
 var defaultClient = JulindangService.ApiClient.instance;
 
@@ -8771,14 +9342,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.save(body, callback);
+api.save2(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-InquiryController-save-0-angular">
+                            <!--<div class="tab-pane" id="examples-InquiryController-save2-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-InquiryController-save-0-csharp">
+                            <div class="tab-pane" id="examples-InquiryController-save2-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -8787,7 +9358,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class saveExample
+    public class save2Example
     {
         public void main()
         {
@@ -8799,12 +9370,12 @@ namespace Example
             try
             {
                 // 문의 답변 저장
-                InquirySaveResponseDto result = apiInstance.save(body);
+                InquirySaveResponseDto result = apiInstance.save2(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling InquiryControllerApi.save: " + e.Message );
+                Debug.Print("Exception when calling InquiryControllerApi.save2: " + e.Message );
             }
         }
     }
@@ -8812,7 +9383,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-InquiryController-save-0-php">
+                            <div class="tab-pane" id="examples-InquiryController-save2-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -8821,15 +9392,15 @@ $api_instance = new Swagger\Client\ApiInquiryControllerApi();
 $body = ; // InquirySaveRequestDto | 
 
 try {
-    $result = $api_instance->save($body);
+    $result = $api_instance->save2($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling InquiryControllerApi->save: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling InquiryControllerApi->save2: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-InquiryController-save-0-perl">
+                            <div class="tab-pane" id="examples-InquiryController-save2-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::InquiryControllerApi;
@@ -8839,15 +9410,15 @@ my $api_instance = WWW::SwaggerClient::InquiryControllerApi->new();
 my $body = WWW::SwaggerClient::Object::InquirySaveRequestDto->new(); # InquirySaveRequestDto | 
 
 eval { 
-    my $result = $api_instance->save(body => $body);
+    my $result = $api_instance->save2(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling InquiryControllerApi->save: $@\n";
+    warn "Exception when calling InquiryControllerApi->save2: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-InquiryController-save-0-python">
+                            <div class="tab-pane" id="examples-InquiryController-save2-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -8861,10 +9432,10 @@ body =  # InquirySaveRequestDto |
 
 try: 
     # 문의 답변 저장
-    api_response = api_instance.save(body)
+    api_response = api_instance.save2(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling InquiryControllerApi->save: %s\n" % e)</code></pre>
+    print("Exception when calling InquiryControllerApi->save2: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -8906,12 +9477,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_save_body');
+                                  var result = $('#d2e199_save2_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_save_body"></div>
+                                <div id="d2e199_save2_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -8923,14 +9494,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-save-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-save2-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-save-200-schema">
-                                  <div id='responses-save-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-save2-200-schema">
+                                  <div id='responses-save2-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -8956,14 +9527,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-save-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-save-200-schema-200');
+                                        $('#responses-save2-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-save2-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-save-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-save2-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -9008,7 +9579,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/downgrade?memberId="</code></pre>
+"https://julindang.shop/admin/admin/member/downgrade?memberId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-downgradeRole-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -9312,7 +9883,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/search/admin?searchType=&query=&pageNum="</code></pre>
+"https://julindang.shop/admin/admin/member/search/admin?searchType=&query=&pageNum="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-findAdmins-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -9686,7 +10257,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/search/member?searchType=&query=&pageNum="</code></pre>
+"https://julindang.shop/admin/admin/member/search/member?searchType=&query=&pageNum="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-findMembers-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -10060,7 +10631,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/age-rate"</code></pre>
+"https://julindang.shop/admin/admin/member/age-rate"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getAgeRateInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -10325,7 +10896,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/bmi"</code></pre>
+"https://julindang.shop/admin/admin/member/bmi"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getBMIRate-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -10590,7 +11161,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/diabetes"</code></pre>
+"https://julindang.shop/admin/admin/member/diabetes"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getDiabetesRiskRate-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -10855,7 +11426,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/gender-rate"</code></pre>
+"https://julindang.shop/admin/admin/member/gender-rate"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getGenderRateInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -11120,7 +11691,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/login/check"</code></pre>
+"https://julindang.shop/admin/admin/member/login/check"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getLoginStatics-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -11385,7 +11956,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/auth/check?email="</code></pre>
+"https://julindang.shop/admin/admin/member/auth/check?email="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-getRoles-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -11690,7 +12261,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/admin/member/upgrade?memberId="</code></pre>
+"https://julindang.shop/admin/admin/member/upgrade?memberId="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberAPI-upgradeRole-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;

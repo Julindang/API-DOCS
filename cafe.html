@@ -834,6 +834,9 @@
       "type" : "integer",
       "format" : "int64"
     },
+    "cafeName" : {
+      "type" : "string"
+    },
     "maxSugar" : {
       "type" : "integer",
       "format" : "int64"
@@ -841,9 +844,6 @@
     "minSugar" : {
       "type" : "integer",
       "format" : "int64"
-    },
-    "cafeName" : {
-      "type" : "string"
     },
     "img" : {
       "type" : "string"
@@ -931,8 +931,8 @@
                     <li data-group="Beverage" data-name="findAll1" class="">
                       <a href="#api-Beverage-findAll1">findAll1</a>
                     </li>
-                    <li data-group="Beverage" data-name="findByBeverageName1" class="">
-                      <a href="#api-Beverage-findByBeverageName1">findByBeverageName1</a>
+                    <li data-group="Beverage" data-name="findByBeverageName" class="">
+                      <a href="#api-Beverage-findByBeverageName">findByBeverageName</a>
                     </li>
                     <li data-group="Beverage" data-name="findByCafeName2" class="">
                       <a href="#api-Beverage-findByCafeName2">findByCafeName2</a>
@@ -961,14 +961,14 @@
                     <li data-group="Dessert" data-name="findAll" class="">
                       <a href="#api-Dessert-findAll">findAll</a>
                     </li>
-                    <li data-group="Dessert" data-name="findByBeverageName" class="">
-                      <a href="#api-Dessert-findByBeverageName">findByBeverageName</a>
-                    </li>
                     <li data-group="Dessert" data-name="findByCafeName1" class="">
                       <a href="#api-Dessert-findByCafeName1">findByCafeName1</a>
                     </li>
                     <li data-group="Dessert" data-name="findByCafeNameAndBeverageName" class="">
                       <a href="#api-Dessert-findByCafeNameAndBeverageName">findByCafeNameAndBeverageName</a>
+                    </li>
+                    <li data-group="Dessert" data-name="findByDessertName" class="">
+                      <a href="#api-Dessert-findByDessertName">findByDessertName</a>
                     </li>
           </ul>
         </nav>
@@ -1329,10 +1329,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Beverage-findByBeverageName1">
-                      <article id="api-Beverage-findByBeverageName1-0" data-group="User" data-name="findByBeverageName1" data-version="0">
+                    <div id="api-Beverage-findByBeverageName">
+                      <article id="api-Beverage-findByBeverageName-0" data-group="User" data-name="findByBeverageName" data-version="0">
                         <div class="pull-left">
-                          <h1>findByBeverageName1</h1>
+                          <h1>findByBeverageName</h1>
                           <p></p>
                         </div>
                         <div class="pull-right"></div>
@@ -1346,27 +1346,27 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Beverage-findByBeverageName1-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Beverage-findByBeverageName1-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Beverage-findByBeverageName1-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Beverage-findByBeverageName1-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Beverage-findByBeverageName1-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Beverage-findByBeverageName1-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Beverage-findByBeverageName1-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Beverage-findByBeverageName1-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Beverage-findByBeverageName1-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Beverage-findByBeverageName1-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Beverage-findByBeverageName1-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Beverage-findByBeverageName-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Beverage-findByBeverageName-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Beverage-findByBeverageName-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Beverage-findByBeverageName-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Beverage-findByBeverageName-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Beverage-findByBeverageName-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Beverage-findByBeverageName-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Beverage-findByBeverageName-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Beverage-findByBeverageName-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Beverage-findByBeverageName-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Beverage-findByBeverageName-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Beverage-findByBeverageName1-0-curl">
+                          <div class="tab-pane active" id="examples-Beverage-findByBeverageName-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 "https://julindang.shop/api/cafe/beverage/by-beverage-name?beverageName="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-java">
+                          <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1384,17 +1384,17 @@ public class BeverageApiExample {
         BeverageApi apiInstance = new BeverageApi();
         String beverageName = beverageName_example; // String | 음료 이름
         try {
-            array[BeverageFindResponseDto] result = apiInstance.findByBeverageName1(beverageName);
+            array[BeverageFindResponseDto] result = apiInstance.findByBeverageName(beverageName);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BeverageApi#findByBeverageName1");
+            System.err.println("Exception when calling BeverageApi#findByBeverageName");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-android">
+                          <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.BeverageApi;
 
 public class BeverageApiExample {
@@ -1403,26 +1403,26 @@ public class BeverageApiExample {
         BeverageApi apiInstance = new BeverageApi();
         String beverageName = beverageName_example; // String | 음료 이름
         try {
-            array[BeverageFindResponseDto] result = apiInstance.findByBeverageName1(beverageName);
+            array[BeverageFindResponseDto] result = apiInstance.findByBeverageName(beverageName);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BeverageApi#findByBeverageName1");
+            System.err.println("Exception when calling BeverageApi#findByBeverageName");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-groovy">
+  <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-objc">
+                            <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 String *beverageName = beverageName_example; // 음료 이름
 
 BeverageApi *apiInstance = [[BeverageApi alloc] init];
 
-[apiInstance findByBeverageName1With:beverageName
+[apiInstance findByBeverageNameWith:beverageName
               completionHandler: ^(array[BeverageFindResponseDto] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -1434,7 +1434,7 @@ BeverageApi *apiInstance = [[BeverageApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-javascript">
+                            <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
 var defaultClient = JulindangCafeService.ApiClient.instance;
 
@@ -1449,14 +1449,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.findByBeverageName1(beverageName, callback);
+api.findByBeverageName(beverageName, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-angular">
+                            <!--<div class="tab-pane" id="examples-Beverage-findByBeverageName-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-csharp">
+                            <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1465,7 +1465,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class findByBeverageName1Example
+    public class findByBeverageNameExample
     {
         public void main()
         {
@@ -1476,12 +1476,12 @@ namespace Example
 
             try
             {
-                array[BeverageFindResponseDto] result = apiInstance.findByBeverageName1(beverageName);
+                array[BeverageFindResponseDto] result = apiInstance.findByBeverageName(beverageName);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling BeverageApi.findByBeverageName1: " + e.Message );
+                Debug.Print("Exception when calling BeverageApi.findByBeverageName: " + e.Message );
             }
         }
     }
@@ -1489,7 +1489,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-php">
+                            <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1498,15 +1498,15 @@ $api_instance = new Swagger\Client\ApiBeverageApi();
 $beverageName = beverageName_example; // String | 음료 이름
 
 try {
-    $result = $api_instance->findByBeverageName1($beverageName);
+    $result = $api_instance->findByBeverageName($beverageName);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BeverageApi->findByBeverageName1: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BeverageApi->findByBeverageName: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-perl">
+                            <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::BeverageApi;
@@ -1516,15 +1516,15 @@ my $api_instance = WWW::SwaggerClient::BeverageApi->new();
 my $beverageName = beverageName_example; # String | 음료 이름
 
 eval { 
-    my $result = $api_instance->findByBeverageName1(beverageName => $beverageName);
+    my $result = $api_instance->findByBeverageName(beverageName => $beverageName);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling BeverageApi->findByBeverageName1: $@\n";
+    warn "Exception when calling BeverageApi->findByBeverageName: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Beverage-findByBeverageName1-0-python">
+                            <div class="tab-pane" id="examples-Beverage-findByBeverageName-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1537,10 +1537,10 @@ api_instance = swagger_client.BeverageApi()
 beverageName = beverageName_example # String | 음료 이름
 
 try: 
-    api_response = api_instance.find_by_beverage_name1(beverageName)
+    api_response = api_instance.find_by_beverage_name(beverageName)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling BeverageApi->findByBeverageName1: %s\n" % e)</code></pre>
+    print("Exception when calling BeverageApi->findByBeverageName: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1560,7 +1560,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_findByBeverageName1_beverageName">
+                                    <div id="d2e199_findByBeverageName_beverageName">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -1585,14 +1585,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-findByBeverageName1-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-findByBeverageName-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-findByBeverageName1-200-schema">
-                                  <div id='responses-findByBeverageName1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-findByBeverageName-200-schema">
+                                  <div id='responses-findByBeverageName-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1622,14 +1622,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-findByBeverageName1-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-findByBeverageName1-200-schema-200');
+                                        $('#responses-findByBeverageName-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findByBeverageName-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-findByBeverageName1-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-findByBeverageName-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -3990,313 +3990,6 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Dessert-findByBeverageName">
-                      <article id="api-Dessert-findByBeverageName-0" data-group="User" data-name="findByBeverageName" data-version="0">
-                        <div class="pull-left">
-                          <h1>findByBeverageName</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">디저트 이름에 따른 디저트들 불러오기</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/dessert/by-dessert-name</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Dessert-findByBeverageName-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Dessert-findByBeverageName-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Dessert-findByBeverageName-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Dessert-findByBeverageName-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Dessert-findByBeverageName-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Dessert-findByBeverageName-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Dessert-findByBeverageName-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Dessert-findByBeverageName-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Dessert-findByBeverageName-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Dessert-findByBeverageName-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Dessert-findByBeverageName-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Dessert-findByBeverageName-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
- -H "Authorization: Bearer [[accessToken]]"\
--H "Accept: */*"\
-"https://julindang.shop/api/cafe/dessert/by-dessert-name?beverageName="</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DessertApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DessertApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-        DessertApi apiInstance = new DessertApi();
-        String beverageName = beverageName_example; // String | 디저트 이름
-        try {
-            array[DessertFindResponseDto] result = apiInstance.findByBeverageName(beverageName);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DessertApi#findByBeverageName");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DessertApi;
-
-public class DessertApiExample {
-
-    public static void main(String[] args) {
-        DessertApi apiInstance = new DessertApi();
-        String beverageName = beverageName_example; // String | 디저트 이름
-        try {
-            array[DessertFindResponseDto] result = apiInstance.findByBeverageName(beverageName);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DessertApi#findByBeverageName");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-String *beverageName = beverageName_example; // 디저트 이름
-
-DessertApi *apiInstance = [[DessertApi alloc] init];
-
-[apiInstance findByBeverageNameWith:beverageName
-              completionHandler: ^(array[DessertFindResponseDto] output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
-var defaultClient = JulindangCafeService.ApiClient.instance;
-
-
-var api = new JulindangCafeService.DessertApi()
-var beverageName = beverageName_example; // {{String}} 디저트 이름
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.findByBeverageName(beverageName, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Dessert-findByBeverageName-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class findByBeverageNameExample
-    {
-        public void main()
-        {
-
-
-            var apiInstance = new DessertApi();
-            var beverageName = beverageName_example;  // String | 디저트 이름
-
-            try
-            {
-                array[DessertFindResponseDto] result = apiInstance.findByBeverageName(beverageName);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DessertApi.findByBeverageName: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$api_instance = new Swagger\Client\ApiDessertApi();
-$beverageName = beverageName_example; // String | 디저트 이름
-
-try {
-    $result = $api_instance->findByBeverageName($beverageName);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DessertApi->findByBeverageName: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DessertApi;
-
-
-my $api_instance = WWW::SwaggerClient::DessertApi->new();
-my $beverageName = beverageName_example; # String | 디저트 이름
-
-eval { 
-    my $result = $api_instance->findByBeverageName(beverageName => $beverageName);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DessertApi->findByBeverageName: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Dessert-findByBeverageName-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-
-# create an instance of the API class
-api_instance = swagger_client.DessertApi()
-beverageName = beverageName_example # String | 디저트 이름
-
-try: 
-    api_response = api_instance.find_by_beverage_name(beverageName)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DessertApi->findByBeverageName: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-                            <div class="methodsubtabletitle">Query parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">beverageName*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_findByBeverageName_beverageName">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    String
-                                                </span>
-                                
-                                                    <div class="inner description">
-                                                        디저트 이름
-                                                    </div>
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                            </table>
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-findByBeverageName-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-findByBeverageName-200-schema">
-                                  <div id='responses-findByBeverageName-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "OK",
-  "content" : {
-    "*/*" : {
-      "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/DessertFindResponseDto"
-        },
-        "x-content-type" : "*/*"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["*/*"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-findByBeverageName-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-findByBeverageName-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-findByBeverageName-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
                     <div id="api-Dessert-findByCafeName1">
                       <article id="api-Dessert-findByCafeName1-0" data-group="User" data-name="findByCafeName1" data-version="0">
                         <div class="pull-left">
@@ -4936,6 +4629,313 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-findByCafeNameAndBeverageName-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Dessert-findByDessertName">
+                      <article id="api-Dessert-findByDessertName-0" data-group="User" data-name="findByDessertName" data-version="0">
+                        <div class="pull-left">
+                          <h1>findByDessertName</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">디저트 이름에 따른 디저트들 불러오기</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/dessert/by-dessert-name</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Dessert-findByDessertName-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Dessert-findByDessertName-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Dessert-findByDessertName-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Dessert-findByDessertName-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Dessert-findByDessertName-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Dessert-findByDessertName-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Dessert-findByDessertName-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Dessert-findByDessertName-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Dessert-findByDessertName-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Dessert-findByDessertName-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Dessert-findByDessertName-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Dessert-findByDessertName-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/cafe/dessert/by-dessert-name?dessertName="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Dessert-findByDessertName-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DessertApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DessertApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        DessertApi apiInstance = new DessertApi();
+        String dessertName = dessertName_example; // String | 디저트 이름
+        try {
+            array[DessertFindResponseDto] result = apiInstance.findByDessertName(dessertName);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DessertApi#findByDessertName");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Dessert-findByDessertName-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DessertApi;
+
+public class DessertApiExample {
+
+    public static void main(String[] args) {
+        DessertApi apiInstance = new DessertApi();
+        String dessertName = dessertName_example; // String | 디저트 이름
+        try {
+            array[DessertFindResponseDto] result = apiInstance.findByDessertName(dessertName);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DessertApi#findByDessertName");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Dessert-findByDessertName-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Dessert-findByDessertName-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+String *dessertName = dessertName_example; // 디저트 이름
+
+DessertApi *apiInstance = [[DessertApi alloc] init];
+
+[apiInstance findByDessertNameWith:dessertName
+              completionHandler: ^(array[DessertFindResponseDto] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Dessert-findByDessertName-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
+var defaultClient = JulindangCafeService.ApiClient.instance;
+
+
+var api = new JulindangCafeService.DessertApi()
+var dessertName = dessertName_example; // {{String}} 디저트 이름
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.findByDessertName(dessertName, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Dessert-findByDessertName-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Dessert-findByDessertName-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class findByDessertNameExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new DessertApi();
+            var dessertName = dessertName_example;  // String | 디저트 이름
+
+            try
+            {
+                array[DessertFindResponseDto] result = apiInstance.findByDessertName(dessertName);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DessertApi.findByDessertName: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Dessert-findByDessertName-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiDessertApi();
+$dessertName = dessertName_example; // String | 디저트 이름
+
+try {
+    $result = $api_instance->findByDessertName($dessertName);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DessertApi->findByDessertName: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Dessert-findByDessertName-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DessertApi;
+
+
+my $api_instance = WWW::SwaggerClient::DessertApi->new();
+my $dessertName = dessertName_example; # String | 디저트 이름
+
+eval { 
+    my $result = $api_instance->findByDessertName(dessertName => $dessertName);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DessertApi->findByDessertName: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Dessert-findByDessertName-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.DessertApi()
+dessertName = dessertName_example # String | 디저트 이름
+
+try: 
+    api_response = api_instance.find_by_dessert_name(dessertName)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DessertApi->findByDessertName: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">dessertName*</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_findByDessertName_dessertName">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        디저트 이름
+                                                    </div>
+                                            </div>
+                                                <div class="inner required">
+                                                    Required
+                                                </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-findByDessertName-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-findByDessertName-200-schema">
+                                  <div id='responses-findByDessertName-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/DessertFindResponseDto"
+        },
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-findByDessertName-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findByDessertName-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-findByDessertName-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

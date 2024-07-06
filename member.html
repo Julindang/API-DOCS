@@ -1088,6 +1088,10 @@
     "riskId" : {
       "type" : "integer",
       "format" : "int64"
+    },
+    "score" : {
+      "type" : "integer",
+      "format" : "int64"
     }
   }
 };
@@ -1194,13 +1198,6 @@
                     <li data-group="AuthController" data-name="getUserRole" class="">
                       <a href="#api-AuthController-getUserRole">getUserRole</a>
                     </li>
-                  <li class="nav-header" data-group="EtcController"><a href="#api-EtcController">API Methods - EtcController</a></li>
-                    <li data-group="EtcController" data-name="getFemaleDiabetes" class="">
-                      <a href="#api-EtcController-getFemaleDiabetes">getFemaleDiabetes</a>
-                    </li>
-                    <li data-group="EtcController" data-name="getMaleDiabetes" class="">
-                      <a href="#api-EtcController-getMaleDiabetes">getMaleDiabetes</a>
-                    </li>
                   <li class="nav-header" data-group="FaqController"><a href="#api-FaqController">API Methods - FaqController</a></li>
                     <li data-group="FaqController" data-name="findAll2" class="">
                       <a href="#api-FaqController-findAll2">findAll2</a>
@@ -1225,6 +1222,12 @@
                   <li class="nav-header" data-group="LoginController"><a href="#api-LoginController">API Methods - LoginController</a></li>
                     <li data-group="LoginController" data-name="checkDuplicated" class="">
                       <a href="#api-LoginController-checkDuplicated">checkDuplicated</a>
+                    </li>
+                    <li data-group="LoginController" data-name="getFemaleDiabetes" class="">
+                      <a href="#api-LoginController-getFemaleDiabetes">getFemaleDiabetes</a>
+                    </li>
+                    <li data-group="LoginController" data-name="getMaleDiabetes" class="">
+                      <a href="#api-LoginController-getMaleDiabetes">getMaleDiabetes</a>
                     </li>
                     <li data-group="LoginController" data-name="login" class="">
                       <a href="#api-LoginController-login">login</a>
@@ -1814,547 +1817,6 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-getUserRole-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                  </section>
-                <section id="api-EtcController">
-                  <h1>EtcController</h1>
-                    <div id="api-EtcController-getFemaleDiabetes">
-                      <article id="api-EtcController-getFemaleDiabetes-0" data-group="User" data-name="getFemaleDiabetes" data-version="0">
-                        <div class="pull-left">
-                          <h1>getFemaleDiabetes</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/etc/diabetes/female</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-EtcController-getFemaleDiabetes-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-java">Java</a></li>
-                          <li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-EtcController-getFemaleDiabetes-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-EtcController-getFemaleDiabetes-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
- -H "Authorization: Bearer [[accessToken]]"\
--H "Accept: */*"\
-"https://julindang.shop/api/etc/diabetes/female"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.EtcControllerApi;
-
-import java.io.File;
-import java.util.*;
-
-public class EtcControllerApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-        EtcControllerApi apiInstance = new EtcControllerApi();
-        try {
-            array[DiabetesAllResponseDto] result = apiInstance.getFemaleDiabetes();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling EtcControllerApi#getFemaleDiabetes");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.EtcControllerApi;
-
-public class EtcControllerApiExample {
-
-    public static void main(String[] args) {
-        EtcControllerApi apiInstance = new EtcControllerApi();
-        try {
-            array[DiabetesAllResponseDto] result = apiInstance.getFemaleDiabetes();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling EtcControllerApi#getFemaleDiabetes");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-EtcControllerApi *apiInstance = [[EtcControllerApi alloc] init];
-
-[apiInstance getFemaleDiabetesWithCompletionHandler: 
-              ^(array[DiabetesAllResponseDto] output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
-var defaultClient = JulindangMemberService.ApiClient.instance;
-
-
-var api = new JulindangMemberService.EtcControllerApi()
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.getFemaleDiabetes(callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class getFemaleDiabetesExample
-    {
-        public void main()
-        {
-
-
-            var apiInstance = new EtcControllerApi();
-
-            try
-            {
-                array[DiabetesAllResponseDto] result = apiInstance.getFemaleDiabetes();
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling EtcControllerApi.getFemaleDiabetes: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$api_instance = new Swagger\Client\ApiEtcControllerApi();
-
-try {
-    $result = $api_instance->getFemaleDiabetes();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling EtcControllerApi->getFemaleDiabetes: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::EtcControllerApi;
-
-
-my $api_instance = WWW::SwaggerClient::EtcControllerApi->new();
-
-eval { 
-    my $result = $api_instance->getFemaleDiabetes();
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling EtcControllerApi->getFemaleDiabetes: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-EtcController-getFemaleDiabetes-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-
-# create an instance of the API class
-api_instance = swagger_client.EtcControllerApi()
-
-try: 
-    api_response = api_instance.get_female_diabetes()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling EtcControllerApi->getFemaleDiabetes: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-getFemaleDiabetes-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getFemaleDiabetes-200-schema">
-                                  <div id='responses-getFemaleDiabetes-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "OK",
-  "content" : {
-    "*/*" : {
-      "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/DiabetesAllResponseDto"
-        },
-        "x-content-type" : "*/*"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["*/*"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getFemaleDiabetes-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getFemaleDiabetes-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-getFemaleDiabetes-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-EtcController-getMaleDiabetes">
-                      <article id="api-EtcController-getMaleDiabetes-0" data-group="User" data-name="getMaleDiabetes" data-version="0">
-                        <div class="pull-left">
-                          <h1>getMaleDiabetes</h1>
-                          <p></p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/etc/diabetes/male</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-EtcController-getMaleDiabetes-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-EtcController-getMaleDiabetes-0-java">Java</a></li>
-                          <li class=""><a href="#examples-EtcController-getMaleDiabetes-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-EtcController-getMaleDiabetes-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-EtcController-getMaleDiabetes-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-EtcController-getMaleDiabetes-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-EtcController-getMaleDiabetes-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-EtcController-getMaleDiabetes-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-EtcController-getMaleDiabetes-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-EtcController-getMaleDiabetes-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-EtcController-getMaleDiabetes-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-EtcController-getMaleDiabetes-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
- -H "Authorization: Bearer [[accessToken]]"\
--H "Accept: */*"\
-"https://julindang.shop/api/etc/diabetes/male"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.EtcControllerApi;
-
-import java.io.File;
-import java.util.*;
-
-public class EtcControllerApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-
-        EtcControllerApi apiInstance = new EtcControllerApi();
-        try {
-            array[DiabetesAllResponseDto] result = apiInstance.getMaleDiabetes();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling EtcControllerApi#getMaleDiabetes");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.EtcControllerApi;
-
-public class EtcControllerApiExample {
-
-    public static void main(String[] args) {
-        EtcControllerApi apiInstance = new EtcControllerApi();
-        try {
-            array[DiabetesAllResponseDto] result = apiInstance.getMaleDiabetes();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling EtcControllerApi#getMaleDiabetes");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-EtcControllerApi *apiInstance = [[EtcControllerApi alloc] init];
-
-[apiInstance getMaleDiabetesWithCompletionHandler: 
-              ^(array[DiabetesAllResponseDto] output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
-var defaultClient = JulindangMemberService.ApiClient.instance;
-
-
-var api = new JulindangMemberService.EtcControllerApi()
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.getMaleDiabetes(callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class getMaleDiabetesExample
-    {
-        public void main()
-        {
-
-
-            var apiInstance = new EtcControllerApi();
-
-            try
-            {
-                array[DiabetesAllResponseDto] result = apiInstance.getMaleDiabetes();
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling EtcControllerApi.getMaleDiabetes: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$api_instance = new Swagger\Client\ApiEtcControllerApi();
-
-try {
-    $result = $api_instance->getMaleDiabetes();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling EtcControllerApi->getMaleDiabetes: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::EtcControllerApi;
-
-
-my $api_instance = WWW::SwaggerClient::EtcControllerApi->new();
-
-eval { 
-    my $result = $api_instance->getMaleDiabetes();
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling EtcControllerApi->getMaleDiabetes: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-EtcController-getMaleDiabetes-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-
-# create an instance of the API class
-api_instance = swagger_client.EtcControllerApi()
-
-try: 
-    api_response = api_instance.get_male_diabetes()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling EtcControllerApi->getMaleDiabetes: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-getMaleDiabetes-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getMaleDiabetes-200-schema">
-                                  <div id='responses-getMaleDiabetes-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "OK",
-  "content" : {
-    "*/*" : {
-      "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/DiabetesAllResponseDto"
-        },
-        "x-content-type" : "*/*"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["*/*"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getMaleDiabetes-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getMaleDiabetes-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-getMaleDiabetes-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -4416,6 +3878,544 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-checkDuplicated-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-LoginController-getFemaleDiabetes">
+                      <article id="api-LoginController-getFemaleDiabetes-0" data-group="User" data-name="getFemaleDiabetes" data-version="0">
+                        <div class="pull-left">
+                          <h1>getFemaleDiabetes</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/login/diabetes/female</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-LoginController-getFemaleDiabetes-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-java">Java</a></li>
+                          <li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-LoginController-getFemaleDiabetes-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-LoginController-getFemaleDiabetes-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/login/diabetes/female"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.LoginControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class LoginControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        LoginControllerApi apiInstance = new LoginControllerApi();
+        try {
+            array[DiabetesAllResponseDto] result = apiInstance.getFemaleDiabetes();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LoginControllerApi#getFemaleDiabetes");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.LoginControllerApi;
+
+public class LoginControllerApiExample {
+
+    public static void main(String[] args) {
+        LoginControllerApi apiInstance = new LoginControllerApi();
+        try {
+            array[DiabetesAllResponseDto] result = apiInstance.getFemaleDiabetes();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LoginControllerApi#getFemaleDiabetes");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+LoginControllerApi *apiInstance = [[LoginControllerApi alloc] init];
+
+[apiInstance getFemaleDiabetesWithCompletionHandler: 
+              ^(array[DiabetesAllResponseDto] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
+var defaultClient = JulindangMemberService.ApiClient.instance;
+
+
+var api = new JulindangMemberService.LoginControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getFemaleDiabetes(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getFemaleDiabetesExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new LoginControllerApi();
+
+            try
+            {
+                array[DiabetesAllResponseDto] result = apiInstance.getFemaleDiabetes();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling LoginControllerApi.getFemaleDiabetes: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiLoginControllerApi();
+
+try {
+    $result = $api_instance->getFemaleDiabetes();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LoginControllerApi->getFemaleDiabetes: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::LoginControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::LoginControllerApi->new();
+
+eval { 
+    my $result = $api_instance->getFemaleDiabetes();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling LoginControllerApi->getFemaleDiabetes: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.LoginControllerApi()
+
+try: 
+    api_response = api_instance.get_female_diabetes()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LoginControllerApi->getFemaleDiabetes: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getFemaleDiabetes-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getFemaleDiabetes-200-schema">
+                                  <div id='responses-getFemaleDiabetes-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/DiabetesAllResponseDto"
+        },
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getFemaleDiabetes-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getFemaleDiabetes-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getFemaleDiabetes-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-LoginController-getMaleDiabetes">
+                      <article id="api-LoginController-getMaleDiabetes-0" data-group="User" data-name="getMaleDiabetes" data-version="0">
+                        <div class="pull-left">
+                          <h1>getMaleDiabetes</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/login/diabetes/male</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-LoginController-getMaleDiabetes-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-LoginController-getMaleDiabetes-0-java">Java</a></li>
+                          <li class=""><a href="#examples-LoginController-getMaleDiabetes-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-LoginController-getMaleDiabetes-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-LoginController-getMaleDiabetes-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-LoginController-getMaleDiabetes-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-LoginController-getMaleDiabetes-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-LoginController-getMaleDiabetes-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-LoginController-getMaleDiabetes-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-LoginController-getMaleDiabetes-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-LoginController-getMaleDiabetes-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-LoginController-getMaleDiabetes-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/login/diabetes/male"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.LoginControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class LoginControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        LoginControllerApi apiInstance = new LoginControllerApi();
+        try {
+            array[DiabetesAllResponseDto] result = apiInstance.getMaleDiabetes();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LoginControllerApi#getMaleDiabetes");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.LoginControllerApi;
+
+public class LoginControllerApiExample {
+
+    public static void main(String[] args) {
+        LoginControllerApi apiInstance = new LoginControllerApi();
+        try {
+            array[DiabetesAllResponseDto] result = apiInstance.getMaleDiabetes();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LoginControllerApi#getMaleDiabetes");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+LoginControllerApi *apiInstance = [[LoginControllerApi alloc] init];
+
+[apiInstance getMaleDiabetesWithCompletionHandler: 
+              ^(array[DiabetesAllResponseDto] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
+var defaultClient = JulindangMemberService.ApiClient.instance;
+
+
+var api = new JulindangMemberService.LoginControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getMaleDiabetes(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getMaleDiabetesExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new LoginControllerApi();
+
+            try
+            {
+                array[DiabetesAllResponseDto] result = apiInstance.getMaleDiabetes();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling LoginControllerApi.getMaleDiabetes: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiLoginControllerApi();
+
+try {
+    $result = $api_instance->getMaleDiabetes();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LoginControllerApi->getMaleDiabetes: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::LoginControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::LoginControllerApi->new();
+
+eval { 
+    my $result = $api_instance->getMaleDiabetes();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling LoginControllerApi->getMaleDiabetes: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.LoginControllerApi()
+
+try: 
+    api_response = api_instance.get_male_diabetes()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LoginControllerApi->getMaleDiabetes: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getMaleDiabetes-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getMaleDiabetes-200-schema">
+                                  <div id='responses-getMaleDiabetes-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/DiabetesAllResponseDto"
+        },
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getMaleDiabetes-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getMaleDiabetes-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getMaleDiabetes-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

@@ -689,6 +689,23 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+            defs["BeverageBookmarkResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "cafeBeverages" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/CafeBeverageBookmarkResponseDto"
+      }
+    },
+    "freeConsumeBeverages" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/FreeConsumeResponseDto"
+      }
+    }
+  }
+};
             defs["BeverageDetailResponseDto"] = {
   "type" : "object",
   "properties" : {
@@ -732,11 +749,7 @@
       "type" : "integer",
       "format" : "int64"
     },
-    "maxSugar" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "minSugar" : {
+    "sugar" : {
       "type" : "number",
       "format" : "double"
     },
@@ -747,8 +760,7 @@
       "type" : "string"
     },
     "bookmarked" : {
-      "type" : "integer",
-      "format" : "int32"
+      "type" : "string"
     }
   }
 };
@@ -769,6 +781,29 @@
       "type" : "string",
       "description" : "type 이 1 또는 2일때만 필요",
       "example" : "아이스 아메리카노"
+    }
+  }
+};
+            defs["BookmarkAllResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "cafeDesserts" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/CafeDessertBookmarkResponseDto"
+      }
+    },
+    "freeConsumeDesserts" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/FreeConsumeResponseDto"
+      }
+    },
+    "cafeBeverages" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/CafeBeverageBookmarkResponseDto"
+      }
     }
   }
 };
@@ -795,6 +830,60 @@
     },
     "productName" : {
       "type" : "string"
+    }
+  }
+};
+            defs["CafeBeverageBookmarkResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "beverageName" : {
+      "type" : "string"
+    },
+    "cafeName" : {
+      "type" : "string"
+    },
+    "createdAt" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "calorie" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "sugar" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "cafeId" : {
+      "type" : "integer",
+      "format" : "int64"
+    }
+  }
+};
+            defs["CafeDessertBookmarkResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "dessertName" : {
+      "type" : "string"
+    },
+    "cafeName" : {
+      "type" : "string"
+    },
+    "createdAt" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "calorie" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "sugar" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "dessertId" : {
+      "type" : "integer",
+      "format" : "int64"
     }
   }
 };
@@ -837,10 +926,6 @@
     "cafeName" : {
       "type" : "string"
     },
-    "maxSugar" : {
-      "type" : "integer",
-      "format" : "int64"
-    },
     "minSugar" : {
       "type" : "integer",
       "format" : "int64"
@@ -848,9 +933,30 @@
     "img" : {
       "type" : "string"
     },
+    "maxSugar" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
     "isLiked" : {
       "type" : "integer",
       "format" : "int64"
+    }
+  }
+};
+            defs["DessertBookmarkResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "cafeDesserts" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/CafeDessertBookmarkResponseDto"
+      }
+    },
+    "freeConsumeDesserts" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/FreeConsumeResponseDto"
+      }
     }
   }
 };
@@ -891,11 +997,7 @@
       "type" : "integer",
       "format" : "int64"
     },
-    "maxSugar" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "minSugar" : {
+    "sugar" : {
       "type" : "number",
       "format" : "double"
     },
@@ -906,8 +1008,31 @@
       "type" : "string"
     },
     "bookmarked" : {
+      "type" : "string"
+    }
+  }
+};
+            defs["FreeConsumeResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "consumeId" : {
       "type" : "integer",
-      "format" : "int32"
+      "format" : "int64"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "sugar" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "calorie" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "createdAt" : {
+      "type" : "string",
+      "format" : "date-time"
     }
   }
 };
@@ -944,6 +1069,15 @@
                     <li data-group="Bookmark" data-name="deleteBookmark" class="">
                       <a href="#api-Bookmark-deleteBookmark">deleteBookmark</a>
                     </li>
+                    <li data-group="Bookmark" data-name="getBeverageBookmark" class="">
+                      <a href="#api-Bookmark-getBeverageBookmark">getBeverageBookmark</a>
+                    </li>
+                    <li data-group="Bookmark" data-name="getBookmark" class="">
+                      <a href="#api-Bookmark-getBookmark">getBookmark</a>
+                    </li>
+                    <li data-group="Bookmark" data-name="getDessertBookmark" class="">
+                      <a href="#api-Bookmark-getDessertBookmark">getDessertBookmark</a>
+                    </li>
                     <li data-group="Bookmark" data-name="saveBookmark" class="">
                       <a href="#api-Bookmark-saveBookmark">saveBookmark</a>
                     </li>
@@ -956,6 +1090,9 @@
                     </li>
                     <li data-group="Cafe" data-name="findCafeNamesByBookmark" class="">
                       <a href="#api-Cafe-findCafeNamesByBookmark">findCafeNamesByBookmark</a>
+                    </li>
+                    <li data-group="Cafe" data-name="findCafeNamesByNotBookmark" class="">
+                      <a href="#api-Cafe-findCafeNamesByNotBookmark">findCafeNamesByNotBookmark</a>
                     </li>
                   <li class="nav-header" data-group="Dessert"><a href="#api-Dessert">API Methods - Dessert</a></li>
                     <li data-group="Dessert" data-name="findAll" class="">
@@ -2552,6 +2689,801 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-Bookmark-getBeverageBookmark">
+                      <article id="api-Bookmark-getBeverageBookmark-0" data-group="User" data-name="getBeverageBookmark" data-version="0">
+                        <div class="pull-left">
+                          <h1>getBeverageBookmark</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">음료 즐겨찾기 조회</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/bookmark/beverage</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Bookmark-getBeverageBookmark-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBeverageBookmark-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Bookmark-getBeverageBookmark-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/cafe/bookmark/beverage"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.BookmarkApi;
+
+import java.io.File;
+import java.util.*;
+
+public class BookmarkApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        BookmarkApi apiInstance = new BookmarkApi();
+        try {
+            BeverageBookmarkResponseDto result = apiInstance.getBeverageBookmark();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BookmarkApi#getBeverageBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.BookmarkApi;
+
+public class BookmarkApiExample {
+
+    public static void main(String[] args) {
+        BookmarkApi apiInstance = new BookmarkApi();
+        try {
+            BeverageBookmarkResponseDto result = apiInstance.getBeverageBookmark();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BookmarkApi#getBeverageBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+BookmarkApi *apiInstance = [[BookmarkApi alloc] init];
+
+[apiInstance getBeverageBookmarkWithCompletionHandler: 
+              ^(BeverageBookmarkResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
+var defaultClient = JulindangCafeService.ApiClient.instance;
+
+
+var api = new JulindangCafeService.BookmarkApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getBeverageBookmark(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getBeverageBookmarkExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new BookmarkApi();
+
+            try
+            {
+                BeverageBookmarkResponseDto result = apiInstance.getBeverageBookmark();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling BookmarkApi.getBeverageBookmark: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiBookmarkApi();
+
+try {
+    $result = $api_instance->getBeverageBookmark();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BookmarkApi->getBeverageBookmark: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::BookmarkApi;
+
+
+my $api_instance = WWW::SwaggerClient::BookmarkApi->new();
+
+eval { 
+    my $result = $api_instance->getBeverageBookmark();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling BookmarkApi->getBeverageBookmark: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getBeverageBookmark-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.BookmarkApi()
+
+try: 
+    api_response = api_instance.get_beverage_bookmark()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling BookmarkApi->getBeverageBookmark: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getBeverageBookmark-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getBeverageBookmark-200-schema">
+                                  <div id='responses-getBeverageBookmark-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/BeverageBookmarkResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getBeverageBookmark-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getBeverageBookmark-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getBeverageBookmark-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Bookmark-getBookmark">
+                      <article id="api-Bookmark-getBookmark-0" data-group="User" data-name="getBookmark" data-version="0">
+                        <div class="pull-left">
+                          <h1>getBookmark</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">즐겨찾기 음료, 디저트전체 조회</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/bookmark/all</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Bookmark-getBookmark-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBookmark-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBookmark-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Bookmark-getBookmark-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Bookmark-getBookmark-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBookmark-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Bookmark-getBookmark-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Bookmark-getBookmark-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBookmark-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBookmark-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Bookmark-getBookmark-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Bookmark-getBookmark-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/cafe/bookmark/all"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Bookmark-getBookmark-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.BookmarkApi;
+
+import java.io.File;
+import java.util.*;
+
+public class BookmarkApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        BookmarkApi apiInstance = new BookmarkApi();
+        try {
+            BookmarkAllResponseDto result = apiInstance.getBookmark();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BookmarkApi#getBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Bookmark-getBookmark-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.BookmarkApi;
+
+public class BookmarkApiExample {
+
+    public static void main(String[] args) {
+        BookmarkApi apiInstance = new BookmarkApi();
+        try {
+            BookmarkAllResponseDto result = apiInstance.getBookmark();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BookmarkApi#getBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Bookmark-getBookmark-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Bookmark-getBookmark-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+BookmarkApi *apiInstance = [[BookmarkApi alloc] init];
+
+[apiInstance getBookmarkWithCompletionHandler: 
+              ^(BookmarkAllResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getBookmark-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
+var defaultClient = JulindangCafeService.ApiClient.instance;
+
+
+var api = new JulindangCafeService.BookmarkApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getBookmark(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Bookmark-getBookmark-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Bookmark-getBookmark-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getBookmarkExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new BookmarkApi();
+
+            try
+            {
+                BookmarkAllResponseDto result = apiInstance.getBookmark();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling BookmarkApi.getBookmark: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getBookmark-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiBookmarkApi();
+
+try {
+    $result = $api_instance->getBookmark();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BookmarkApi->getBookmark: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getBookmark-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::BookmarkApi;
+
+
+my $api_instance = WWW::SwaggerClient::BookmarkApi->new();
+
+eval { 
+    my $result = $api_instance->getBookmark();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling BookmarkApi->getBookmark: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getBookmark-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.BookmarkApi()
+
+try: 
+    api_response = api_instance.get_bookmark()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling BookmarkApi->getBookmark: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getBookmark-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getBookmark-200-schema">
+                                  <div id='responses-getBookmark-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/BookmarkAllResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getBookmark-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getBookmark-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getBookmark-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Bookmark-getDessertBookmark">
+                      <article id="api-Bookmark-getDessertBookmark-0" data-group="User" data-name="getDessertBookmark" data-version="0">
+                        <div class="pull-left">
+                          <h1>getDessertBookmark</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">디저트 즐겨찾기 조회</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/bookmark/dessert</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Bookmark-getDessertBookmark-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Bookmark-getDessertBookmark-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Bookmark-getDessertBookmark-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Bookmark-getDessertBookmark-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Bookmark-getDessertBookmark-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Bookmark-getDessertBookmark-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Bookmark-getDessertBookmark-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Bookmark-getDessertBookmark-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Bookmark-getDessertBookmark-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Bookmark-getDessertBookmark-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Bookmark-getDessertBookmark-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Bookmark-getDessertBookmark-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/cafe/bookmark/dessert"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.BookmarkApi;
+
+import java.io.File;
+import java.util.*;
+
+public class BookmarkApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        BookmarkApi apiInstance = new BookmarkApi();
+        try {
+            DessertBookmarkResponseDto result = apiInstance.getDessertBookmark();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BookmarkApi#getDessertBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.BookmarkApi;
+
+public class BookmarkApiExample {
+
+    public static void main(String[] args) {
+        BookmarkApi apiInstance = new BookmarkApi();
+        try {
+            DessertBookmarkResponseDto result = apiInstance.getDessertBookmark();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BookmarkApi#getDessertBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+BookmarkApi *apiInstance = [[BookmarkApi alloc] init];
+
+[apiInstance getDessertBookmarkWithCompletionHandler: 
+              ^(DessertBookmarkResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
+var defaultClient = JulindangCafeService.ApiClient.instance;
+
+
+var api = new JulindangCafeService.BookmarkApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getDessertBookmark(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getDessertBookmarkExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new BookmarkApi();
+
+            try
+            {
+                DessertBookmarkResponseDto result = apiInstance.getDessertBookmark();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling BookmarkApi.getDessertBookmark: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiBookmarkApi();
+
+try {
+    $result = $api_instance->getDessertBookmark();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BookmarkApi->getDessertBookmark: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::BookmarkApi;
+
+
+my $api_instance = WWW::SwaggerClient::BookmarkApi->new();
+
+eval { 
+    my $result = $api_instance->getDessertBookmark();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling BookmarkApi->getDessertBookmark: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Bookmark-getDessertBookmark-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.BookmarkApi()
+
+try: 
+    api_response = api_instance.get_dessert_bookmark()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling BookmarkApi->getDessertBookmark: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getDessertBookmark-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getDessertBookmark-200-schema">
+                                  <div id='responses-getDessertBookmark-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/DessertBookmarkResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getDessertBookmark-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getDessertBookmark-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getDessertBookmark-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Bookmark-saveBookmark">
                       <article id="api-Bookmark-saveBookmark-0" data-group="User" data-name="saveBookmark" data-version="0">
                         <div class="pull-left">
@@ -3189,7 +4121,7 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">모든 카페 정보(isLike: 1은 좋아요) 리턴</p>
+                        <p class="marked">모든 카페 정보 리턴</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe</span></code></pre>
@@ -3712,6 +4644,275 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-findCafeNamesByBookmark-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Cafe-findCafeNamesByNotBookmark">
+                      <article id="api-Cafe-findCafeNamesByNotBookmark-0" data-group="User" data-name="findCafeNamesByNotBookmark" data-version="0">
+                        <div class="pull-left">
+                          <h1>findCafeNamesByNotBookmark</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">즐겨찾기 하지 않은 카페 리턴</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/cafe/all</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Cafe-findCafeNamesByNotBookmark-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Cafe-findCafeNamesByNotBookmark-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/cafe/all"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.CafeApi;
+
+import java.io.File;
+import java.util.*;
+
+public class CafeApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        CafeApi apiInstance = new CafeApi();
+        try {
+            array[CafeLikeResponseDto] result = apiInstance.findCafeNamesByNotBookmark();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CafeApi#findCafeNamesByNotBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.CafeApi;
+
+public class CafeApiExample {
+
+    public static void main(String[] args) {
+        CafeApi apiInstance = new CafeApi();
+        try {
+            array[CafeLikeResponseDto] result = apiInstance.findCafeNamesByNotBookmark();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CafeApi#findCafeNamesByNotBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+CafeApi *apiInstance = [[CafeApi alloc] init];
+
+[apiInstance findCafeNamesByNotBookmarkWithCompletionHandler: 
+              ^(array[CafeLikeResponseDto] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
+var defaultClient = JulindangCafeService.ApiClient.instance;
+
+
+var api = new JulindangCafeService.CafeApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.findCafeNamesByNotBookmark(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class findCafeNamesByNotBookmarkExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new CafeApi();
+
+            try
+            {
+                array[CafeLikeResponseDto] result = apiInstance.findCafeNamesByNotBookmark();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling CafeApi.findCafeNamesByNotBookmark: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiCafeApi();
+
+try {
+    $result = $api_instance->findCafeNamesByNotBookmark();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CafeApi->findCafeNamesByNotBookmark: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::CafeApi;
+
+
+my $api_instance = WWW::SwaggerClient::CafeApi->new();
+
+eval { 
+    my $result = $api_instance->findCafeNamesByNotBookmark();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling CafeApi->findCafeNamesByNotBookmark: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Cafe-findCafeNamesByNotBookmark-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.CafeApi()
+
+try: 
+    api_response = api_instance.find_cafe_names_by_not_bookmark()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CafeApi->findCafeNamesByNotBookmark: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-findCafeNamesByNotBookmark-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-findCafeNamesByNotBookmark-200-schema">
+                                  <div id='responses-findCafeNamesByNotBookmark-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/CafeLikeResponseDto"
+        },
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-findCafeNamesByNotBookmark-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findCafeNamesByNotBookmark-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-findCafeNamesByNotBookmark-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

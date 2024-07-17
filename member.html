@@ -732,6 +732,9 @@
             defs["FaqFindResponseDto"] = {
   "type" : "object",
   "properties" : {
+    "faqId" : {
+      "type" : "string"
+    },
     "title" : {
       "type" : "string"
     },
@@ -1052,6 +1055,24 @@
     }
   }
 };
+            defs["NoticeVo"] = {
+  "type" : "object",
+  "properties" : {
+    "type" : {
+      "type" : "string"
+    },
+    "title" : {
+      "type" : "string"
+    },
+    "url" : {
+      "type" : "string"
+    },
+    "createdAt" : {
+      "type" : "string",
+      "format" : "date-time"
+    }
+  }
+};
             defs["RiskEditResponseDto"] = {
   "type" : "object"
 };
@@ -1206,6 +1227,9 @@
                     <li data-group="InformationController" data-name="findAll1" class="">
                       <a href="#api-InformationController-findAll1">findAll1</a>
                     </li>
+                    <li data-group="InformationController" data-name="findNotice" class="">
+                      <a href="#api-InformationController-findNotice">findNotice</a>
+                    </li>
                   <li class="nav-header" data-group="InquiryController"><a href="#api-InquiryController">API Methods - InquiryController</a></li>
                     <li data-group="InquiryController" data-name="delete" class="">
                       <a href="#api-InquiryController-delete">delete</a>
@@ -1326,7 +1350,7 @@
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/auth/check/admin"</code></pre>
+"http://localhost:8000/auth/check/admin"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-AuthController-getAdminRole-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1592,7 +1616,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/auth/check/user"</code></pre>
+"http://localhost:8000/auth/check/user"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-AuthController-getUserRole-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1861,7 +1885,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/member/etc/faq/all"</code></pre>
+"http://localhost:8000/member/etc/faq/all"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-FaqController-findAll2-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2133,7 +2157,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/member/etc/information/all"</code></pre>
+"http://localhost:8000/member/etc/information/all"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-InformationController-findAll1-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2367,6 +2391,275 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-InformationController-findNotice">
+                      <article id="api-InformationController-findNotice-0" data-group="User" data-name="findNotice" data-version="0">
+                        <div class="pull-left">
+                          <h1>findNotice</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">공지사항 전체 조회</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/member/etc/information/notice</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-InformationController-findNotice-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-InformationController-findNotice-0-java">Java</a></li>
+                          <li class=""><a href="#examples-InformationController-findNotice-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-InformationController-findNotice-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-InformationController-findNotice-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-InformationController-findNotice-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-InformationController-findNotice-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-InformationController-findNotice-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-InformationController-findNotice-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-InformationController-findNotice-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-InformationController-findNotice-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-InformationController-findNotice-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"http://localhost:8000/member/etc/information/notice"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-InformationController-findNotice-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.InformationControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class InformationControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        InformationControllerApi apiInstance = new InformationControllerApi();
+        try {
+            array[NoticeVo] result = apiInstance.findNotice();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InformationControllerApi#findNotice");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-InformationController-findNotice-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InformationControllerApi;
+
+public class InformationControllerApiExample {
+
+    public static void main(String[] args) {
+        InformationControllerApi apiInstance = new InformationControllerApi();
+        try {
+            array[NoticeVo] result = apiInstance.findNotice();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InformationControllerApi#findNotice");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-InformationController-findNotice-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-InformationController-findNotice-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+InformationControllerApi *apiInstance = [[InformationControllerApi alloc] init];
+
+[apiInstance findNoticeWithCompletionHandler: 
+              ^(array[NoticeVo] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-InformationController-findNotice-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangMemberService = require('julindang_member_service');
+var defaultClient = JulindangMemberService.ApiClient.instance;
+
+
+var api = new JulindangMemberService.InformationControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.findNotice(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-InformationController-findNotice-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-InformationController-findNotice-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class findNoticeExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new InformationControllerApi();
+
+            try
+            {
+                array[NoticeVo] result = apiInstance.findNotice();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling InformationControllerApi.findNotice: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-InformationController-findNotice-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiInformationControllerApi();
+
+try {
+    $result = $api_instance->findNotice();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InformationControllerApi->findNotice: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-InformationController-findNotice-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::InformationControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::InformationControllerApi->new();
+
+eval { 
+    my $result = $api_instance->findNotice();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling InformationControllerApi->findNotice: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-InformationController-findNotice-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.InformationControllerApi()
+
+try: 
+    api_response = api_instance.find_notice()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InformationControllerApi->findNotice: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-findNotice-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-findNotice-200-schema">
+                                  <div id='responses-findNotice-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/NoticeVo"
+        },
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-findNotice-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findNotice-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-findNotice-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                   </section>
                 <section id="api-InquiryController">
                   <h1>InquiryController</h1>
@@ -2405,7 +2698,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/member/etc/inquiry/delete?id="</code></pre>
+"http://localhost:8000/member/etc/inquiry/delete?id="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-InquiryController-delete-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2709,7 +3002,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/member/etc/inquiry/all"</code></pre>
+"http://localhost:8000/member/etc/inquiry/all"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-InquiryController-findAll-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2979,7 +3272,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/member/etc/inquiry/save"</code></pre>
+"http://localhost:8000/member/etc/inquiry/save"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-InquiryController-save-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3297,7 +3590,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/member/etc/inquiry/update"</code></pre>
+"http://localhost:8000/member/etc/inquiry/update"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-InquiryController-update-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3618,7 +3911,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/login/check-nickname?nickname="</code></pre>
+"http://localhost:8000/login/check-nickname?nickname="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-LoginController-checkDuplicated-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3919,7 +4212,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/login/diabetes/female"</code></pre>
+"http://localhost:8000/login/diabetes/female"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-LoginController-getFemaleDiabetes-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4188,7 +4481,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/login/diabetes/male"</code></pre>
+"http://localhost:8000/login/diabetes/male"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-LoginController-getMaleDiabetes-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4458,7 +4751,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/login"</code></pre>
+"http://localhost:8000/login"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-LoginController-login-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -4776,7 +5069,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/login/sign-up"</code></pre>
+"http://localhost:8000/login/sign-up"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-LoginController-signUp-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5097,7 +5390,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/member/edit"</code></pre>
+"http://localhost:8000/member/edit"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-edit-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5415,7 +5708,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/member/profile/edit"</code></pre>
+"http://localhost:8000/member/profile/edit"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-editProfile-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5733,7 +6026,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/member/risk/edit"</code></pre>
+"http://localhost:8000/member/risk/edit"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-editRisk-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6050,7 +6343,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/member/bmi"</code></pre>
+"http://localhost:8000/member/bmi"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-getBmi-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6315,7 +6608,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/member/info"</code></pre>
+"http://localhost:8000/member/info"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-getInfo-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6580,7 +6873,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/member/risk-score"</code></pre>
+"http://localhost:8000/member/risk-score"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-getRiskScore-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -6822,7 +7115,7 @@ except ApiException as e:
                         <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/member/sign-out</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/member/delete-account</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -6846,7 +7139,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/member/sign-out"</code></pre>
+"http://localhost:8000/member/delete-account"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-signOut-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -7165,7 +7458,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/member/update-fcm"</code></pre>
+"http://localhost:8000/member/update-fcm"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-MemberController-updateFcmToken-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -7485,7 +7778,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/sms/balance"</code></pre>
+"http://localhost:8000/sms/balance"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-SmsController-getMessageList-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -7751,7 +8044,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/sms/phone"</code></pre>
+"http://localhost:8000/sms/phone"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-SmsController-pushCode-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -8070,7 +8363,7 @@ except ApiException as e:
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 -H "Content-Type: application/json"\
-"https://julindang.shop/api/sms/verify"</code></pre>
+"http://localhost:8000/sms/verify"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-SmsController-verifyCode-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;

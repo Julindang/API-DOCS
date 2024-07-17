@@ -819,20 +819,42 @@
     }
   }
 };
-            defs["CalorieResponseDto"] = {
+            defs["CalorieMonthResponseDto"] = {
   "type" : "object",
   "properties" : {
+    "month" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
     "calorieIntake" : {
       "type" : "integer",
       "format" : "int64"
-    },
+    }
+  }
+};
+            defs["CalorieResponseDto"] = {
+  "type" : "object",
+  "properties" : {
     "startDate" : {
       "type" : "string",
       "format" : "date"
     },
-    "endDate" : {
-      "type" : "string",
-      "format" : "date"
+    "calorieIntake" : {
+      "type" : "integer",
+      "format" : "int64"
+    }
+  }
+};
+            defs["CalorieWeekResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "week" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "calorieIntake" : {
+      "type" : "integer",
+      "format" : "int64"
     }
   }
 };
@@ -959,6 +981,66 @@
     }
   }
 };
+            defs["FreeConsumeBookMarkDeleteResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "bookmarkId" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "createdAt" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "deleted" : {
+      "type" : "boolean"
+    }
+  }
+};
+            defs["FreeConsumeBookMarkSaveDto"] = {
+  "type" : "object",
+  "properties" : {
+    "name" : {
+      "type" : "string"
+    },
+    "consumeId" : {
+      "type" : "integer",
+      "format" : "int64"
+    }
+  }
+};
+            defs["FreeConsumeBookMarkSaveResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "bookmarkId" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "consumeId" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "createdAt" : {
+      "type" : "string",
+      "format" : "date-time"
+    }
+  }
+};
+            defs["FreeConsumeBookmarkDeleteDto"] = {
+  "type" : "object",
+  "properties" : {
+    "bookmarkId" : {
+      "type" : "integer",
+      "format" : "int64"
+    }
+  }
+};
             defs["FreeConsumeDeleteDto"] = {
   "type" : "object",
   "properties" : {
@@ -1064,20 +1146,42 @@
     }
   }
 };
-            defs["SugarResponseDto"] = {
+            defs["SugarMonthResponseDto"] = {
   "type" : "object",
   "properties" : {
+    "month" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
     "sugarIntake" : {
       "type" : "integer",
       "format" : "int64"
-    },
+    }
+  }
+};
+            defs["SugarResponseDto"] = {
+  "type" : "object",
+  "properties" : {
     "startDate" : {
       "type" : "string",
       "format" : "date"
     },
-    "endDate" : {
-      "type" : "string",
-      "format" : "date"
+    "sugarIntake" : {
+      "type" : "integer",
+      "format" : "int64"
+    }
+  }
+};
+            defs["SugarWeekResponseDto"] = {
+  "type" : "object",
+  "properties" : {
+    "week" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "sugarIntake" : {
+      "type" : "integer",
+      "format" : "int64"
     }
   }
 };
@@ -1103,6 +1207,9 @@
                     </li>
                     <li data-group="ConsumeController" data-name="delete1" class="">
                       <a href="#api-ConsumeController-delete1">delete1</a>
+                    </li>
+                    <li data-group="ConsumeController" data-name="deleteBookmark" class="">
+                      <a href="#api-ConsumeController-deleteBookmark">deleteBookmark</a>
                     </li>
                     <li data-group="ConsumeController" data-name="getBeverage" class="">
                       <a href="#api-ConsumeController-getBeverage">getBeverage</a>
@@ -1151,6 +1258,9 @@
                     </li>
                     <li data-group="ConsumeController" data-name="save1" class="">
                       <a href="#api-ConsumeController-save1">save1</a>
+                    </li>
+                    <li data-group="ConsumeController" data-name="saveBookmark" class="">
+                      <a href="#api-ConsumeController-saveBookmark">saveBookmark</a>
                     </li>
                     <li data-group="ConsumeController" data-name="update" class="">
                       <a href="#api-ConsumeController-update">update</a>
@@ -1809,6 +1919,306 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-delete1-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-ConsumeController-deleteBookmark">
+                      <article id="api-ConsumeController-deleteBookmark-0" data-group="User" data-name="deleteBookmark" data-version="0">
+                        <div class="pull-left">
+                          <h1>deleteBookmark</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">선택한 날짜에 섭취한 디저트 조회</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/consume/free-bookmark/delete</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-ConsumeController-deleteBookmark-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-ConsumeController-deleteBookmark-0-java">Java</a></li>
+                          <li class=""><a href="#examples-ConsumeController-deleteBookmark-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-ConsumeController-deleteBookmark-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-ConsumeController-deleteBookmark-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-ConsumeController-deleteBookmark-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-ConsumeController-deleteBookmark-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-ConsumeController-deleteBookmark-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-ConsumeController-deleteBookmark-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-ConsumeController-deleteBookmark-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-ConsumeController-deleteBookmark-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-ConsumeController-deleteBookmark-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/consume/free-bookmark/delete?dto="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.ConsumeControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class ConsumeControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        ConsumeControllerApi apiInstance = new ConsumeControllerApi();
+        FreeConsumeBookmarkDeleteDto dto = ; // FreeConsumeBookmarkDeleteDto | 
+        try {
+            FreeConsumeBookMarkDeleteResponseDto result = apiInstance.deleteBookmark(dto);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConsumeControllerApi#deleteBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.ConsumeControllerApi;
+
+public class ConsumeControllerApiExample {
+
+    public static void main(String[] args) {
+        ConsumeControllerApi apiInstance = new ConsumeControllerApi();
+        FreeConsumeBookmarkDeleteDto dto = ; // FreeConsumeBookmarkDeleteDto | 
+        try {
+            FreeConsumeBookMarkDeleteResponseDto result = apiInstance.deleteBookmark(dto);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConsumeControllerApi#deleteBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+FreeConsumeBookmarkDeleteDto *dto = ; // 
+
+ConsumeControllerApi *apiInstance = [[ConsumeControllerApi alloc] init];
+
+[apiInstance deleteBookmarkWith:dto
+              completionHandler: ^(FreeConsumeBookMarkDeleteResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangConsumeService = require('julindang_consume_service');
+var defaultClient = JulindangConsumeService.ApiClient.instance;
+
+
+var api = new JulindangConsumeService.ConsumeControllerApi()
+var dto = ; // {{FreeConsumeBookmarkDeleteDto}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.deleteBookmark(dto, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class deleteBookmarkExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new ConsumeControllerApi();
+            var dto = new FreeConsumeBookmarkDeleteDto(); // FreeConsumeBookmarkDeleteDto | 
+
+            try
+            {
+                FreeConsumeBookMarkDeleteResponseDto result = apiInstance.deleteBookmark(dto);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling ConsumeControllerApi.deleteBookmark: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiConsumeControllerApi();
+$dto = ; // FreeConsumeBookmarkDeleteDto | 
+
+try {
+    $result = $api_instance->deleteBookmark($dto);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ConsumeControllerApi->deleteBookmark: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::ConsumeControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::ConsumeControllerApi->new();
+my $dto = ; # FreeConsumeBookmarkDeleteDto | 
+
+eval { 
+    my $result = $api_instance->deleteBookmark(dto => $dto);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling ConsumeControllerApi->deleteBookmark: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ConsumeController-deleteBookmark-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.ConsumeControllerApi()
+dto =  # FreeConsumeBookmarkDeleteDto | 
+
+try: 
+    api_response = api_instance.delete_bookmark(dto)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ConsumeControllerApi->deleteBookmark: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">dto*</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_deleteBookmark_dto">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    FreeConsumeBookmarkDeleteDto
+                                                </span>
+                                
+                                            </div>
+                                                <div class="inner required">
+                                                    Required
+                                                </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-deleteBookmark-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-deleteBookmark-200-schema">
+                                  <div id='responses-deleteBookmark-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/FreeConsumeBookMarkDeleteResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-deleteBookmark-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-deleteBookmark-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-deleteBookmark-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -3293,7 +3703,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/consume/sugar/month?startDate=&endDate="</code></pre>
+"https://julindang.shop/api/consume/sugar/month?year="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-ConsumeController-getMonthAveargeSugar-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3311,10 +3721,9 @@ public class ConsumeControllerApiExample {
 
 
         ConsumeControllerApi apiInstance = new ConsumeControllerApi();
-        date startDate = 2013-10-20; // date | 
-        date endDate = 2013-10-20; // date | 
+        date year = 2013-10-20; // date | 
         try {
-            SugarResponseDto result = apiInstance.getMonthAveargeSugar(startDate, endDate);
+            array[SugarMonthResponseDto] result = apiInstance.getMonthAveargeSugar(year);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConsumeControllerApi#getMonthAveargeSugar");
@@ -3331,10 +3740,9 @@ public class ConsumeControllerApiExample {
 
     public static void main(String[] args) {
         ConsumeControllerApi apiInstance = new ConsumeControllerApi();
-        date startDate = 2013-10-20; // date | 
-        date endDate = 2013-10-20; // date | 
+        date year = 2013-10-20; // date | 
         try {
-            SugarResponseDto result = apiInstance.getMonthAveargeSugar(startDate, endDate);
+            array[SugarMonthResponseDto] result = apiInstance.getMonthAveargeSugar(year);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConsumeControllerApi#getMonthAveargeSugar");
@@ -3349,14 +3757,12 @@ public class ConsumeControllerApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-ConsumeController-getMonthAveargeSugar-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-date *startDate = 2013-10-20; // 
-date *endDate = 2013-10-20; // 
+date *year = 2013-10-20; // 
 
 ConsumeControllerApi *apiInstance = [[ConsumeControllerApi alloc] init];
 
-[apiInstance getMonthAveargeSugarWith:startDate
-    endDate:endDate
-              completionHandler: ^(SugarResponseDto output, NSError* error) {
+[apiInstance getMonthAveargeSugarWith:year
+              completionHandler: ^(array[SugarMonthResponseDto] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -3373,8 +3779,7 @@ var defaultClient = JulindangConsumeService.ApiClient.instance;
 
 
 var api = new JulindangConsumeService.ConsumeControllerApi()
-var startDate = 2013-10-20; // {{date}} 
-var endDate = 2013-10-20; // {{date}} 
+var year = 2013-10-20; // {{date}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -3383,7 +3788,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getMonthAveargeSugar(startDate, endDate, callback);
+api.getMonthAveargeSugar(year, callback);
 </code></pre>
                             </div>
 
@@ -3406,12 +3811,11 @@ namespace Example
 
 
             var apiInstance = new ConsumeControllerApi();
-            var startDate = 2013-10-20;  // date | 
-            var endDate = 2013-10-20;  // date | 
+            var year = 2013-10-20;  // date | 
 
             try
             {
-                SugarResponseDto result = apiInstance.getMonthAveargeSugar(startDate, endDate);
+                array[SugarMonthResponseDto] result = apiInstance.getMonthAveargeSugar(year);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3430,11 +3834,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiConsumeControllerApi();
-$startDate = 2013-10-20; // date | 
-$endDate = 2013-10-20; // date | 
+$year = 2013-10-20; // date | 
 
 try {
-    $result = $api_instance->getMonthAveargeSugar($startDate, $endDate);
+    $result = $api_instance->getMonthAveargeSugar($year);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConsumeControllerApi->getMonthAveargeSugar: ', $e->getMessage(), PHP_EOL;
@@ -3449,11 +3852,10 @@ use WWW::SwaggerClient::ConsumeControllerApi;
 
 
 my $api_instance = WWW::SwaggerClient::ConsumeControllerApi->new();
-my $startDate = 2013-10-20; # date | 
-my $endDate = 2013-10-20; # date | 
+my $year = 2013-10-20; # date | 
 
 eval { 
-    my $result = $api_instance->getMonthAveargeSugar(startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->getMonthAveargeSugar(year => $year);
     print Dumper($result);
 };
 if ($@) {
@@ -3471,11 +3873,10 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.ConsumeControllerApi()
-startDate = 2013-10-20 # date | 
-endDate = 2013-10-20 # date | 
+year = 2013-10-20 # date | 
 
 try: 
-    api_response = api_instance.get_month_avearge_sugar(startDate, endDate)
+    api_response = api_instance.get_month_avearge_sugar(year)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConsumeControllerApi->getMonthAveargeSugar: %s\n" % e)</code></pre>
@@ -3494,33 +3895,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">startDate*</td>
+                                <tr><td style="width:150px;">year*</td>
                                 <td>
                                 
                                 
-                                    <div id="d2e199_getMonthAveargeSugar_startDate">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    date
-                                                </span>
-                                                    <span class="format">
-                                                        (date)
-                                                    </span>
-                                
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                                <tr><td style="width:150px;">endDate*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_getMonthAveargeSugar_endDate">
+                                    <div id="d2e199_getMonthAveargeSugar_year">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -3560,7 +3939,11 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/SugarResponseDto"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/SugarMonthResponseDto"
+        },
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -3627,7 +4010,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/consume/calorie/month?startDate=&endDate="</code></pre>
+"https://julindang.shop/api/consume/calorie/month?year="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-ConsumeController-getMonthCalorie-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3645,10 +4028,9 @@ public class ConsumeControllerApiExample {
 
 
         ConsumeControllerApi apiInstance = new ConsumeControllerApi();
-        date startDate = 2013-10-20; // date | 
-        date endDate = 2013-10-20; // date | 
+        date year = 2013-10-20; // date | 
         try {
-            CalorieResponseDto result = apiInstance.getMonthCalorie(startDate, endDate);
+            array[CalorieMonthResponseDto] result = apiInstance.getMonthCalorie(year);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConsumeControllerApi#getMonthCalorie");
@@ -3665,10 +4047,9 @@ public class ConsumeControllerApiExample {
 
     public static void main(String[] args) {
         ConsumeControllerApi apiInstance = new ConsumeControllerApi();
-        date startDate = 2013-10-20; // date | 
-        date endDate = 2013-10-20; // date | 
+        date year = 2013-10-20; // date | 
         try {
-            CalorieResponseDto result = apiInstance.getMonthCalorie(startDate, endDate);
+            array[CalorieMonthResponseDto] result = apiInstance.getMonthCalorie(year);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConsumeControllerApi#getMonthCalorie");
@@ -3683,14 +4064,12 @@ public class ConsumeControllerApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-ConsumeController-getMonthCalorie-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-date *startDate = 2013-10-20; // 
-date *endDate = 2013-10-20; // 
+date *year = 2013-10-20; // 
 
 ConsumeControllerApi *apiInstance = [[ConsumeControllerApi alloc] init];
 
-[apiInstance getMonthCalorieWith:startDate
-    endDate:endDate
-              completionHandler: ^(CalorieResponseDto output, NSError* error) {
+[apiInstance getMonthCalorieWith:year
+              completionHandler: ^(array[CalorieMonthResponseDto] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -3707,8 +4086,7 @@ var defaultClient = JulindangConsumeService.ApiClient.instance;
 
 
 var api = new JulindangConsumeService.ConsumeControllerApi()
-var startDate = 2013-10-20; // {{date}} 
-var endDate = 2013-10-20; // {{date}} 
+var year = 2013-10-20; // {{date}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -3717,7 +4095,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getMonthCalorie(startDate, endDate, callback);
+api.getMonthCalorie(year, callback);
 </code></pre>
                             </div>
 
@@ -3740,12 +4118,11 @@ namespace Example
 
 
             var apiInstance = new ConsumeControllerApi();
-            var startDate = 2013-10-20;  // date | 
-            var endDate = 2013-10-20;  // date | 
+            var year = 2013-10-20;  // date | 
 
             try
             {
-                CalorieResponseDto result = apiInstance.getMonthCalorie(startDate, endDate);
+                array[CalorieMonthResponseDto] result = apiInstance.getMonthCalorie(year);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3764,11 +4141,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiConsumeControllerApi();
-$startDate = 2013-10-20; // date | 
-$endDate = 2013-10-20; // date | 
+$year = 2013-10-20; // date | 
 
 try {
-    $result = $api_instance->getMonthCalorie($startDate, $endDate);
+    $result = $api_instance->getMonthCalorie($year);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConsumeControllerApi->getMonthCalorie: ', $e->getMessage(), PHP_EOL;
@@ -3783,11 +4159,10 @@ use WWW::SwaggerClient::ConsumeControllerApi;
 
 
 my $api_instance = WWW::SwaggerClient::ConsumeControllerApi->new();
-my $startDate = 2013-10-20; # date | 
-my $endDate = 2013-10-20; # date | 
+my $year = 2013-10-20; # date | 
 
 eval { 
-    my $result = $api_instance->getMonthCalorie(startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->getMonthCalorie(year => $year);
     print Dumper($result);
 };
 if ($@) {
@@ -3805,11 +4180,10 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.ConsumeControllerApi()
-startDate = 2013-10-20 # date | 
-endDate = 2013-10-20 # date | 
+year = 2013-10-20 # date | 
 
 try: 
-    api_response = api_instance.get_month_calorie(startDate, endDate)
+    api_response = api_instance.get_month_calorie(year)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConsumeControllerApi->getMonthCalorie: %s\n" % e)</code></pre>
@@ -3828,33 +4202,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">startDate*</td>
+                                <tr><td style="width:150px;">year*</td>
                                 <td>
                                 
                                 
-                                    <div id="d2e199_getMonthCalorie_startDate">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    date
-                                                </span>
-                                                    <span class="format">
-                                                        (date)
-                                                    </span>
-                                
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                                <tr><td style="width:150px;">endDate*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_getMonthCalorie_endDate">
+                                    <div id="d2e199_getMonthCalorie_year">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -3894,7 +4246,11 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/CalorieResponseDto"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/CalorieMonthResponseDto"
+        },
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -5286,7 +5642,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/consume/sugar/week?startDate=&endDate="</code></pre>
+"https://julindang.shop/api/consume/sugar/week?month="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-ConsumeController-getWeekAveargeSugar-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5304,10 +5660,9 @@ public class ConsumeControllerApiExample {
 
 
         ConsumeControllerApi apiInstance = new ConsumeControllerApi();
-        date startDate = 2013-10-20; // date | 
-        date endDate = 2013-10-20; // date | 
+        date month = 2013-10-20; // date | 
         try {
-            SugarResponseDto result = apiInstance.getWeekAveargeSugar(startDate, endDate);
+            array[SugarWeekResponseDto] result = apiInstance.getWeekAveargeSugar(month);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConsumeControllerApi#getWeekAveargeSugar");
@@ -5324,10 +5679,9 @@ public class ConsumeControllerApiExample {
 
     public static void main(String[] args) {
         ConsumeControllerApi apiInstance = new ConsumeControllerApi();
-        date startDate = 2013-10-20; // date | 
-        date endDate = 2013-10-20; // date | 
+        date month = 2013-10-20; // date | 
         try {
-            SugarResponseDto result = apiInstance.getWeekAveargeSugar(startDate, endDate);
+            array[SugarWeekResponseDto] result = apiInstance.getWeekAveargeSugar(month);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConsumeControllerApi#getWeekAveargeSugar");
@@ -5342,14 +5696,12 @@ public class ConsumeControllerApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-ConsumeController-getWeekAveargeSugar-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-date *startDate = 2013-10-20; // 
-date *endDate = 2013-10-20; // 
+date *month = 2013-10-20; // 
 
 ConsumeControllerApi *apiInstance = [[ConsumeControllerApi alloc] init];
 
-[apiInstance getWeekAveargeSugarWith:startDate
-    endDate:endDate
-              completionHandler: ^(SugarResponseDto output, NSError* error) {
+[apiInstance getWeekAveargeSugarWith:month
+              completionHandler: ^(array[SugarWeekResponseDto] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -5366,8 +5718,7 @@ var defaultClient = JulindangConsumeService.ApiClient.instance;
 
 
 var api = new JulindangConsumeService.ConsumeControllerApi()
-var startDate = 2013-10-20; // {{date}} 
-var endDate = 2013-10-20; // {{date}} 
+var month = 2013-10-20; // {{date}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -5376,7 +5727,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getWeekAveargeSugar(startDate, endDate, callback);
+api.getWeekAveargeSugar(month, callback);
 </code></pre>
                             </div>
 
@@ -5399,12 +5750,11 @@ namespace Example
 
 
             var apiInstance = new ConsumeControllerApi();
-            var startDate = 2013-10-20;  // date | 
-            var endDate = 2013-10-20;  // date | 
+            var month = 2013-10-20;  // date | 
 
             try
             {
-                SugarResponseDto result = apiInstance.getWeekAveargeSugar(startDate, endDate);
+                array[SugarWeekResponseDto] result = apiInstance.getWeekAveargeSugar(month);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -5423,11 +5773,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiConsumeControllerApi();
-$startDate = 2013-10-20; // date | 
-$endDate = 2013-10-20; // date | 
+$month = 2013-10-20; // date | 
 
 try {
-    $result = $api_instance->getWeekAveargeSugar($startDate, $endDate);
+    $result = $api_instance->getWeekAveargeSugar($month);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConsumeControllerApi->getWeekAveargeSugar: ', $e->getMessage(), PHP_EOL;
@@ -5442,11 +5791,10 @@ use WWW::SwaggerClient::ConsumeControllerApi;
 
 
 my $api_instance = WWW::SwaggerClient::ConsumeControllerApi->new();
-my $startDate = 2013-10-20; # date | 
-my $endDate = 2013-10-20; # date | 
+my $month = 2013-10-20; # date | 
 
 eval { 
-    my $result = $api_instance->getWeekAveargeSugar(startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->getWeekAveargeSugar(month => $month);
     print Dumper($result);
 };
 if ($@) {
@@ -5464,11 +5812,10 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.ConsumeControllerApi()
-startDate = 2013-10-20 # date | 
-endDate = 2013-10-20 # date | 
+month = 2013-10-20 # date | 
 
 try: 
-    api_response = api_instance.get_week_avearge_sugar(startDate, endDate)
+    api_response = api_instance.get_week_avearge_sugar(month)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConsumeControllerApi->getWeekAveargeSugar: %s\n" % e)</code></pre>
@@ -5487,33 +5834,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">startDate*</td>
+                                <tr><td style="width:150px;">month*</td>
                                 <td>
                                 
                                 
-                                    <div id="d2e199_getWeekAveargeSugar_startDate">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    date
-                                                </span>
-                                                    <span class="format">
-                                                        (date)
-                                                    </span>
-                                
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                                <tr><td style="width:150px;">endDate*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_getWeekAveargeSugar_endDate">
+                                    <div id="d2e199_getWeekAveargeSugar_month">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -5553,7 +5878,11 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/SugarResponseDto"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/SugarWeekResponseDto"
+        },
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -5620,7 +5949,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
-"https://julindang.shop/api/consume/calorie/week?startDate=&endDate="</code></pre>
+"https://julindang.shop/api/consume/calorie/week?month="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-ConsumeController-getWeekCalorie-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -5638,10 +5967,9 @@ public class ConsumeControllerApiExample {
 
 
         ConsumeControllerApi apiInstance = new ConsumeControllerApi();
-        date startDate = 2013-10-20; // date | 
-        date endDate = 2013-10-20; // date | 
+        date month = 2013-10-20; // date | 
         try {
-            CalorieResponseDto result = apiInstance.getWeekCalorie(startDate, endDate);
+            array[CalorieWeekResponseDto] result = apiInstance.getWeekCalorie(month);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConsumeControllerApi#getWeekCalorie");
@@ -5658,10 +5986,9 @@ public class ConsumeControllerApiExample {
 
     public static void main(String[] args) {
         ConsumeControllerApi apiInstance = new ConsumeControllerApi();
-        date startDate = 2013-10-20; // date | 
-        date endDate = 2013-10-20; // date | 
+        date month = 2013-10-20; // date | 
         try {
-            CalorieResponseDto result = apiInstance.getWeekCalorie(startDate, endDate);
+            array[CalorieWeekResponseDto] result = apiInstance.getWeekCalorie(month);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConsumeControllerApi#getWeekCalorie");
@@ -5676,14 +6003,12 @@ public class ConsumeControllerApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-ConsumeController-getWeekCalorie-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-date *startDate = 2013-10-20; // 
-date *endDate = 2013-10-20; // 
+date *month = 2013-10-20; // 
 
 ConsumeControllerApi *apiInstance = [[ConsumeControllerApi alloc] init];
 
-[apiInstance getWeekCalorieWith:startDate
-    endDate:endDate
-              completionHandler: ^(CalorieResponseDto output, NSError* error) {
+[apiInstance getWeekCalorieWith:month
+              completionHandler: ^(array[CalorieWeekResponseDto] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -5700,8 +6025,7 @@ var defaultClient = JulindangConsumeService.ApiClient.instance;
 
 
 var api = new JulindangConsumeService.ConsumeControllerApi()
-var startDate = 2013-10-20; // {{date}} 
-var endDate = 2013-10-20; // {{date}} 
+var month = 2013-10-20; // {{date}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -5710,7 +6034,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getWeekCalorie(startDate, endDate, callback);
+api.getWeekCalorie(month, callback);
 </code></pre>
                             </div>
 
@@ -5733,12 +6057,11 @@ namespace Example
 
 
             var apiInstance = new ConsumeControllerApi();
-            var startDate = 2013-10-20;  // date | 
-            var endDate = 2013-10-20;  // date | 
+            var month = 2013-10-20;  // date | 
 
             try
             {
-                CalorieResponseDto result = apiInstance.getWeekCalorie(startDate, endDate);
+                array[CalorieWeekResponseDto] result = apiInstance.getWeekCalorie(month);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -5757,11 +6080,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $api_instance = new Swagger\Client\ApiConsumeControllerApi();
-$startDate = 2013-10-20; // date | 
-$endDate = 2013-10-20; // date | 
+$month = 2013-10-20; // date | 
 
 try {
-    $result = $api_instance->getWeekCalorie($startDate, $endDate);
+    $result = $api_instance->getWeekCalorie($month);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConsumeControllerApi->getWeekCalorie: ', $e->getMessage(), PHP_EOL;
@@ -5776,11 +6098,10 @@ use WWW::SwaggerClient::ConsumeControllerApi;
 
 
 my $api_instance = WWW::SwaggerClient::ConsumeControllerApi->new();
-my $startDate = 2013-10-20; # date | 
-my $endDate = 2013-10-20; # date | 
+my $month = 2013-10-20; # date | 
 
 eval { 
-    my $result = $api_instance->getWeekCalorie(startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->getWeekCalorie(month => $month);
     print Dumper($result);
 };
 if ($@) {
@@ -5798,11 +6119,10 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.ConsumeControllerApi()
-startDate = 2013-10-20 # date | 
-endDate = 2013-10-20 # date | 
+month = 2013-10-20 # date | 
 
 try: 
-    api_response = api_instance.get_week_calorie(startDate, endDate)
+    api_response = api_instance.get_week_calorie(month)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ConsumeControllerApi->getWeekCalorie: %s\n" % e)</code></pre>
@@ -5821,33 +6141,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">startDate*</td>
+                                <tr><td style="width:150px;">month*</td>
                                 <td>
                                 
                                 
-                                    <div id="d2e199_getWeekCalorie_startDate">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    date
-                                                </span>
-                                                    <span class="format">
-                                                        (date)
-                                                    </span>
-                                
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                                <tr><td style="width:150px;">endDate*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_getWeekCalorie_endDate">
+                                    <div id="d2e199_getWeekCalorie_month">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -5887,7 +6185,11 @@ except ApiException as e:
   "content" : {
     "*/*" : {
       "schema" : {
-        "$ref" : "#/components/schemas/CalorieResponseDto"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/CalorieWeekResponseDto"
+        },
+        "x-content-type" : "*/*"
       }
     }
   }
@@ -6549,6 +6851,306 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-save1-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-ConsumeController-saveBookmark">
+                      <article id="api-ConsumeController-saveBookmark-0" data-group="User" data-name="saveBookmark" data-version="0">
+                        <div class="pull-left">
+                          <h1>saveBookmark</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">자율 기입 북마크 추가</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/consume/free-bookmark/save</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-ConsumeController-saveBookmark-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-ConsumeController-saveBookmark-0-java">Java</a></li>
+                          <li class=""><a href="#examples-ConsumeController-saveBookmark-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-ConsumeController-saveBookmark-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-ConsumeController-saveBookmark-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-ConsumeController-saveBookmark-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-ConsumeController-saveBookmark-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-ConsumeController-saveBookmark-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-ConsumeController-saveBookmark-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-ConsumeController-saveBookmark-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-ConsumeController-saveBookmark-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-ConsumeController-saveBookmark-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+ -H "Authorization: Bearer [[accessToken]]"\
+-H "Accept: */*"\
+"https://julindang.shop/api/consume/free-bookmark/save?dto="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.ConsumeControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class ConsumeControllerApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+
+        ConsumeControllerApi apiInstance = new ConsumeControllerApi();
+        FreeConsumeBookMarkSaveDto dto = ; // FreeConsumeBookMarkSaveDto | 
+        try {
+            FreeConsumeBookMarkSaveResponseDto result = apiInstance.saveBookmark(dto);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConsumeControllerApi#saveBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.ConsumeControllerApi;
+
+public class ConsumeControllerApiExample {
+
+    public static void main(String[] args) {
+        ConsumeControllerApi apiInstance = new ConsumeControllerApi();
+        FreeConsumeBookMarkSaveDto dto = ; // FreeConsumeBookMarkSaveDto | 
+        try {
+            FreeConsumeBookMarkSaveResponseDto result = apiInstance.saveBookmark(dto);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConsumeControllerApi#saveBookmark");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+FreeConsumeBookMarkSaveDto *dto = ; // 
+
+ConsumeControllerApi *apiInstance = [[ConsumeControllerApi alloc] init];
+
+[apiInstance saveBookmarkWith:dto
+              completionHandler: ^(FreeConsumeBookMarkSaveResponseDto output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var JulindangConsumeService = require('julindang_consume_service');
+var defaultClient = JulindangConsumeService.ApiClient.instance;
+
+
+var api = new JulindangConsumeService.ConsumeControllerApi()
+var dto = ; // {{FreeConsumeBookMarkSaveDto}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.saveBookmark(dto, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class saveBookmarkExample
+    {
+        public void main()
+        {
+
+
+            var apiInstance = new ConsumeControllerApi();
+            var dto = new FreeConsumeBookMarkSaveDto(); // FreeConsumeBookMarkSaveDto | 
+
+            try
+            {
+                FreeConsumeBookMarkSaveResponseDto result = apiInstance.saveBookmark(dto);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling ConsumeControllerApi.saveBookmark: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$api_instance = new Swagger\Client\ApiConsumeControllerApi();
+$dto = ; // FreeConsumeBookMarkSaveDto | 
+
+try {
+    $result = $api_instance->saveBookmark($dto);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ConsumeControllerApi->saveBookmark: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::ConsumeControllerApi;
+
+
+my $api_instance = WWW::SwaggerClient::ConsumeControllerApi->new();
+my $dto = ; # FreeConsumeBookMarkSaveDto | 
+
+eval { 
+    my $result = $api_instance->saveBookmark(dto => $dto);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling ConsumeControllerApi->saveBookmark: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ConsumeController-saveBookmark-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+
+# create an instance of the API class
+api_instance = swagger_client.ConsumeControllerApi()
+dto =  # FreeConsumeBookMarkSaveDto | 
+
+try: 
+    api_response = api_instance.save_bookmark(dto)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ConsumeControllerApi->saveBookmark: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">dto*</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_saveBookmark_dto">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    FreeConsumeBookMarkSaveDto
+                                                </span>
+                                
+                                            </div>
+                                                <div class="inner required">
+                                                    Required
+                                                </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-saveBookmark-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-saveBookmark-200-schema">
+                                  <div id='responses-saveBookmark-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/FreeConsumeBookMarkSaveResponseDto"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-saveBookmark-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-saveBookmark-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-saveBookmark-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

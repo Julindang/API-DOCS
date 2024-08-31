@@ -706,67 +706,40 @@
     }
   }
 };
-            defs["BeverageDetailResponseDto"] = {
-  "type" : "object",
-  "properties" : {
-    "cafeName" : {
-      "type" : "string"
-    },
-    "cafeId" : {
-      "type" : "integer",
-      "format" : "int64"
-    },
-    "beverageName" : {
-      "type" : "string"
-    },
-    "size" : {
-      "type" : "string"
-    },
-    "serve" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "sugar" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "calorie" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "temperature" : {
-      "type" : "boolean"
-    }
-  }
-};
             defs["BeverageDetailVo"] = {
   "type" : "object",
   "properties" : {
     "size" : {
       "type" : "string"
     },
+    "temperature" : {
+      "type" : "boolean"
+    },
     "beverageName" : {
       "type" : "string"
     },
     "cafeName" : {
       "type" : "string"
     },
-    "temperature" : {
-      "type" : "boolean"
+    "bookmarked" : {
+      "type" : "string"
     },
     "cafeId" : {
       "type" : "integer",
       "format" : "int64"
-    },
-    "serve" : {
-      "type" : "number",
-      "format" : "double"
     },
     "sugar" : {
       "type" : "number",
       "format" : "double"
     },
     "calorie" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "url" : {
+      "type" : "string"
+    },
+    "serve" : {
       "type" : "number",
       "format" : "double"
     }
@@ -818,6 +791,12 @@
       "type" : "string",
       "description" : "type 이 1 또는 2일때만 필요",
       "example" : "아이스 아메리카노"
+    },
+    "productId" : {
+      "type" : "integer",
+      "description" : "type 이 1 또는 2일때만 필요",
+      "format" : "int64",
+      "example" : 1234
     }
   }
 };
@@ -854,8 +833,9 @@
     "cafeName" : {
       "type" : "string"
     },
-    "productName" : {
-      "type" : "string"
+    "productId" : {
+      "type" : "integer",
+      "format" : "int64"
     }
   }
 };
@@ -867,6 +847,10 @@
     },
     "productName" : {
       "type" : "string"
+    },
+    "productId" : {
+      "type" : "integer",
+      "format" : "int64"
     }
   }
 };
@@ -930,6 +914,10 @@
     "cafeName" : {
       "type" : "string"
     },
+    "createdAt" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
     "url" : {
       "type" : "string"
     },
@@ -967,39 +955,15 @@
     }
   }
 };
-            defs["DessertDetailResponseDto"] = {
-  "type" : "object",
-  "properties" : {
-    "cafeName" : {
-      "type" : "string"
-    },
-    "dessertId" : {
-      "type" : "integer",
-      "format" : "int64"
-    },
-    "dessertName" : {
-      "type" : "string"
-    },
-    "serve" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "sugar" : {
-      "type" : "number",
-      "format" : "double"
-    },
-    "calorie" : {
-      "type" : "number",
-      "format" : "double"
-    }
-  }
-};
             defs["DessertDetailVo"] = {
   "type" : "object",
   "properties" : {
     "cafeName" : {
       "type" : "string"
     },
+    "bookmarked" : {
+      "type" : "string"
+    },
     "dessertName" : {
       "type" : "string"
     },
@@ -1007,15 +971,18 @@
       "type" : "integer",
       "format" : "int64"
     },
-    "serve" : {
-      "type" : "number",
-      "format" : "double"
-    },
     "sugar" : {
       "type" : "number",
       "format" : "double"
     },
     "calorie" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "url" : {
+      "type" : "string"
+    },
+    "serve" : {
       "type" : "number",
       "format" : "double"
     }
@@ -1049,7 +1016,7 @@
             defs["FreeConsumeBookmarkResponseDto"] = {
   "type" : "object",
   "properties" : {
-    "consumeId" : {
+    "productId" : {
       "type" : "integer",
       "format" : "int64"
     },
@@ -1063,6 +1030,14 @@
     "calorie" : {
       "type" : "integer",
       "format" : "int64"
+    },
+    "size" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "type" : {
+      "type" : "integer",
+      "format" : "int32"
     },
     "createdAt" : {
       "type" : "string",
@@ -1096,8 +1071,8 @@
                     <li data-group="Beverage" data-name="findByCafeName2" class="">
                       <a href="#api-Beverage-findByCafeName2">findByCafeName2</a>
                     </li>
-                    <li data-group="Beverage" data-name="findByCafeNameAndBeverageName1" class="">
-                      <a href="#api-Beverage-findByCafeNameAndBeverageName1">findByCafeNameAndBeverageName1</a>
+                    <li data-group="Beverage" data-name="findByCafeNameAndBeverageName" class="">
+                      <a href="#api-Beverage-findByCafeNameAndBeverageName">findByCafeNameAndBeverageName</a>
                     </li>
                     <li data-group="Beverage" data-name="getDetails1" class="">
                       <a href="#api-Beverage-getDetails1">getDetails1</a>
@@ -1138,8 +1113,8 @@
                     <li data-group="Dessert" data-name="findByCafeName1" class="">
                       <a href="#api-Dessert-findByCafeName1">findByCafeName1</a>
                     </li>
-                    <li data-group="Dessert" data-name="findByCafeNameAndBeverageName" class="">
-                      <a href="#api-Dessert-findByCafeNameAndBeverageName">findByCafeNameAndBeverageName</a>
+                    <li data-group="Dessert" data-name="findByCafeNameAndDessertName" class="">
+                      <a href="#api-Dessert-findByCafeNameAndDessertName">findByCafeNameAndDessertName</a>
                     </li>
                     <li data-group="Dessert" data-name="findByDessertName" class="">
                       <a href="#api-Dessert-findByDessertName">findByDessertName</a>
@@ -2117,10 +2092,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Beverage-findByCafeNameAndBeverageName1">
-                      <article id="api-Beverage-findByCafeNameAndBeverageName1-0" data-group="User" data-name="findByCafeNameAndBeverageName1" data-version="0">
+                    <div id="api-Beverage-findByCafeNameAndBeverageName">
+                      <article id="api-Beverage-findByCafeNameAndBeverageName-0" data-group="User" data-name="findByCafeNameAndBeverageName" data-version="0">
                         <div class="pull-left">
-                          <h1>findByCafeNameAndBeverageName1</h1>
+                          <h1>findByCafeNameAndBeverageName</h1>
                           <p></p>
                         </div>
                         <div class="pull-right"></div>
@@ -2134,27 +2109,27 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName1-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Beverage-findByCafeNameAndBeverageName-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Beverage-findByCafeNameAndBeverageName1-0-curl">
+                          <div class="tab-pane active" id="examples-Beverage-findByCafeNameAndBeverageName-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 "https://julindang.shop/cafe/beverage/details?cafeName=&beverageName="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-java">
+                          <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2173,17 +2148,17 @@ public class BeverageApiExample {
         String cafeName = cafeName_example; // String | 카페 이름
         String beverageName = beverageName_example; // String | 음료 이름
         try {
-            array[BeverageDetailResponseDto] result = apiInstance.findByCafeNameAndBeverageName1(cafeName, beverageName);
+            array[BeverageDetailVo] result = apiInstance.findByCafeNameAndBeverageName(cafeName, beverageName);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BeverageApi#findByCafeNameAndBeverageName1");
+            System.err.println("Exception when calling BeverageApi#findByCafeNameAndBeverageName");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-android">
+                          <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.BeverageApi;
 
 public class BeverageApiExample {
@@ -2193,29 +2168,29 @@ public class BeverageApiExample {
         String cafeName = cafeName_example; // String | 카페 이름
         String beverageName = beverageName_example; // String | 음료 이름
         try {
-            array[BeverageDetailResponseDto] result = apiInstance.findByCafeNameAndBeverageName1(cafeName, beverageName);
+            array[BeverageDetailVo] result = apiInstance.findByCafeNameAndBeverageName(cafeName, beverageName);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling BeverageApi#findByCafeNameAndBeverageName1");
+            System.err.println("Exception when calling BeverageApi#findByCafeNameAndBeverageName");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-groovy">
+  <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-objc">
+                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 String *cafeName = cafeName_example; // 카페 이름
 String *beverageName = beverageName_example; // 음료 이름
 
 BeverageApi *apiInstance = [[BeverageApi alloc] init];
 
-[apiInstance findByCafeNameAndBeverageName1With:cafeName
+[apiInstance findByCafeNameAndBeverageNameWith:cafeName
     beverageName:beverageName
-              completionHandler: ^(array[BeverageDetailResponseDto] output, NSError* error) {
+              completionHandler: ^(array[BeverageDetailVo] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -2226,7 +2201,7 @@ BeverageApi *apiInstance = [[BeverageApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-javascript">
+                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
 var defaultClient = JulindangCafeService.ApiClient.instance;
 
@@ -2242,14 +2217,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.findByCafeNameAndBeverageName1(cafeName, beverageName, callback);
+api.findByCafeNameAndBeverageName(cafeName, beverageName, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-angular">
+                            <!--<div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-csharp">
+                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2258,7 +2233,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class findByCafeNameAndBeverageName1Example
+    public class findByCafeNameAndBeverageNameExample
     {
         public void main()
         {
@@ -2270,12 +2245,12 @@ namespace Example
 
             try
             {
-                array[BeverageDetailResponseDto] result = apiInstance.findByCafeNameAndBeverageName1(cafeName, beverageName);
+                array[BeverageDetailVo] result = apiInstance.findByCafeNameAndBeverageName(cafeName, beverageName);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling BeverageApi.findByCafeNameAndBeverageName1: " + e.Message );
+                Debug.Print("Exception when calling BeverageApi.findByCafeNameAndBeverageName: " + e.Message );
             }
         }
     }
@@ -2283,7 +2258,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-php">
+                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2293,15 +2268,15 @@ $cafeName = cafeName_example; // String | 카페 이름
 $beverageName = beverageName_example; // String | 음료 이름
 
 try {
-    $result = $api_instance->findByCafeNameAndBeverageName1($cafeName, $beverageName);
+    $result = $api_instance->findByCafeNameAndBeverageName($cafeName, $beverageName);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BeverageApi->findByCafeNameAndBeverageName1: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BeverageApi->findByCafeNameAndBeverageName: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-perl">
+                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::BeverageApi;
@@ -2312,15 +2287,15 @@ my $cafeName = cafeName_example; # String | 카페 이름
 my $beverageName = beverageName_example; # String | 음료 이름
 
 eval { 
-    my $result = $api_instance->findByCafeNameAndBeverageName1(cafeName => $cafeName, beverageName => $beverageName);
+    my $result = $api_instance->findByCafeNameAndBeverageName(cafeName => $cafeName, beverageName => $beverageName);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling BeverageApi->findByCafeNameAndBeverageName1: $@\n";
+    warn "Exception when calling BeverageApi->findByCafeNameAndBeverageName: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName1-0-python">
+                            <div class="tab-pane" id="examples-Beverage-findByCafeNameAndBeverageName-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -2334,10 +2309,10 @@ cafeName = cafeName_example # String | 카페 이름
 beverageName = beverageName_example # String | 음료 이름
 
 try: 
-    api_response = api_instance.find_by_cafe_name_and_beverage_name1(cafeName, beverageName)
+    api_response = api_instance.find_by_cafe_name_and_beverage_name(cafeName, beverageName)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling BeverageApi->findByCafeNameAndBeverageName1: %s\n" % e)</code></pre>
+    print("Exception when calling BeverageApi->findByCafeNameAndBeverageName: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -2357,7 +2332,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_findByCafeNameAndBeverageName1_cafeName">
+                                    <div id="d2e199_findByCafeNameAndBeverageName_cafeName">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -2379,7 +2354,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_findByCafeNameAndBeverageName1_beverageName">
+                                    <div id="d2e199_findByCafeNameAndBeverageName_beverageName">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -2404,14 +2379,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-findByCafeNameAndBeverageName1-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-findByCafeNameAndBeverageName-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-findByCafeNameAndBeverageName1-200-schema">
-                                  <div id='responses-findByCafeNameAndBeverageName1-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-findByCafeNameAndBeverageName-200-schema">
+                                  <div id='responses-findByCafeNameAndBeverageName-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2421,7 +2396,7 @@ except ApiException as e:
       "schema" : {
         "type" : "array",
         "items" : {
-          "$ref" : "#/components/schemas/BeverageDetailResponseDto"
+          "$ref" : "#/components/schemas/BeverageDetailVo"
         },
         "x-content-type" : "*/*"
       }
@@ -2441,14 +2416,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-findByCafeNameAndBeverageName1-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-findByCafeNameAndBeverageName1-200-schema-200');
+                                        $('#responses-findByCafeNameAndBeverageName-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findByCafeNameAndBeverageName-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-findByCafeNameAndBeverageName1-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-findByCafeNameAndBeverageName-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -5842,10 +5817,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Dessert-findByCafeNameAndBeverageName">
-                      <article id="api-Dessert-findByCafeNameAndBeverageName-0" data-group="User" data-name="findByCafeNameAndBeverageName" data-version="0">
+                    <div id="api-Dessert-findByCafeNameAndDessertName">
+                      <article id="api-Dessert-findByCafeNameAndDessertName-0" data-group="User" data-name="findByCafeNameAndDessertName" data-version="0">
                         <div class="pull-left">
-                          <h1>findByCafeNameAndBeverageName</h1>
+                          <h1>findByCafeNameAndDessertName</h1>
                           <p></p>
                         </div>
                         <div class="pull-right"></div>
@@ -5859,27 +5834,27 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Dessert-findByCafeNameAndBeverageName-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Dessert-findByCafeNameAndDessertName-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Dessert-findByCafeNameAndDessertName-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Dessert-findByCafeNameAndBeverageName-0-curl">
+                          <div class="tab-pane active" id="examples-Dessert-findByCafeNameAndDessertName-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
  -H "Authorization: Bearer [[accessToken]]"\
 -H "Accept: */*"\
 "https://julindang.shop/cafe/dessert/details?cafeName=&beverageName="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-java">
+                          <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -5898,17 +5873,17 @@ public class DessertApiExample {
         String cafeName = cafeName_example; // String | 카페 이름
         String beverageName = beverageName_example; // String | 디저트 이름
         try {
-            array[DessertDetailResponseDto] result = apiInstance.findByCafeNameAndBeverageName(cafeName, beverageName);
+            array[DessertDetailVo] result = apiInstance.findByCafeNameAndDessertName(cafeName, beverageName);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DessertApi#findByCafeNameAndBeverageName");
+            System.err.println("Exception when calling DessertApi#findByCafeNameAndDessertName");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-android">
+                          <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DessertApi;
 
 public class DessertApiExample {
@@ -5918,29 +5893,29 @@ public class DessertApiExample {
         String cafeName = cafeName_example; // String | 카페 이름
         String beverageName = beverageName_example; // String | 디저트 이름
         try {
-            array[DessertDetailResponseDto] result = apiInstance.findByCafeNameAndBeverageName(cafeName, beverageName);
+            array[DessertDetailVo] result = apiInstance.findByCafeNameAndDessertName(cafeName, beverageName);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DessertApi#findByCafeNameAndBeverageName");
+            System.err.println("Exception when calling DessertApi#findByCafeNameAndDessertName");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-groovy">
+  <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-objc">
+                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 String *cafeName = cafeName_example; // 카페 이름
 String *beverageName = beverageName_example; // 디저트 이름
 
 DessertApi *apiInstance = [[DessertApi alloc] init];
 
-[apiInstance findByCafeNameAndBeverageNameWith:cafeName
+[apiInstance findByCafeNameAndDessertNameWith:cafeName
     beverageName:beverageName
-              completionHandler: ^(array[DessertDetailResponseDto] output, NSError* error) {
+              completionHandler: ^(array[DessertDetailVo] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -5951,7 +5926,7 @@ DessertApi *apiInstance = [[DessertApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-javascript">
+                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var JulindangCafeService = require('julindang_cafe_service');
 var defaultClient = JulindangCafeService.ApiClient.instance;
 
@@ -5967,14 +5942,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.findByCafeNameAndBeverageName(cafeName, beverageName, callback);
+api.findByCafeNameAndDessertName(cafeName, beverageName, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-angular">
+                            <!--<div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-csharp">
+                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -5983,7 +5958,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class findByCafeNameAndBeverageNameExample
+    public class findByCafeNameAndDessertNameExample
     {
         public void main()
         {
@@ -5995,12 +5970,12 @@ namespace Example
 
             try
             {
-                array[DessertDetailResponseDto] result = apiInstance.findByCafeNameAndBeverageName(cafeName, beverageName);
+                array[DessertDetailVo] result = apiInstance.findByCafeNameAndDessertName(cafeName, beverageName);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DessertApi.findByCafeNameAndBeverageName: " + e.Message );
+                Debug.Print("Exception when calling DessertApi.findByCafeNameAndDessertName: " + e.Message );
             }
         }
     }
@@ -6008,7 +5983,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-php">
+                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -6018,15 +5993,15 @@ $cafeName = cafeName_example; // String | 카페 이름
 $beverageName = beverageName_example; // String | 디저트 이름
 
 try {
-    $result = $api_instance->findByCafeNameAndBeverageName($cafeName, $beverageName);
+    $result = $api_instance->findByCafeNameAndDessertName($cafeName, $beverageName);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DessertApi->findByCafeNameAndBeverageName: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DessertApi->findByCafeNameAndDessertName: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-perl">
+                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DessertApi;
@@ -6037,15 +6012,15 @@ my $cafeName = cafeName_example; # String | 카페 이름
 my $beverageName = beverageName_example; # String | 디저트 이름
 
 eval { 
-    my $result = $api_instance->findByCafeNameAndBeverageName(cafeName => $cafeName, beverageName => $beverageName);
+    my $result = $api_instance->findByCafeNameAndDessertName(cafeName => $cafeName, beverageName => $beverageName);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DessertApi->findByCafeNameAndBeverageName: $@\n";
+    warn "Exception when calling DessertApi->findByCafeNameAndDessertName: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndBeverageName-0-python">
+                            <div class="tab-pane" id="examples-Dessert-findByCafeNameAndDessertName-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -6059,10 +6034,10 @@ cafeName = cafeName_example # String | 카페 이름
 beverageName = beverageName_example # String | 디저트 이름
 
 try: 
-    api_response = api_instance.find_by_cafe_name_and_beverage_name(cafeName, beverageName)
+    api_response = api_instance.find_by_cafe_name_and_dessert_name(cafeName, beverageName)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DessertApi->findByCafeNameAndBeverageName: %s\n" % e)</code></pre>
+    print("Exception when calling DessertApi->findByCafeNameAndDessertName: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -6082,7 +6057,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_findByCafeNameAndBeverageName_cafeName">
+                                    <div id="d2e199_findByCafeNameAndDessertName_cafeName">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -6104,7 +6079,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_findByCafeNameAndBeverageName_beverageName">
+                                    <div id="d2e199_findByCafeNameAndDessertName_beverageName">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -6129,14 +6104,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-findByCafeNameAndBeverageName-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-findByCafeNameAndDessertName-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-findByCafeNameAndBeverageName-200-schema">
-                                  <div id='responses-findByCafeNameAndBeverageName-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-findByCafeNameAndDessertName-200-schema">
+                                  <div id='responses-findByCafeNameAndDessertName-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -6146,7 +6121,7 @@ except ApiException as e:
       "schema" : {
         "type" : "array",
         "items" : {
-          "$ref" : "#/components/schemas/DessertDetailResponseDto"
+          "$ref" : "#/components/schemas/DessertDetailVo"
         },
         "x-content-type" : "*/*"
       }
@@ -6166,14 +6141,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-findByCafeNameAndBeverageName-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-findByCafeNameAndBeverageName-200-schema-200');
+                                        $('#responses-findByCafeNameAndDessertName-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-findByCafeNameAndDessertName-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-findByCafeNameAndBeverageName-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-findByCafeNameAndDessertName-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
